@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "brotoApp",
+    "slug": "brotoApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "brotoApp"
+}
