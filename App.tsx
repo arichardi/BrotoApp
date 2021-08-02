@@ -13,6 +13,7 @@ import {
 import { YesevaOne_400Regular } from '@expo-google-fonts/yeseva-one'
 import { useFonts } from 'expo-font'
 import AppLoading from 'expo-app-loading'
+import TestComponent from './App/screen/TestComponent';
 
 
 export default function App() {

@@ -16,6 +16,8 @@ install the google fonts and the apploading for the fonts
 install the react-native-responsive-fontsize para funcionar as proporções em diferentes telas
 install the expo-react-SVG for bring svg icons
 
+- Mantive os meus arquivos svg como js por que tive problemas em nomear como typescript \*
+
 construção base com o theme de cores e fontes, para centralizar todo as informações e facilitar caso queira trocar no futuro
 
 `construção dos types para os estilos`
@@ -32,3 +34,7 @@ declare module "styled-components" {
   export interface DefaultTheme extends Themetype {}
 }
 ```
+
+`Main Page`
+
+Construção da página principal e das estruturas para criar os cards
