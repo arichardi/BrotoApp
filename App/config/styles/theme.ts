@@ -3,15 +3,15 @@ export default {
     colors: {
         backGround: '#F1ece6',
 
-        green_dark: '#',
-        green_light: '#',
-        pink_dark: '#',
-        pink_link: '#',
-        yellow_dark: '#',
-        Yellow_light: '#',
+        green_dark: '#42623e',
+        green_light: '#9fa26c',
+        pink_dark: '#EDB497',
+        pink_light: '#F4d9c9',
+        yellow_dark: '#ffb40b',
+        Yellow_light: '#f8d078',
 
-        attention: '#',
-        whites: '#',
+        attention: '#ee6c29',
+        whites: '#FFFFFF',
     },
 
     fonts: {
