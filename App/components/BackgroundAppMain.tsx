@@ -9,8 +9,8 @@ YellowCircle,
 export default function BackgroundApp({children}){
     return (
         <Background>
-            <YellowCircle />
             <PinkCircle />
+            <YellowCircle />
             {children}
         </Background>
     )

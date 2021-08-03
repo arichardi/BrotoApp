@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet} from 'react-native'
+import { View, StyleSheet} from 'react-native'
 import PlantCard from "../components/PlantCard";
 
 export default function TestComponent(){
     return(
         <View style={styles.container}>
-            <PlantCard />
+            <PlantCard title='teste' subtitle='teste teste'/>
         </View>
     )
 }

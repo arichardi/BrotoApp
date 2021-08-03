@@ -9,9 +9,11 @@ import { Container,
     } from './MyPlantsStyles';
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
+import BackgroundApp from '../components/BackgroundApp';
 
 export default function MyPlants(){
     return(
+        <BackgroundApp>
         <Container>
             <PlantsPack>
             <Cto>
@@ -31,5 +33,6 @@ export default function MyPlants(){
                 <PlantAddIconButton />
             </ButtonAddPlantContainer>
         </Container>
+        </BackgroundApp>
     );
 }

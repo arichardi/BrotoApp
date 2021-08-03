@@ -1,17 +1,17 @@
 import React from 'react'
 import { Container } from './WelcomeScreenStyles'
-import BackgroundApp from '../components/BackgroundApp'
+import BackgroundAppMain from '../components/BackgroundAppMain'
 import MainLogo from '../Assets/MainLogo'
 
 
 
 export default function WelcomeScreen(){
     return (
-        <BackgroundApp >
+        <BackgroundAppMain >
             <Container>
             <MainLogo  />
             </Container>
-        </BackgroundApp>
+        </BackgroundAppMain>
     )
 };
 
