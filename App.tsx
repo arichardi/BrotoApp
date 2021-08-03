@@ -1,8 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components'
-
 import theme from './App/config/styles/theme'
-import MyPlants from './App/screen/Myplants';
 
 import {
   Roboto_400Regular,
@@ -13,7 +11,10 @@ import {
 import { YesevaOne_400Regular } from '@expo-google-fonts/yeseva-one'
 import { useFonts } from 'expo-font'
 import AppLoading from 'expo-app-loading'
+
+import MyPlants from './App/screen/Myplants';
 import TestComponent from './App/screen/TestComponent';
+import WelcomeScreen from './App/screen/WelcomeScreen';
 
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <MyPlants />
+      <WelcomeScreen />
     </ThemeProvider>
   );
 }
