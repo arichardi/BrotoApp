@@ -11,7 +11,8 @@ Subtitle,
 import BrotoIcon from "../Assets/BrotoIcon";
 import RegarIcon from '../Assets/RegarIcon'
 
-interface PlantCardProps {
+export interface PlantCardProps {
+    id: string;
     title: string;
     subtitle: string;
 }

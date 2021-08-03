@@ -1,5 +1,7 @@
 import styled from "styled-components/native";
+import { FlatList } from "react-native";
 
+import { PlantCardProps } from '../components/PlantCard'
 
 export const Container = styled.View`
     flex: 1;
@@ -29,9 +31,14 @@ export const Underline = styled.View`
     top: 42px;
 `;
 
-export const PlantList = styled.View`
-    
-`;
+export const PlantList = styled(
+    FlatList as new () => FlatList<PlantCardProps>
+    ).attrs({
+        contentContainerStyle: { 
+            height: 410,
+        },
+        showsVerticalScrollIndicator: true
+    })``;
 
 export const ButtonAddPlantContainer = styled.View`
     align-items: center;
