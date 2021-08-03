@@ -1,6 +1,9 @@
 import styled from 'styled-components/native'
+import { View } from 'react-native'
 
-export const Container = styled.View`
+export const Container = styled(View).attrs({
+    
+})`
     background-color: ${ ({theme}) => theme.colors.backGround};
 
     flex-direction: row;
@@ -12,7 +15,7 @@ export const Container = styled.View`
     border-radius: 16px;
     margin-bottom: 12px;
 
-    elevation: 20;
+
 `;
 
 export const PlantaContainer = styled.View`
@@ -21,17 +24,19 @@ export const PlantaContainer = styled.View`
 `;
 
 export const PlantTag = styled.View`
-    margin-left: 24px;
+    margin-left: 16px;
 `;
 
 export const Title = styled.Text`
     font-size: 14px;
     font-family: ${ ({theme}) => theme.fonts.black};
     color: ${ ({theme}) => theme.colors.green_dark};
+    width: 100px;
 `;
 
 export const Subtitle = styled.Text`
     font-size: 14px;
     font-family: ${ ({theme}) => theme.fonts.regular};
     color: ${ ({theme}) => theme.colors.green_light};
+    width: 180px;
 `;

@@ -1,12 +1,12 @@
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 
 import { PlantCardProps } from '../components/PlantCard'
 
 export const Container = styled.View`
     flex: 1;
     padding: 16px;
-    justify-content: space-between;
+
 `;
 
 export const Cto = styled.View`
@@ -35,13 +35,23 @@ export const PlantList = styled(
     FlatList as new () => FlatList<PlantCardProps>
     ).attrs({
         contentContainerStyle: { 
-            height: 410,
+           
         },
-        showsVerticalScrollIndicator: true
-    })``;
+        showsVerticalScrollIndicator: false,
+        
+    })`
+        
+    `;
 
 export const ButtonAddPlantContainer = styled.View`
     align-items: center;
     margin-bottom: 8px;
+    margin-top: 20px;
+    
+    
 `
-export const PlantsPack = styled.View``
+
+export const ShadowView = styled(View).attrs({
+    elevation: 30,
+})`
+`

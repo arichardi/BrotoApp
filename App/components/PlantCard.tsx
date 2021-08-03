@@ -19,12 +19,12 @@ export interface PlantCardProps {
 
 export default function PlantCard({title, subtitle }:PlantCardProps){
     return(
-        <Container>
+        <Container >
             <PlantaContainer>
             <BrotoIcon />
             <PlantTag>
                 <Title>{title}</Title>
-                <Subtitle>{subtitle}</Subtitle>
+                <Subtitle numberOfLines={1} >{subtitle}</Subtitle>
             </PlantTag>
             </PlantaContainer>
             <RegarIcon />

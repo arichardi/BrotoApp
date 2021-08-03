@@ -4,8 +4,8 @@ import { Container,
     Underline,
     PlantList,
     ButtonAddPlantContainer,
-    PlantsPack,
     Cto,
+    ShadowView,
     } from './MyPlantsStyles';
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
@@ -57,26 +57,30 @@ const plants: PlantCardProps[] = [
     return(
         <BackgroundApp>
         <Container>
-            <PlantsPack>
             <Cto>
                 <Underline />
-                <Title>Minhas Plantas</Title>
+                <Title >Minhas Plantas</Title>
             </Cto>
 
             <PlantList 
                 data={plants}
                 keyExtractor={ item => item.id}
-                renderItem={ ({item}) => 
-                    <PlantCard title={item.title} subtitle={item.subtitle} id={item.id}/>
+                renderItem={ ({item}) => {
+                    return (
+                        <ShadowView>
+                        <PlantCard title={item.title} subtitle={item.subtitle} id={item.id}/>
+                        </ShadowView>
+                    )
+                }
                 }
             />
 
-            </PlantsPack>
 
             <ButtonAddPlantContainer>
                 <PlantAddIconButton />
             </ButtonAddPlantContainer>
         </Container>
         </BackgroundApp>
+
     );
 }
