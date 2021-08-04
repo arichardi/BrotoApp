@@ -5,13 +5,13 @@ import { PlantCardProps } from '../components/PlantCard'
 
 export const Container = styled.View`
     flex: 1;
-    padding: 16px;
 
 `;
 
 export const Cto = styled.View`
 margin-top: 42px;
 margin-bottom: 88px;
+margin-left: 16px;
 
 `;
 
@@ -40,7 +40,7 @@ export const PlantList = styled(
         showsVerticalScrollIndicator: false,
         
     })`
-        
+
     `;
 
 export const ButtonAddPlantContainer = styled.View`

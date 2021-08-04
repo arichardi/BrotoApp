@@ -2,19 +2,22 @@ import styled from 'styled-components/native'
 import { View } from 'react-native'
 
 export const Container = styled(View).attrs({
-    elevation: 30,
+    elevation: 8,
 })`
     background-color: ${ ({theme}) => theme.colors.backGround};
 
     flex-direction: row;
-    width: 100%;
     height: 64px;
     align-items: center;
     justify-content: space-between;
     padding: 8px 12px;
     border-radius: 16px;
-    margin-bottom: 12px;
-
+    margin-top: 0px;
+    margin-right: 12px;
+    margin-left: 12px;
+    margin-bottom: 8px;
+    
+    
 
 `;
 
