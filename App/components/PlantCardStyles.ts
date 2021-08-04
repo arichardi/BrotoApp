@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import { View } from 'react-native'
 
 export const Container = styled(View).attrs({
-    
+    elevation: 30,
 })`
     background-color: ${ ({theme}) => theme.colors.backGround};
 

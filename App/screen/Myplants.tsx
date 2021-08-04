@@ -5,7 +5,6 @@ import { Container,
     PlantList,
     ButtonAddPlantContainer,
     Cto,
-    ShadowView,
     } from './MyPlantsStyles';
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
@@ -66,11 +65,10 @@ const plants: PlantCardProps[] = [
                 data={plants}
                 keyExtractor={ item => item.id}
                 renderItem={ ({item}) => {
-                    return (
-                        <ShadowView>
-                        <PlantCard title={item.title} subtitle={item.subtitle} id={item.id}/>
-                        </ShadowView>
-                    )
+                    return <PlantCard 
+                        title={item.title}
+                        subtitle={item.subtitle}
+                        id={item.id}/>
                 }
                 }
             />

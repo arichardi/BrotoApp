@@ -50,8 +50,3 @@ export const ButtonAddPlantContainer = styled.View`
     
     
 `
-
-export const ShadowView = styled(View).attrs({
-    elevation: 30,
-})`
-`
