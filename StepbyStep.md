@@ -38,3 +38,7 @@ declare module "styled-components" {
 `Main Page`
 
 Construção da página principal e das estruturas para criar os cards
+
+`Formulários`
+
+Criação da página que vai conter os formulários que iram fazer o cadastro das plantas
