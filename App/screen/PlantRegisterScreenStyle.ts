@@ -17,7 +17,15 @@ export const PhotoIcon = styled.View`
     width: 128px;
     height: 128px;
     border-radius: 64px;
-    position: relative;
+    position: absolute;
     top: -64px;
     left: 30%;
+`;
+
+export const InputContainer = styled.View`
+    padding: 16px
+`;
+
+export const Where = styled.Text`
+    
 `;

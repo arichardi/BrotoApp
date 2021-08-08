@@ -5,8 +5,6 @@ import {
     Title,
  } from './NameDIsplayStyle'
 
-
-
 export default function NameDisplay({children}){
     return(
             <Cto>
