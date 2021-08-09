@@ -27,7 +27,9 @@ export const InputContainer = styled.View`
 `;
 
 export const Where = styled.Text`
-    
+    font-size: 14px;
+    font-family: ${ ({theme}) => theme.fonts.bold};
+    color: ${ ({theme}) => theme.colors.green_light};
 `;
 
 export const NomeContainer = styled.View`
@@ -38,4 +40,10 @@ export const NomeContainer = styled.View`
 export const ButtonContainer = styled.View`
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 50px;
+`;
+
+export const AmbientContainer = styled.View`
+    padding: 0px 16px;
+    align-items: center;
 `;

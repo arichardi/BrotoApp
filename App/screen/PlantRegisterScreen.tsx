@@ -11,6 +11,7 @@ import {
     InputContainer,
     Where,
     ButtonContainer,
+    AmbientContainer,
  } from './PlantRegisterScreenStyle'
 
 
@@ -33,13 +34,16 @@ export default function PlantRegisterScreen(){
                 <AppInput placeholder='Data da chegada'/>
             </InputContainer>
 
+            <AmbientContainer>
             <Where>Onde fica minha plantinha ?</Where>
             <AmbientButton envType={envButton}/>
-
+            </AmbientContainer>
+            
             <ButtonContainer>
                 <AppButtonM title='Cancelar' buttonType='cancel'/>
                 <AppButtonM title='Confirmar' buttonType='correct' />
             </ButtonContainer>
+            
 
         </Container>
         </BackgroundApp>

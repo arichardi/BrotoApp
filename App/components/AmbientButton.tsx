@@ -12,7 +12,7 @@ interface ButtonProps {
     envType: 'in' | 'out' 
 }
 
-export default function AmbientButton({envType}: ButtonProps){
+export default function AmbientButton({envType} : ButtonProps){
     return(
         <Container>
             <ButtonCase>

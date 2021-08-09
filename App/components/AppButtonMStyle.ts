@@ -14,12 +14,21 @@ export const Container = styled(TouchableOpacity)<ButtonTypeProps>`
         buttonType === 'correct' ? theme.colors.green_dark : theme.colors.backGround
     ) };
     border-width: ${ ({buttonType}) => 
-        buttonType === 'correct' ? 0 : 2
+        buttonType === 'correct' ? 0 : 3
     }px;
+    border-color: ${ ({theme, buttonType}) => (
+        buttonType === 'cancel' ? theme.colors.attention : theme.colors.backGround)};
+        height: 44px;
+        width: 140px;
+        border-radius: 22px;
+        justify-content: center;
+        align-items: center;
 `;
 
 export const Title = styled.Text<titleTypeProps>`
-    font-size: 14px;
+    font-size: ${ ({buttonType}) => 
+        buttonType === 'correct' ? 14 : 15
+    }px;
     font-family: ${ ({theme}) => theme.fonts.black};
     color: ${ ({theme, buttonType}) => (
         buttonType === 'correct' ? theme.colors.backGround : theme.colors.attention

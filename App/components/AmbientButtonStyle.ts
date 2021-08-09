@@ -1,10 +1,10 @@
 import styled from 'styled-components/native'
 import HomeIcon from '../Assets/HomeIcon';
 import SunIcon from '../Assets/SunIcon'
-
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import theme from '../config/styles/theme'
 
-interface ButtonProps{
+interface ButtonProps extends TouchableOpacityProps {
     envType: 'in' | 'out'
 }
 
@@ -18,7 +18,7 @@ export const Container = styled.View`
     margin-top: 26px; 
     overflow: hidden;
 `;
-export const ButtonCase = styled.View<ButtonProps>`
+export const ButtonCase = styled(TouchableOpacity)<ButtonProps>`
     width: 50%;
     height: 100%;
     justify-content: center;
