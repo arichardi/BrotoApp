@@ -34,3 +34,8 @@ export const NomeContainer = styled.View`
     margin-top: 40px;
     margin-bottom: 40px;
 `;
+
+export const ButtonContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-around;
+`;
