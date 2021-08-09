@@ -29,3 +29,8 @@ export const InputContainer = styled.View`
 export const Where = styled.Text`
     
 `;
+
+export const NomeContainer = styled.View`
+    margin-top: 40px;
+    margin-bottom: 40px;
+`;

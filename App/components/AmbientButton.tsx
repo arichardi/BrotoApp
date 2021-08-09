@@ -1,10 +1,28 @@
 import React from 'react'
 import {
-    Container
+    Container,
+    ButtonCase,
+    TitleIn,
+    TitleOut,
+    HomeIconStyle,
+    SunIconStyle,
 } from './AmbientButtonStyle'
 
-export default function AmbientButton(){
+interface ButtonProps {
+    envType: 'in' | 'out' 
+}
+
+export default function AmbientButton({envType}: ButtonProps){
     return(
-        <Container></Container>
+        <Container>
+            <ButtonCase>
+                <TitleIn envType={envType}>Interno</TitleIn>
+                <HomeIconStyle envType={envType}/>
+            </ButtonCase>
+            <ButtonCase>
+                <TitleOut envType={envType} >Externo</TitleOut>
+                <SunIconStyle envType={envType} />
+            </ButtonCase>
+        </Container>
     )
 }
