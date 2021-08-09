@@ -5,7 +5,7 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import theme from '../config/styles/theme'
 
 interface ButtonProps extends TouchableOpacityProps {
-    envType: 'in' | 'out'
+    isActive: boolean
 }
 
 export const Container = styled.View`
@@ -24,24 +24,31 @@ export const ButtonCase = styled(TouchableOpacity)<ButtonProps>`
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    background-color: ${ ({theme}) => theme.colors.green_dark };
+    background-color: ${ ({theme, isActive}) => (
+        isActive ? theme.colors.green_dark : theme.colors.backGround
+    )};
 `;
 export const TitleIn = styled.Text<ButtonProps>`
     font-size: 14px;
     font-family: ${ ({theme}) => theme.fonts.black};
     margin-right: 4px;
+    color: ${ ({theme, isActive}) => (
+        isActive ? theme.colors.backGround : theme.colors.green_dark
+    )};
+
 `;
 export const TitleOut = styled.Text<ButtonProps>`
     font-size: 14px;
     font-family: ${ ({theme}) => theme.fonts.black};
     margin-right: 4px;
+    color: ${ ({theme, isActive}) => (
+        isActive ? theme.colors.backGround : theme.colors.green_dark
+    )};
 `;
 
-export const HomeIconStyle = styled(HomeIcon).attrs<ButtonProps>({
-    color: theme.colors.green_dark
-})`
+export const HomeIconStyle = styled(HomeIcon)`
     
 `;
-export const SunIconStyle = styled(SunIcon)<ButtonProps>`
+export const SunIconStyle = styled(SunIcon)`
 
 `;

@@ -33,14 +33,14 @@ export const Where = styled.Text`
 `;
 
 export const NomeContainer = styled.View`
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 32px;
+    margin-bottom: 24px;
 `;
 
 export const ButtonContainer = styled.View`
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 50px;
+    margin-top: 100px;
 `;
 
 export const AmbientContainer = styled.View`

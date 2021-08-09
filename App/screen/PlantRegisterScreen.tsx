@@ -19,6 +19,10 @@ export default function PlantRegisterScreen(){
 
     const [envButton, setEnvButton] = useState('')
 
+    function handleEnviroment(type : 'in' | 'out'){
+        setEnvButton(type)
+    }
+
     return (
         <BackgroundApp>
         <Container>
@@ -36,7 +40,10 @@ export default function PlantRegisterScreen(){
 
             <AmbientContainer>
             <Where>Onde fica minha plantinha ?</Where>
-            <AmbientButton envType={envButton}/>
+            <AmbientButton 
+                envType={envButton}
+                onPress={handleEnviroment}
+            />
             </AmbientContainer>
             
             <ButtonContainer>

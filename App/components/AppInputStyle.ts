@@ -12,7 +12,7 @@ export const Input = styled(TextInput).attrs<TextInputProps>({
 `;
 
 export const Container = styled.View`
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 `;
 export const Line = styled.View`
 
