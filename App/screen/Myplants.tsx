@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Container,
     Title,
     Underline,
@@ -6,13 +6,18 @@ import { Container,
     ButtonAddPlantContainer,
     Cto,
     } from './MyPlantsStyles';
+import { Modal } from 'react-native'
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
 import BackgroundApp from '../components/BackgroundApp';
 import { PlantCardProps } from '../components/PlantCard'
+import { set } from 'react-native-reanimated';
+import PlantRegisterScreen from './PlantRegisterScreen';
 //----------------------------------------------------------------
 
 export default function MyPlants(){
+
+    const [visiblemodal, setVisibleModal] = useState(false)
 
 const plants: PlantCardProps[] = [
      {id: '1',
@@ -52,8 +57,12 @@ const plants: PlantCardProps[] = [
    subtitle: 'venenosa eeeee era venenosa'
   }
 ]
+    function handleAddPlantModal(door: boolean){
+        setVisibleModal(door)
+    }
 
     return(
+        <>
         <BackgroundApp>
         <Container>
             <Cto>
@@ -74,11 +83,18 @@ const plants: PlantCardProps[] = [
             />
 
 
-            <ButtonAddPlantContainer>
+            <ButtonAddPlantContainer onPress={ () => handleAddPlantModal(true) } >
                 <PlantAddIconButton />
             </ButtonAddPlantContainer>
         </Container>
         </BackgroundApp>
 
+        <Modal visible={visiblemodal} animationType='slide' statusBarTranslucent >
+            <PlantRegisterScreen 
+                cancelOperation={handleAddPlantModal}
+            />
+        </Modal>
+        
+        </>
     );
 }

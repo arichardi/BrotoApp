@@ -3,6 +3,10 @@
     "name": "brotoApp",
     "slug": "brotoApp",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "androidStatusBar": {
+      "translucent": true
+    },
     "assetBundlePatterns": [
       "**/*"
     ]

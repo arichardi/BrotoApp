@@ -4,6 +4,7 @@ import { View } from 'react-native'
 export const Container = styled(View).attrs({
     elevation: 8
 })`
+    
     background-color: ${ ({theme}) => theme.colors.backGround};
     margin-top: 112px;
     margin-left: 16px;

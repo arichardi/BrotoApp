@@ -16,7 +16,7 @@ import {
  } from './PlantRegisterScreenStyle'
 
 
-export default function PlantRegisterScreen(){
+export default function PlantRegisterScreen({cancelOperation}){
 
     const [envButton, setEnvButton] = useState('')
     const [plantName, setPlantName] = useState('Nome')
@@ -31,7 +31,7 @@ export default function PlantRegisterScreen(){
             <PhotoIconContainer>
                 <PhotoIcon />
             </PhotoIconContainer>
-            
+
             <NomeContainer>
             <NameDisplay>{plantName}</NameDisplay>
             </NomeContainer>
@@ -51,8 +51,8 @@ export default function PlantRegisterScreen(){
             </AmbientContainer>
             
             <ButtonContainer>
-                <AppButtonM title='Cancelar' buttonType='cancel'/>
-                <AppButtonM title='Confirmar' buttonType='correct' />
+                <AppButtonM title='Cancelar' buttonType='cancel' onPress={() => cancelOperation(false)}/>
+                <AppButtonM title='Confirmar' buttonType='correct'/>
             </ButtonContainer>
             
 

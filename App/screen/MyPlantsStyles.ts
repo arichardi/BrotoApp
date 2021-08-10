@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FlatList, View } from "react-native";
+import { FlatList, View, TouchableOpacity } from "react-native";
 
 import { PlantCardProps } from '../components/PlantCard'
 
@@ -43,7 +43,7 @@ export const PlantList = styled(
 
     `;
 
-export const ButtonAddPlantContainer = styled.View`
+export const ButtonAddPlantContainer = styled(TouchableOpacity)`
     align-items: center;
     margin-bottom: 8px;
     margin-top: 20px;
