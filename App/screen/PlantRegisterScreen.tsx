@@ -4,14 +4,15 @@ import BackgroundApp from '../components/BackgroundApp'
 import NameDisplay from '../components/NameDIsplay'
 import AmbientButton from '../components/AmbientButton'
 import AppButtonM from '../components/AppButtonM'
+import PhotoIcon from '../components/PhotoIcon'
 import { 
     Container,
-    PhotoIcon,
     NomeContainer,
     InputContainer,
     Where,
     ButtonContainer,
     AmbientContainer,
+    PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
 
 
@@ -27,8 +28,10 @@ export default function PlantRegisterScreen(){
     return (
         <BackgroundApp>
         <Container>
+            <PhotoIconContainer>
+                <PhotoIcon />
+            </PhotoIconContainer>
             
-            <PhotoIcon />
             <NomeContainer>
             <NameDisplay>{plantName}</NameDisplay>
             </NomeContainer>

@@ -8,18 +8,8 @@ export const Container = styled(View).attrs({
     margin-top: 112px;
     margin-left: 16px;
     margin-right: 16px;
-    height: 600px;
+    height: 615px;
     border-radius: 16px;
-`;
-
-export const PhotoIcon = styled.View`
-    background-color: ${ ({theme}) => theme.colors.green_light};
-    width: 128px;
-    height: 128px;
-    border-radius: 64px;
-    position: absolute;
-    top: -64px;
-    left: 30%;
 `;
 
 export const InputContainer = styled.View`
@@ -40,10 +30,16 @@ export const NomeContainer = styled.View`
 export const ButtonContainer = styled.View`
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 100px;
+    margin-top: 120px;
 `;
 
 export const AmbientContainer = styled.View`
     padding: 0px 16px;
     align-items: center;
+`;
+
+export const PhotoIconContainer = styled.View`
+    position: absolute;
+    top: -64px;
+    left: 30%;
 `;
