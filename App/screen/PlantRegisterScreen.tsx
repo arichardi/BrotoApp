@@ -18,6 +18,7 @@ import {
 export default function PlantRegisterScreen(){
 
     const [envButton, setEnvButton] = useState('')
+    const [plantName, setPlantName] = useState('Nome')
 
     function handleEnviroment(type : 'in' | 'out'){
         setEnvButton(type)
@@ -29,13 +30,13 @@ export default function PlantRegisterScreen(){
             
             <PhotoIcon />
             <NomeContainer>
-            <NameDisplay>Nome</NameDisplay>
+            <NameDisplay>{plantName}</NameDisplay>
             </NomeContainer>
 
             <InputContainer>
-                <AppInput placeholder='Nome da Plantinha'/>
+                <AppInput placeholder='Nome da Plantinha'onChangeText={setPlantName}/>
                 <AppInput placeholder='Descritivo'/>
-                <AppInput placeholder='Data da chegada'/>
+                <AppInput placeholder='Data da chegada' keyboardType='number-pad'/>
             </InputContainer>
 
             <AmbientContainer>
