@@ -34,7 +34,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <PlantDetailScreen />
+      <PlantDetailScreen
+        title='Samambaia'
+        subtitle='Plantinha da minha sala'
+        dateArrive='07/08'
+      />
     </ThemeProvider>
   );
 }

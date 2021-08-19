@@ -9,7 +9,7 @@ export const Container = styled.View.attrs({
     margin-right: 16px;
     height: 615px;
     border-radius: 16px;
-    
+
 `;
 export const PhotoIconContainer = styled.View`
     position: absolute;
@@ -18,3 +18,35 @@ export const PhotoIconContainer = styled.View`
 
 `;
 export const PhotoIcon = styled.View``;
+
+export const InfoContainer = styled.View`
+    margin-top: 24px;
+`;
+
+export const SubTitle = styled.Text`
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 0px 16px;
+    color: ${ ({theme}) => theme.colors.green_light};
+    font-family: ${ ({theme}) => theme.fonts.bold};
+    font-size: 14px;
+    align-self: center;
+
+`;
+export const OtherInfoContainer = styled.View``;
+
+export const DateArive = styled.Text`
+    padding: 0px 16px;
+    color: ${ ({theme}) => theme.colors.green_dark};
+    font-family: ${ ({theme}) => theme.fonts.bold};
+    font-size: 14px;
+
+`;
+export const SeparatorLine = styled.View`
+    width: 40%;
+    height: 2px;
+    margin-top: 32px;
+    margin-bottom: 24px;
+    align-self: center;
+    background-color: ${ ({theme}) => theme.colors.green_light};
+`;
