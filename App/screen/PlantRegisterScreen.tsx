@@ -28,6 +28,7 @@ export default function PlantRegisterScreen({cancelOperation}){
     return (
         <BackgroundApp>
         <Container>
+            
             <PhotoIconContainer>
                 <PhotoIcon />
             </PhotoIconContainer>

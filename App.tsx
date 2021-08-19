@@ -16,6 +16,7 @@ import MyPlants from './App/screen/Myplants';
 import TestComponent from './App/screen/TestComponent';
 import WelcomeScreen from './App/screen/WelcomeScreen';
 import PlantRegisterScreen from './App/screen/PlantRegisterScreen'
+import PlantDetailScreen from './App/screen/PlantDetailScreen';
 
 
 export default function App() {
@@ -33,7 +34,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <MyPlants />
+      <PlantDetailScreen />
     </ThemeProvider>
   );
 }

@@ -7,8 +7,11 @@ IconEditContainer,
 import CameraIcon from '../Assets/CameraIcon'
 import EditIcon from '../Assets/EditIcon'
 
+interface Props {
+    editMode?: boolean
+}
 
-export default function PhotoIcon(){
+export default function PhotoIcon({editMode: Props}){
     return(
         <>
         <Container>
@@ -17,7 +20,9 @@ export default function PhotoIcon(){
             </IconContainer>
         </Container>
             <IconEditContainer>
+
             <EditIcon />
+
             </IconEditContainer>
         </>
     )
