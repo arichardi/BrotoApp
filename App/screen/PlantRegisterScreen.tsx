@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Platform } from 'react-native'
 import AppInput from '../components/AppInput'
 import BackgroundApp from '../components/BackgroundApp'
 import NameDisplay from '../components/NameDIsplay'
@@ -7,6 +8,7 @@ import AppButtonM from '../components/AppButtonM'
 import PhotoIcon from '../components/PhotoIcon'
 import DatePickerButton from '../components/DatePickerButton'
 import * as ImagePicker from 'expo-image-picker'
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { 
     Container,
     NomeContainer,
@@ -16,12 +18,15 @@ import {
     AmbientContainer,
     PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
+import { DateArive } from './PlantDetailScreenStyle'
 
 
 export default function PlantRegisterScreen({cancelOperation}){
 
     // States & Vars ----------------------------------------
 
+    const [arriveDate, setArriveDate] = useState(new Date())
+    const [showDatePicker, setShowDatePicker] = useState(false)
     const [envButton, setEnvButton] = useState('')
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
@@ -49,6 +54,16 @@ export default function PlantRegisterScreen({cancelOperation}){
 
     }
 
+    function handleShowDataPicker(){
+        setShowDatePicker(true)
+    }
+
+    function handleDatePicker(event, selectDate){
+        const currentDate = selectDate || arriveDate
+        setShowDatePicker(false)
+        setArriveDate(currentDate)
+    }
+
     // RN COMPS -------------------------------------------------------
 
     return (
@@ -70,7 +85,10 @@ export default function PlantRegisterScreen({cancelOperation}){
             <InputContainer>
                 <AppInput placeholder='Nome da Plantinha'onChangeText={setPlantName}/>
                 <AppInput placeholder='Descritivo'/>
-                <DatePickerButton />
+                <DatePickerButton
+                onPress={handleShowDataPicker}
+                dateTitle={arriveDate.toString()}
+                />
             </InputContainer>
 
             <AmbientContainer>
@@ -88,6 +106,18 @@ export default function PlantRegisterScreen({cancelOperation}){
             
 
         </Container>
+
+        { showDatePicker && 
+        <DateTimePicker 
+            testID='dateTimePicker'
+            value={arriveDate}
+            mode='date'
+            display='default'
+            onChange={handleDatePicker}
+        
+        />
+        }
+
         </BackgroundApp>
     )
 }

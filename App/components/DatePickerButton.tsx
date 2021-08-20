@@ -7,12 +7,17 @@ import {
     DataTitle,
 } from './DatePickerButtonStyle'
 
-export default function DatePickerButton(){
+interface Props {
+    dateTitle: string
+    onPress: () => void;
+}
+
+export default function DatePickerButton({onPress, dateTitle}: Props){
     return (
-        <Container>
+        <Container onPress={onPress}>
             <TextContainer>
             <Title>Data da Chegada</Title>
-            <DataTitle>08/07</DataTitle>
+            <DataTitle>{dateTitle}</DataTitle>
             </TextContainer>
             <Line />
         </Container>
