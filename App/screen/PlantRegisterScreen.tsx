@@ -5,6 +5,7 @@ import NameDisplay from '../components/NameDIsplay'
 import AmbientButton from '../components/AmbientButton'
 import AppButtonM from '../components/AppButtonM'
 import PhotoIcon from '../components/PhotoIcon'
+import DatePickerButton from '../components/DatePickerButton'
 import * as ImagePicker from 'expo-image-picker'
 import { 
     Container,
@@ -19,9 +20,13 @@ import {
 
 export default function PlantRegisterScreen({cancelOperation}){
 
+    // States & Vars ----------------------------------------
+
     const [envButton, setEnvButton] = useState('')
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
+
+    // functions ---------------------------------------------
 
     function handleEnviroment(type : 'in' | 'out'){
         setEnvButton(type)
@@ -44,6 +49,8 @@ export default function PlantRegisterScreen({cancelOperation}){
 
     }
 
+    // RN COMPS -------------------------------------------------------
+
     return (
         <BackgroundApp>
         <Container>
@@ -63,7 +70,7 @@ export default function PlantRegisterScreen({cancelOperation}){
             <InputContainer>
                 <AppInput placeholder='Nome da Plantinha'onChangeText={setPlantName}/>
                 <AppInput placeholder='Descritivo'/>
-                <AppInput placeholder='Data da chegada' keyboardType='number-pad'/>
+                <DatePickerButton />
             </InputContainer>
 
             <AmbientContainer>

@@ -14,6 +14,7 @@ export const Container = styled(View).attrs({
 `;
 
 export const InputContainer = styled.View`
+
     padding: 16px
 `;
 
