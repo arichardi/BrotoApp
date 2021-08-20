@@ -5,6 +5,7 @@ import NameDisplay from '../components/NameDIsplay'
 import AmbientButton from '../components/AmbientButton'
 import AppButtonM from '../components/AppButtonM'
 import PhotoIcon from '../components/PhotoIcon'
+import * as ImagePicker from 'expo-image-picker'
 import { 
     Container,
     NomeContainer,
@@ -20,9 +21,27 @@ export default function PlantRegisterScreen({cancelOperation}){
 
     const [envButton, setEnvButton] = useState('')
     const [plantName, setPlantName] = useState('Nome')
+    const [imagePlant, setImagePlant] =useState(null)
 
     function handleEnviroment(type : 'in' | 'out'){
         setEnvButton(type)
+    }
+
+    async function openImagePicker(){
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if(permissionResult.granted === false){
+            alert('Permission to access camera roll is required');
+            return
+        }
+
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        if (pickerResult.cancelled === true){
+            return
+        }
+
+        setImagePlant({localUri: pickerResult.uri})
+
     }
 
     return (
@@ -30,7 +49,11 @@ export default function PlantRegisterScreen({cancelOperation}){
         <Container>
             
             <PhotoIconContainer>
-                <PhotoIcon />
+                <PhotoIcon 
+                editMode={true}
+                onPress={openImagePicker}
+                photoPlant={imagePlant}
+                />
             </PhotoIconContainer>
 
             <NomeContainer>

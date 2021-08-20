@@ -19,3 +19,9 @@ export const IconEditContainer = styled.View`
     bottom: 30px;
     left: 90px;
 `;
+
+export const PhotoPlant = styled.Image`
+    width: 128px;
+    height: 128px;
+    border-radius: 64px;
+`;
