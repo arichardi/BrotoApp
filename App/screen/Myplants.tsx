@@ -20,7 +20,8 @@ interface PlantStructure {
     subtitle?: string;
     arriveDate: Date;
     arriveDateFormatted: string;
-    enviroment: 'in' | 'out'
+    enviroment: 'in' | 'out';
+    photoPlant?: object;
 }
 
 export default function MyPlants(){

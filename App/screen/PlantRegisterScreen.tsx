@@ -126,6 +126,7 @@ export default function PlantRegisterScreen({cancelOperation, confirmOperation})
                     arriveDate: arriveDate,
                     arriveDateFormatted: FormattedArriveDate,
                     enviroment: envButton,
+                    photoPlant: imagePlant,
                  })}/>
             </ButtonContainer>
             
