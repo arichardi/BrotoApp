@@ -31,6 +31,12 @@ export default function PlantRegisterScreen({cancelOperation}){
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
 
+    let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: 'short',
+        year: '2-digit',
+    }).format(arriveDate);
+
     // functions ---------------------------------------------
 
     function handleEnviroment(type : 'in' | 'out'){
@@ -61,7 +67,13 @@ export default function PlantRegisterScreen({cancelOperation}){
     function handleDatePicker(event, selectDate){
         const currentDate = selectDate || arriveDate
         setShowDatePicker(false)
+        let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
+            day: '2-digit',
+            month: 'short',
+            year: '2-digit',
+        }).format(currentDate);
         setArriveDate(currentDate)
+        
     }
 
     // RN COMPS -------------------------------------------------------
@@ -87,7 +99,7 @@ export default function PlantRegisterScreen({cancelOperation}){
                 <AppInput placeholder='Descritivo'/>
                 <DatePickerButton
                 onPress={handleShowDataPicker}
-                dateTitle={arriveDate.toString()}
+                dateTitle={FormattedArriveDate}
                 />
             </InputContainer>
 

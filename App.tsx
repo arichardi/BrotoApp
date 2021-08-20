@@ -1,7 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components'
 import theme from './App/config/styles/theme'
-
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import {
   Roboto_400Regular,
   Roboto_500Medium,
