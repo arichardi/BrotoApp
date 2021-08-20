@@ -18,10 +18,13 @@ import {
     AmbientContainer,
     PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
-import { DateArive } from './PlantDetailScreenStyle'
 
+ interface Props {
+     calcelOperation: () => void;
+     confirmOperation: () => void;
+ }
 
-export default function PlantRegisterScreen({cancelOperation}){
+export default function PlantRegisterScreen({cancelOperation, confirmOperation}){
 
     // States & Vars ----------------------------------------
 
@@ -112,8 +115,18 @@ export default function PlantRegisterScreen({cancelOperation}){
             </AmbientContainer>
             
             <ButtonContainer>
-                <AppButtonM title='Cancelar' buttonType='cancel' onPress={() => cancelOperation(false)}/>
-                <AppButtonM title='Confirmar' buttonType='correct'/>
+                <AppButtonM title='Cancelar'
+                 buttonType='cancel' 
+                 onPress={() => cancelOperation(false)}/>
+                <AppButtonM title='Confirmar'
+                 buttonType='correct'
+                 onPress={ () => confirmOperation({
+                    name: plantName,
+                    subtitle: '',
+                    arriveDate: arriveDate,
+                    arriveDateFormatted: FormattedArriveDate,
+                    enviroment: envButton,
+                 })}/>
             </ButtonContainer>
             
 

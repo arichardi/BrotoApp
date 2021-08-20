@@ -15,7 +15,17 @@ import { set } from 'react-native-reanimated';
 import PlantRegisterScreen from './PlantRegisterScreen';
 //----------------------------------------------------------------
 
+interface PlantStructure {
+    name: string;
+    subtitle?: string;
+    arriveDate: Date;
+    arriveDateFormatted: string;
+    enviroment: 'in' | 'out'
+}
+
 export default function MyPlants(){
+
+//Variables ----------------------------------------------
 
     const [visiblemodal, setVisibleModal] = useState(false)
 
@@ -57,9 +67,20 @@ const plants: PlantCardProps[] = [
    subtitle: 'venenosa eeeee era venenosa'
   }
 ]
+
+    //functions -----------------------------------------------
+    
     function handleAddPlantModal(door: boolean){
         setVisibleModal(door)
     }
+    
+    function handleNewPlants(plantData: PlantStructure ){
+        console.log(plantData)
+        setVisibleModal(false)
+
+    }
+
+    //RN  -----------------------------------------------
 
     return(
         <>
@@ -92,6 +113,7 @@ const plants: PlantCardProps[] = [
         <Modal visible={visiblemodal} animationType='slide' statusBarTranslucent >
             <PlantRegisterScreen 
                 cancelOperation={handleAddPlantModal}
+                confirmOperation={handleNewPlants}
             />
         </Modal>
         

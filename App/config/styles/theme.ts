@@ -9,6 +9,7 @@ export default {
         pink_light: '#F4d9c9',
         yellow_dark: '#ffb40b',
         Yellow_light: '#f8d078',
+        
 
         attention: '#ee6c29',
         whites: '#FFFFFF',
