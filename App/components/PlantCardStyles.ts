@@ -8,12 +8,9 @@ interface ContainerProps {
 export const Container = styled(View).attrs({
     elevation: 8,
 })<ContainerProps>`
-    background-color: ${ ({theme}) => theme.colors.backGround};
 
-    flex-direction: row;
+    background-color: ${ ({theme}) => theme.colors.backGround};
     height: ${ ({openCard}) => openCard? 216 : 64}px;
-    align-items: center;
-    justify-content: space-between;
     padding: 8px 12px;
     border-radius: 16px;
     margin-top: 0px;
@@ -21,6 +18,17 @@ export const Container = styled(View).attrs({
     margin-left: 12px;
     margin-bottom: 8px; 
 
+`;
+
+export const TopCardContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+`;
+
+export const BottomCardContainer = styled.View`
+    margin-top: 26px;
 `;
 
 export const PlantaContainer = styled.View`
@@ -48,3 +56,4 @@ export const Subtitle = styled.Text`
     color: ${ ({theme}) => theme.colors.green_light};
     width: 180px;
 `;
+

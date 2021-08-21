@@ -7,10 +7,13 @@ PlantTag,
 Title,
 Subtitle,
 TouchableContainer,
+TopCardContainer,
+BottomCardContainer
 } from './PlantCardStyles'
 
 import BrotoIcon from "../Assets/BrotoIcon";
 import RegarIcon from '../Assets/RegarIcon'
+import WateryList from "./WateryList";
 
 export interface PlantCardProps {
     id: string;
@@ -30,6 +33,7 @@ export default function PlantCard({title, subtitle }:PlantCardProps){
     return(
         <Container openCard={openCard} >
 
+            <TopCardContainer>
             <PlantaContainer>
             <BrotoIcon />
 
@@ -43,6 +47,14 @@ export default function PlantCard({title, subtitle }:PlantCardProps){
             </PlantaContainer>
 
             <RegarIcon />
+
+            </TopCardContainer>
+
+            { openCard && 
+            <BottomCardContainer>
+                <WateryList />
+            </BottomCardContainer>
+            }
         </Container>
     )
 }
