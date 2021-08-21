@@ -6,13 +6,11 @@ import { Container,
     ButtonAddPlantContainer,
     Cto,
     } from './MyPlantsStyles';
-import { Modal } from 'react-native'
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
 import BackgroundApp from '../components/BackgroundApp';
 import { PlantCardProps } from '../components/PlantCard'
-import { set } from 'react-native-reanimated';
-import PlantRegisterScreen from './PlantRegisterScreen';
+
 //----------------------------------------------------------------
 
 interface PlantStructure {
@@ -24,7 +22,7 @@ interface PlantStructure {
     photoPlant?: object;
 }
 
-export default function MyPlants(){
+export default function MyPlants({navigation}){
 
 //Variables ----------------------------------------------
 
@@ -82,18 +80,18 @@ const plants: PlantCardProps[] = [
             />
 
 
-            <ButtonAddPlantContainer onPress={ () => handleAddPlantModal(true) } >
+            <ButtonAddPlantContainer onPress={ () => navigation.navigate('PlantRegister')} >
                 <PlantAddIconButton />
             </ButtonAddPlantContainer>
         </Container>
         </BackgroundApp>
 
-        <Modal visible={visiblemodal} animationType='slide' statusBarTranslucent >
+{/*         <Modal visible={visiblemodal} animationType='slide' statusBarTranslucent >
             <PlantRegisterScreen 
                 cancelOperation={handleAddPlantModal}
                 confirmOperation={handleNewPlants}
             />
-        </Modal>
+        </Modal> */}
         
         </>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components'
+import { NavigationContainer } from '@react-navigation/native'
 import theme from './App/config/styles/theme'
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
@@ -18,6 +19,7 @@ import TestComponent from './App/screen/TestComponent';
 import WelcomeScreen from './App/screen/WelcomeScreen';
 import PlantRegisterScreen from './App/screen/PlantRegisterScreen'
 import PlantDetailScreen from './App/screen/PlantDetailScreen';
+import MyStackNav from './App/routes/App.routes';
 
 
 export default function App() {
@@ -35,7 +37,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <MyPlants />
+      <NavigationContainer>
+        <MyStackNav />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }

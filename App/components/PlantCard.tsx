@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import { useNavigation } from '@react-navigation/native'
 import {
 Container,
 PlantaContainer,
@@ -31,6 +31,7 @@ export interface PlantCardProps {
 
 export default function PlantCard({title, subtitle }:PlantCardProps){
 
+    const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
 
     function handleOpenCard(){

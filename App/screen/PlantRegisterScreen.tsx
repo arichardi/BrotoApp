@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Platform } from 'react-native'
 import AppInput from '../components/AppInput'
 import BackgroundApp from '../components/BackgroundApp'
 import NameDisplay from '../components/NameDIsplay'
@@ -9,6 +8,7 @@ import PhotoIcon from '../components/PhotoIcon'
 import DatePickerButton from '../components/DatePickerButton'
 import * as ImagePicker from 'expo-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+
 import { 
     Container,
     NomeContainer,
@@ -19,12 +19,7 @@ import {
     PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
 
- interface Props {
-     calcelOperation: () => void;
-     confirmOperation: () => void;
- }
-
-export default function PlantRegisterScreen({cancelOperation, confirmOperation}){
+export default function PlantRegisterScreen({navigation}){
 
     // States & Vars ----------------------------------------
 
@@ -117,7 +112,7 @@ export default function PlantRegisterScreen({cancelOperation, confirmOperation})
             <ButtonContainer>
                 <AppButtonM title='Cancelar'
                  buttonType='cancel' 
-                 onPress={() => cancelOperation(false)}/>
+                 onPress={navigation.goBack}/>
                 <AppButtonM title='Confirmar'
                  buttonType='correct'
                  onPress={ () => confirmOperation({
