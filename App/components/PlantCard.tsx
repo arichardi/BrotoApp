@@ -8,7 +8,14 @@ Title,
 Subtitle,
 TouchableContainer,
 TopCardContainer,
-BottomCardContainer
+BottomCardContainer,
+ExtraContainer,
+DateContainer,
+DataTitle,
+DataArrive,
+DetailsButton,
+ButtonText,
+
 } from './PlantCardStyles'
 
 import BrotoIcon from "../Assets/BrotoIcon";
@@ -53,6 +60,18 @@ export default function PlantCard({title, subtitle }:PlantCardProps){
             { openCard && 
             <BottomCardContainer>
                 <WateryList />
+                <ExtraContainer>
+
+                    <DateContainer>
+                        <DataTitle>Chegou dia:</DataTitle>
+                        <DataArrive>08/10/2018</DataArrive>
+                    </DateContainer>
+
+                    <DetailsButton>
+                        <ButtonText>Detalhes</ButtonText>
+                    </DetailsButton>
+
+                </ExtraContainer>
             </BottomCardContainer>
             }
         </Container>

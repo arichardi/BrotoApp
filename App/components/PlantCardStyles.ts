@@ -57,3 +57,39 @@ export const Subtitle = styled.Text`
     width: 180px;
 `;
 
+export const ExtraContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+`;
+
+export const DateContainer = styled.View`
+    flex-direction: row;
+`;
+
+export const DataTitle = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};
+    font-family: ${ ({theme}) => theme.fonts.black};
+`;
+
+export const DataArrive = styled.Text`
+    color: ${ ({theme}) => theme.colors.attention};
+    font-family: ${ ({theme}) => theme.fonts.black};
+    margin-left: 4px;
+`;
+
+export const ButtonText = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};;
+    font-family: ${ ({theme}) => theme.fonts.black};
+`;
+
+export const DetailsButton = styled.TouchableOpacity`
+    border: 3px solid ${ ({theme}) => theme.colors.green_dark};
+    height: 32px;
+    width: 128px;
+    border-radius: 64px;
+    background-color: ${ ({theme}) => theme.colors.backGround};
+    justify-content: center;
+    align-items: center;
+`;
