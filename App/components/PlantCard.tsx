@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {
 Container,
@@ -6,6 +6,7 @@ PlantaContainer,
 PlantTag,
 Title,
 Subtitle,
+TouchableContainer,
 } from './PlantCardStyles'
 
 import BrotoIcon from "../Assets/BrotoIcon";
@@ -17,16 +18,30 @@ export interface PlantCardProps {
     subtitle: string;
 }
 
+
 export default function PlantCard({title, subtitle }:PlantCardProps){
+
+    const [openCard, setOpenCard] = useState(false)
+
+    function handleOpenCard(){
+        setOpenCard(!openCard)
+    }
+
     return(
-        <Container >
+        <Container openCard={openCard} >
+
             <PlantaContainer>
             <BrotoIcon />
-            <PlantTag>
+
+            <PlantTag onPress={handleOpenCard}>
+            <TouchableContainer>
                 <Title>{title}</Title>
                 <Subtitle numberOfLines={1} >{subtitle}</Subtitle>
+            </TouchableContainer>
             </PlantTag>
+
             </PlantaContainer>
+
             <RegarIcon />
         </Container>
     )

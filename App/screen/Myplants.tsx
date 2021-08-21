@@ -43,30 +43,7 @@ const plants: PlantCardProps[] = [
      title: 'Hera',
      subtitle: 'venenosa eeeee era venenosa'
     },
-    {id: '4',
-    title: 'Drascena',
-    subtitle: 'minha plantinha'
-   },
-   {id: '5',
-    title: 'Samambaia',
-    subtitle: 'sala gostosinha'
-   },
-   {id: '6',
-    title: 'Hera',
-    subtitle: 'venenosa eeeee era venenosa'
-   },
-   {id: '7',
-   title: 'Drascena',
-   subtitle: 'minha plantinha'
-  },
-  {id: '8',
-   title: 'Samambaia',
-   subtitle: 'sala gostosinha'
-  },
-  {id: '9',
-   title: 'Hera',
-   subtitle: 'venenosa eeeee era venenosa'
-  }
+ 
 ]
 
     //functions -----------------------------------------------
