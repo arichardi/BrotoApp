@@ -93,3 +93,9 @@ export const DetailsButton = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 `;
+
+export const PhotoPlant = styled.Image`
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+`;

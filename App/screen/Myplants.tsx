@@ -9,7 +9,6 @@ import { Container,
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
 import BackgroundApp from '../components/BackgroundApp';
-import { PlantCardProps } from '../components/PlantCard'
 import {PlantDataContext} from '../Contexts/PlantData'
 
 //----------------------------------------------------------------
@@ -20,46 +19,22 @@ interface PlantStructure {
     arriveDate: Date;
     arriveDateFormatted: string;
     enviroment: 'in' | 'out';
-    photoPlant?: object;
+    photoPlant?: any;
 }
 
 export default function MyPlants({navigation}){
 
 //Variables ----------------------------------------------
 
-    const [visiblemodal, setVisibleModal] = useState(false)
-
-const plants: PlantCardProps[] = [
-     {id: '1',
-     title: 'Drascena',
-     subtitle: 'minha plantinha'
-    },
-    {id: '2',
-     title: 'Samambaia',
-     subtitle: 'sala gostosinha'
-    },
-    {id: '3',
-     title: 'Hera',
-     subtitle: 'venenosa eeeee era venenosa'
-    },
- 
-]
-
-const {plantListData} = useContext(PlantDataContext)
+ const {plantListData} = useContext(PlantDataContext)
 
     //functions -----------------------------------------------
     
     
-    function handleNewPlants(plantData: PlantStructure ){
-        console.log(plantData)
-        setVisibleModal(false)
-
-    }
 
     //RN  -----------------------------------------------
 
     return(
-        <>
         <BackgroundApp>
         <Container>
             <Cto>
@@ -67,17 +42,6 @@ const {plantListData} = useContext(PlantDataContext)
                 <Title >Minhas Plantas</Title>
             </Cto>
 
-{/*             <PlantList 
-                data={plants}
-                keyExtractor={ item => item.id}
-                renderItem={ ({item}) => {
-                    return <PlantCard 
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        id={item.id}/>
-                }
-                }
-            /> */}
             <PlantList 
                 data={plantListData}
                 keyExtractor={ item => item.name}
@@ -85,7 +49,10 @@ const {plantListData} = useContext(PlantDataContext)
                     return <PlantCard 
                         title={item.name}
                         subtitle={item.subtitle}
-                        id={item.name}/>
+                        id={item.name}
+                        photoPlant={item.photoPlant}
+                        dateFormatted={item.arriveDateFormatted}
+                         />
                 }
                 }
             />
@@ -97,13 +64,6 @@ const {plantListData} = useContext(PlantDataContext)
         </Container>
         </BackgroundApp>
 
-{/*         <Modal visible={visiblemodal} animationType='slide' statusBarTranslucent >
-            <PlantRegisterScreen 
-                cancelOperation={handleAddPlantModal}
-                confirmOperation={handleNewPlants}
-            />
-        </Modal> */}
-        
-        </>
+
     );
 }

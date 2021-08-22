@@ -1,9 +1,28 @@
 import React, { createContext, useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-type ContextProps = {
-    handleInsertData: () => void
+// Interfaces -----------------------------------------------------
+
+interface PlantListDataProps {
+    arriveDate: string;
+    arriveDateFormatted: string;
+    enviroment: 'in' | 'out';
+    name: string;
+    photoPlant: {
+        localUri: string;
+    };
+    subtitle: string;
 }
+
+interface ContextProps {
+    handleInsertData: (PlantListDataProps) => void;
+    plantListData: PlantListDataProps[];
+    
+}
+
+
+
+// ------------------------------------------------
 
 const initialStateTest = [
         {
@@ -24,7 +43,8 @@ const initialStateTest = [
       },
 ]
 
-export const PlantDataContext = createContext({});
+export const PlantDataContext = createContext({} as ContextProps);
+
 
 export function PlantDataProvider({children}) {
 
@@ -33,18 +53,19 @@ export function PlantDataProvider({children}) {
 const Navigation = useNavigation()
 const [plantListData, setPlantListData] = useState(initialStateTest)
 
-//functions ---------------------------------------------------------
+//functions -----------------------------------------------------------
 
-function handleInsertData(plant){
+function handleInsertData(plant: PlantListDataProps){
     setPlantListData([...plantListData, plant])
-    console.log(plantListData)
     Navigation.goBack();
 }
+
+//RNProvider -----------------------------------------------------------
 
     return(
     <PlantDataContext.Provider value={{
         handleInsertData: handleInsertData, 
-        plantListData: plantListData
+        plantListData: plantListData,
         }}>
         {children}
     </PlantDataContext.Provider>

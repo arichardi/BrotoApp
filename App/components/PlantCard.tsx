@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, NavigationProp } from '@react-navigation/native'
 import {
 Container,
 PlantaContainer,
@@ -15,6 +15,7 @@ DataTitle,
 DataArrive,
 DetailsButton,
 ButtonText,
+PhotoPlant,
 
 } from './PlantCardStyles'
 
@@ -26,10 +27,12 @@ export interface PlantCardProps {
     id: string;
     title: string;
     subtitle: string;
+    photoPlant?: string;
+    dateFormatted: string;
 }
 
 
-export default function PlantCard({title, subtitle }:PlantCardProps){
+export default function PlantCard({title, subtitle, photoPlant, dateFormatted }:PlantCardProps){
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
@@ -43,7 +46,7 @@ export default function PlantCard({title, subtitle }:PlantCardProps){
 
             <TopCardContainer>
             <PlantaContainer>
-            <BrotoIcon />
+            { photoPlant ? <PhotoPlant source={{uri: photoPlant.localUri}} /> : <BrotoIcon />}
 
             <PlantTag onPress={handleOpenCard}>
             <TouchableContainer>
@@ -68,7 +71,7 @@ export default function PlantCard({title, subtitle }:PlantCardProps){
                         <DataArrive>08/10/2018</DataArrive>
                     </DateContainer>
 
-                    <DetailsButton onPress={ () => Navigation.navigate('PlantDetail', {title, subtitle})}>
+                    <DetailsButton onPress={ () => Navigation.navigate('PlantDetail', {title, subtitle, photoPlant, dateFormatted}) }>
                         <ButtonText>Detalhes</ButtonText>
                     </DetailsButton>
 

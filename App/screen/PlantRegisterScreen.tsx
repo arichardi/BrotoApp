@@ -21,18 +21,20 @@ import {
     PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
 
-export default function PlantRegisterScreen({navigation, route}){
+export default function PlantRegisterScreen({navigation}){
 
     // States & Vars ----------------------------------------
 
-    const Props = route.params
+    
     const [arriveDate, setArriveDate] = useState(new Date())
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [envButton, setEnvButton] = useState('')
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
+    const [subtitleDescription, setSubtitleSescription] = useState('')
+    const [errorName, setErrorName] = useState('false')
+    const [errorEnv, setErrorEnv] = useState('false')
     
-
     let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: 'short',
@@ -42,6 +44,19 @@ export default function PlantRegisterScreen({navigation, route}){
     const {handleInsertData} = useContext(PlantDataContext)
    
     // functions ---------------------------------------------
+
+    function handleConfirmInsert(){
+        
+        
+        handleInsertData({
+            name: plantName,
+            subtitle: subtitleDescription,
+            arriveDate: arriveDate,
+            arriveDateFormatted: FormattedArriveDate,
+            enviroment: envButton,
+            photoPlant: imagePlant,
+         })
+    }
 
     function handleEnviroment(type : 'in' | 'out'){
         setEnvButton(type)
@@ -73,7 +88,7 @@ export default function PlantRegisterScreen({navigation, route}){
         setShowDatePicker(false)
         let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
             day: '2-digit',
-            month: 'short',
+            month: '2-digit',
             year: '2-digit',
         }).format(currentDate);
         setArriveDate(currentDate)
@@ -100,7 +115,7 @@ export default function PlantRegisterScreen({navigation, route}){
 
             <InputContainer>
                 <AppInput placeholder='Nome da Plantinha'onChangeText={setPlantName}/>
-                <AppInput placeholder='Descritivo'/>
+                <AppInput placeholder='Descritivo'onChangeText={setSubtitleSescription} />
                 <DatePickerButton
                 onPress={handleShowDataPicker}
                 dateTitle={FormattedArriveDate}
@@ -123,7 +138,7 @@ export default function PlantRegisterScreen({navigation, route}){
                  buttonType='correct'
                  onPress={ () => handleInsertData({
                     name: plantName,
-                    subtitle: 'Minha plantinha show',
+                    subtitle: subtitleDescription,
                     arriveDate: arriveDate,
                     arriveDateFormatted: FormattedArriveDate,
                     enviroment: envButton,

@@ -13,12 +13,9 @@ import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
 import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
-
-interface Props {
-    title: string,
-    subtitle: string,
-    dateArrive: string
-}
+import RegaTagComponent from '../components/RegaTagComponent'
+import QuarentenaTagComponent from '../components/QuaretenaTagComponent'
+import AduboTagComponent from '../components/AduboTagComponent'
 
 export default function PlantDetailScreen({route}){
 
@@ -29,7 +26,7 @@ export default function PlantDetailScreen({route}){
             <Container>
 
             <PhotoIconContainer>
-                <PhotoIcon editMode={false}/>
+                <PhotoIcon editMode={false} photoPlant={props.photoPlant}/>
             </PhotoIconContainer>
 
             
@@ -42,11 +39,15 @@ export default function PlantDetailScreen({route}){
             <NameDisplay>{props.title}</NameDisplay>
             <SubTitle>{props.subtitle}</SubTitle>
             <OtherInfoContainer>
-                <DateArive>{`Chegou no dia: 08/07`}</DateArive>
+                <DateArive>{`Chegou dia: ${props.dateFormatted}`}</DateArive>
             </OtherInfoContainer>
             </InfoContainer>
             
             <SeparatorLine />
+
+            <RegaTagComponent />
+            <QuarentenaTagComponent />
+            <AduboTagComponent />
 
             </Container>
         </BackgroundApp>
