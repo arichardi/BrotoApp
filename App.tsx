@@ -14,6 +14,8 @@ import { YesevaOne_400Regular } from '@expo-google-fonts/yeseva-one'
 import { useFonts } from 'expo-font'
 import AppLoading from 'expo-app-loading'
 
+import { PlantDataProvider } from './App/Contexts/PlantData';
+
 import MyPlants from './App/screen/Myplants';
 import TestComponent from './App/screen/TestComponent';
 import WelcomeScreen from './App/screen/WelcomeScreen';
@@ -38,7 +40,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <MyStackNav />
+        <PlantDataProvider>
+          <MyStackNav />
+          </PlantDataProvider>
       </NavigationContainer>
     </ThemeProvider>
   );

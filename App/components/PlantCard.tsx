@@ -68,7 +68,7 @@ export default function PlantCard({title, subtitle }:PlantCardProps){
                         <DataArrive>08/10/2018</DataArrive>
                     </DateContainer>
 
-                    <DetailsButton>
+                    <DetailsButton onPress={ () => Navigation.navigate('PlantDetail', {title, subtitle})}>
                         <ButtonText>Detalhes</ButtonText>
                     </DetailsButton>
 

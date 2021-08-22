@@ -7,10 +7,12 @@ import {
     OtherInfoContainer,
     DateArive,
     SeparatorLine,
+    GoBackIcon,
 } from './PlantDetailScreenStyle'
 import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
 import NameDisplay from '../components/NameDIsplay'
+import BackIcon from '../Assets/BackIcon';
 
 interface Props {
     title: string,
@@ -18,7 +20,10 @@ interface Props {
     dateArrive: string
 }
 
-export default function PlantDetailScreen({title, subtitle, dateArrive}: Props){
+export default function PlantDetailScreen({route}){
+
+    const props = route.params;
+
     return (
         <BackgroundApp>
             <Container>
@@ -27,11 +32,17 @@ export default function PlantDetailScreen({title, subtitle, dateArrive}: Props){
                 <PhotoIcon editMode={false}/>
             </PhotoIconContainer>
 
+            
+        {/* Ios back navigation button
+            <GoBackIcon >
+                <BackIcon />
+            </GoBackIcon> */}
+
             <InfoContainer>
-            <NameDisplay>{title}</NameDisplay>
-            <SubTitle>{subtitle}</SubTitle>
+            <NameDisplay>{props.title}</NameDisplay>
+            <SubTitle>{props.subtitle}</SubTitle>
             <OtherInfoContainer>
-                <DateArive>{`Chegou no dia: ${dateArrive}`}</DateArive>
+                <DateArive>{`Chegou no dia: 08/07`}</DateArive>
             </OtherInfoContainer>
             </InfoContainer>
             

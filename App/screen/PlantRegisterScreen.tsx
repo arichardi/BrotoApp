@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import AppInput from '../components/AppInput'
 import BackgroundApp from '../components/BackgroundApp'
 import NameDisplay from '../components/NameDIsplay'
@@ -8,6 +8,8 @@ import PhotoIcon from '../components/PhotoIcon'
 import DatePickerButton from '../components/DatePickerButton'
 import * as ImagePicker from 'expo-image-picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+
+import { PlantDataContext } from '../Contexts/PlantData'
 
 import { 
     Container,
@@ -19,15 +21,17 @@ import {
     PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
 
-export default function PlantRegisterScreen({navigation}){
+export default function PlantRegisterScreen({navigation, route}){
 
     // States & Vars ----------------------------------------
 
+    const Props = route.params
     const [arriveDate, setArriveDate] = useState(new Date())
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [envButton, setEnvButton] = useState('')
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
+    
 
     let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
@@ -35,6 +39,8 @@ export default function PlantRegisterScreen({navigation}){
         year: '2-digit',
     }).format(arriveDate);
 
+    const handleInsertData = useContext(PlantDataContext)
+   
     // functions ---------------------------------------------
 
     function handleEnviroment(type : 'in' | 'out'){
@@ -115,14 +121,16 @@ export default function PlantRegisterScreen({navigation}){
                  onPress={navigation.goBack}/>
                 <AppButtonM title='Confirmar'
                  buttonType='correct'
-                 onPress={ () => confirmOperation({
+                 onPress={ () => handleInsertData({
                     name: plantName,
                     subtitle: '',
                     arriveDate: arriveDate,
                     arriveDateFormatted: FormattedArriveDate,
                     enviroment: envButton,
                     photoPlant: imagePlant,
-                 })}/>
+                 })
+                    
+                 }/>
             </ButtonContainer>
             
 
@@ -142,3 +150,4 @@ export default function PlantRegisterScreen({navigation}){
         </BackgroundApp>
     )
 }
+

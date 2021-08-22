@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 
+
 export const Container = styled.View.attrs({
     elevation: 8
 })`
@@ -49,4 +50,9 @@ export const SeparatorLine = styled.View`
     margin-bottom: 24px;
     align-self: center;
     background-color: ${ ({theme}) => theme.colors.green_light};
+`;
+
+export const GoBackIcon = styled.TouchableOpacity`
+    position: absolute;
+    top: -50px
 `;

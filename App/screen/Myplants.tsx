@@ -46,9 +46,6 @@ const plants: PlantCardProps[] = [
 
     //functions -----------------------------------------------
     
-    function handleAddPlantModal(door: boolean){
-        setVisibleModal(door)
-    }
     
     function handleNewPlants(plantData: PlantStructure ){
         console.log(plantData)
