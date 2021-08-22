@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Container,
     Title,
     Underline,
@@ -10,6 +10,7 @@ import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
 import BackgroundApp from '../components/BackgroundApp';
 import { PlantCardProps } from '../components/PlantCard'
+import {PlantDataContext} from '../Contexts/PlantData'
 
 //----------------------------------------------------------------
 
@@ -44,6 +45,8 @@ const plants: PlantCardProps[] = [
  
 ]
 
+const {plantListData} = useContext(PlantDataContext)
+
     //functions -----------------------------------------------
     
     
@@ -64,7 +67,7 @@ const plants: PlantCardProps[] = [
                 <Title >Minhas Plantas</Title>
             </Cto>
 
-            <PlantList 
+{/*             <PlantList 
                 data={plants}
                 keyExtractor={ item => item.id}
                 renderItem={ ({item}) => {
@@ -72,6 +75,17 @@ const plants: PlantCardProps[] = [
                         title={item.title}
                         subtitle={item.subtitle}
                         id={item.id}/>
+                }
+                }
+            /> */}
+            <PlantList 
+                data={plantListData}
+                keyExtractor={ item => item.name}
+                renderItem={ ({item}) => {
+                    return <PlantCard 
+                        title={item.name}
+                        subtitle={item.subtitle}
+                        id={item.name}/>
                 }
                 }
             />

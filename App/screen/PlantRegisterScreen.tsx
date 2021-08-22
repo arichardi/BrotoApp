@@ -39,7 +39,7 @@ export default function PlantRegisterScreen({navigation, route}){
         year: '2-digit',
     }).format(arriveDate);
 
-    const handleInsertData = useContext(PlantDataContext)
+    const {handleInsertData} = useContext(PlantDataContext)
    
     // functions ---------------------------------------------
 
@@ -123,7 +123,7 @@ export default function PlantRegisterScreen({navigation, route}){
                  buttonType='correct'
                  onPress={ () => handleInsertData({
                     name: plantName,
-                    subtitle: '',
+                    subtitle: 'Minha plantinha show',
                     arriveDate: arriveDate,
                     arriveDateFormatted: FormattedArriveDate,
                     enviroment: envButton,
