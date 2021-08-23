@@ -5,11 +5,15 @@ import {
     DateTitle,
 } from './WateryCardStyle'
 
-export default function WateryCard(){
+interface Props {
+    date: string;
+}
+
+export default function WateryCard({date}: Props){
     return(
         <Container>
             <RegadoIcon />
-            <DateTitle>08/07</DateTitle>
+            <DateTitle>{date}</DateTitle>
         </Container>
     )
 }

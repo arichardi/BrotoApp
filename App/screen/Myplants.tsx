@@ -14,12 +14,17 @@ import {PlantDataContext} from '../Contexts/PlantData'
 //----------------------------------------------------------------
 
 interface PlantStructure {
+    id?: string
     name: string;
     subtitle?: string;
     arriveDate: Date;
     arriveDateFormatted: string;
     enviroment: 'in' | 'out';
-    photoPlant?: any;
+    photoPlant?: {
+        localUri: string;
+    };
+    wateryList: [];
+    wateryListCount: number;
 }
 
 export default function MyPlants({navigation}){
@@ -47,11 +52,13 @@ export default function MyPlants({navigation}){
                 keyExtractor={ item => item.name}
                 renderItem={ ({item}) => {
                     return <PlantCard 
-                        title={item.name}
+                        name={item.name}
                         subtitle={item.subtitle}
                         id={item.name}
                         photoPlant={item.photoPlant}
-                        dateFormatted={item.arriveDateFormatted}
+                        arriveDateFormatted={item.arriveDateFormatted}
+                        wateryList={item.wateryList}
+                        wateryListCount={item.wateryListCount}
                          />
                 }
                 }

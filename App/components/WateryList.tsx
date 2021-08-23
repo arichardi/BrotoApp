@@ -3,15 +3,35 @@ import WateryCard from './WateryCard'
 import {
     Container,
 } from './WateryListStyle'
+import { WateryCardOne, WateryCardTwo, WateryCardThree} from './WateryCards/WateryCards'
 
-export default function WateryList(){
+    interface Props {
+        wateryList: [];
+        wateryListCount: number;
+    }
+
+export default function WateryList({wateryList, wateryListCount}: Props){
     return(
         <Container>
-            <WateryCard />
-            <WateryCard />
-            <WateryCard />
-            <WateryCard />
-            <WateryCard />
+            {   
+                wateryListCount === 1 ? <WateryCardOne data={wateryList[0]}/> :
+
+                wateryListCount === 2 ?
+                    wateryList.map( item => (
+                        <WateryCardTwo key={item} date={item}/>
+                    )) : 
+
+                wateryListCount === 3  ?
+                    wateryList.map( item => (
+                        <WateryCard key={item} date={item}/>
+                    )) :
+
+                wateryListCount > 4 ?
+                    wateryList.map( item => (
+                        <WateryCard key={item} date={item}/>
+                    )) : <></>
+                
+            }
         </Container>
     )
 }
