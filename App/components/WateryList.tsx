@@ -18,12 +18,12 @@ export default function WateryList({wateryList, wateryListCount}: Props){
 
                 wateryListCount === 2 ?
                     wateryList.map( item => (
-                        <WateryCardTwo key={item} date={item}/>
+                        <WateryCardTwo key={item} data={item}/>
                     )) : 
 
                 wateryListCount === 3  ?
                     wateryList.map( item => (
-                        <WateryCard key={item} date={item}/>
+                        <WateryCardThree key={item} data={item}/>
                     )) :
 
                 wateryListCount > 4 ?

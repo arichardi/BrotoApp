@@ -36,10 +36,10 @@ export default function PlantDetailScreen({route}){
             </GoBackIcon> */}
 
             <InfoContainer>
-            <NameDisplay>{props.title}</NameDisplay>
+            <NameDisplay>{props.name}</NameDisplay>
             <SubTitle>{props.subtitle}</SubTitle>
             <OtherInfoContainer>
-                <DateArive>{`Chegou dia: ${props.dateFormatted}`}</DateArive>
+                <DateArive>{`Chegou dia: ${props.arriveDateFormatted}`}</DateArive>
             </OtherInfoContainer>
             </InfoContainer>
             

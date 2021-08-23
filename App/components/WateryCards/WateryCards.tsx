@@ -5,8 +5,12 @@ import {
     DataText,
     ContainerTwo,
     ContainerThree,
+    DataTextTwo,
+    DataContainer,
     DataTextThree,
+    DataContainerThree,
 } from './WateryCardsStyle'
+import RegadoIcon from '../../Assets/RegadoIcon'
 
 interface Props{
     data: string;
@@ -25,7 +29,10 @@ export function WateryCardTwo({data}: Props){
     return(
         <ContainerTwo>
             <SuccessIcon />
-            <DataText>{data}</DataText>
+            <DataContainer>
+            <DataTextTwo>Qua</DataTextTwo>
+            <DataTextTwo>08/07</DataTextTwo>
+            </DataContainer>
         </ContainerTwo>
     )
 }
@@ -34,7 +41,10 @@ export function WateryCardThree({data}: Props){
     return(
         <ContainerThree>
             <RegadoIcon />
-            <DataTextThree>{data}</DataTextThree>
+            <DataContainerThree>
+            <DataTextThree>Qua</DataTextThree>
+            <DataTextThree>08/07</DataTextThree>
+            </DataContainerThree>
         </ContainerThree>
     )
 }

@@ -18,10 +18,31 @@ export const DataText = styled.Text`
 `;
 export const ContainerTwo = styled.View`
     background-color: ${ ({theme}) => theme.colors.green_dark};
-    height: 40px;
+    height: 48px;
     width: 128px;
     border-radius: 8px;
-
+    flex-direction: row;
+    align-items: center;
+    padding: 14px;
+    
 `;
-export const ContainerThree = styled.View``;
-export const DataTextThree = styled.Text``;
+
+export const DataTextTwo = styled.Text`
+    color: ${ ({theme}) => theme.colors.backGround};
+    font-family: ${ ({theme}) => theme.fonts.black};
+`;
+export const DataTextThree = styled.Text`
+    color: ${ ({theme}) => theme.colors.pink_dark};
+    font-family: ${ ({theme}) => theme.fonts.black};
+`;
+export const DataContainer = styled.View`
+    align-items: center;
+    margin-left: 24px;
+`;
+export const ContainerThree = styled.View`
+    flex-direction: row;
+`;
+export const DataContainerThree = styled.View`
+    align-items: center;
+    margin-left: 12px;
+`;
