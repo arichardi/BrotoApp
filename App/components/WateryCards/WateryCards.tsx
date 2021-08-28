@@ -43,7 +43,7 @@ export function WateryCardThree({data}: Props){
             <RegadoIcon />
             <DataContainerThree>
             <DataTextThree>Qua</DataTextThree>
-            <DataTextThree>08/07</DataTextThree>
+            <DataTextThree>{data}</DataTextThree>
             </DataContainerThree>
         </ContainerThree>
     )

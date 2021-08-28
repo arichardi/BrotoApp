@@ -16,12 +16,15 @@ DataArrive,
 DetailsButton,
 ButtonText,
 PhotoPlant,
+ActionIcon,
 
 } from './PlantCardStyles'
 
 import BrotoIcon from "../Assets/BrotoIcon";
 import RegarIcon from '../Assets/RegarIcon'
+import RegadoIcon from '../Assets/RegadoIcon'
 import WateryList from "./WateryList";
+import { brotoDateFormatter, handleAddDate } from "../utils/helpers";
 
 export interface PlantCardProps {
     id?: string;
@@ -30,16 +33,21 @@ export interface PlantCardProps {
     photoPlant?: {
         localUri: string;
     };
-    arriveDateFormatted: string;
+    arriveDate: Date;
     wateryList: [];
     wateryListCount: number;
 }
 
 
-export default function PlantCard({name, subtitle, photoPlant, arriveDateFormatted, wateryList, wateryListCount }:PlantCardProps){
+export default function PlantCard({name, subtitle, photoPlant, arriveDate, wateryList, wateryListCount }:PlantCardProps){
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
+    
+    const todayDate = new Date()
+    const todayFormatted = brotoDateFormatter(todayDate, '2-digit')
+
+    let arriveDateFormatted = brotoDateFormatter(arriveDate, '2-digit','ano')
 
     function handleOpenCard(){
         setOpenCard(!openCard)
@@ -61,7 +69,13 @@ export default function PlantCard({name, subtitle, photoPlant, arriveDateFormatt
 
             </PlantaContainer>
 
-            <RegarIcon />
+            <ActionIcon onPress={ () => {}}>
+                {todayFormatted === wateryList[wateryList.length-1] ? 
+                <RegadoIcon /> :
+                <RegarIcon />
+            
+            }
+            </ActionIcon>
 
             </TopCardContainer>
 

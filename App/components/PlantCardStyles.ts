@@ -99,3 +99,7 @@ export const PhotoPlant = styled.Image`
     height: 48px;
     border-radius: 24px;
 `;
+
+export const ActionIcon = styled.TouchableOpacity`
+    
+`;

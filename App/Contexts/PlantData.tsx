@@ -5,12 +5,11 @@ import { useNavigation } from '@react-navigation/native'
 
 interface PlantListDataProps {
     id?: string;
-    arriveDate: string;
-    arriveDateFormatted: string;
+    arriveDate: Date;
     enviroment: 'in' | 'out';
     name: string;
     subtitle: string;
-    wateryList: [];
+    wateryList: string[];
     wateryListCount: number;
     photoPlant: {
         localUri: string
@@ -30,8 +29,7 @@ interface ContextProps {
 const initialStateTest = [
         {
         'id': '1',
-        "arriveDate": "2021-08-22T15:38:17.301Z",
-        "arriveDateFormatted": "22 de ago de 2021",
+        "arriveDate": new Date(),
         "enviroment": "in",
         "name": "Cravo",
         "photoPlant": null,
@@ -41,8 +39,7 @@ const initialStateTest = [
       },
       { 
         'id': '2',
-        "arriveDate": "2021-08-22T15:38:17.301Z",
-        "arriveDateFormatted": "22 de ago de 2021",
+        "arriveDate": new Date(),
         "enviroment": "out",
         "name": "Suculenta",
         "photoPlant": null,

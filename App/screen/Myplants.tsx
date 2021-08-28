@@ -18,7 +18,6 @@ interface PlantStructure {
     name: string;
     subtitle?: string;
     arriveDate: Date;
-    arriveDateFormatted: string;
     enviroment: 'in' | 'out';
     photoPlant?: {
         localUri: string;
@@ -56,7 +55,7 @@ export default function MyPlants({navigation}){
                         subtitle={item.subtitle}
                         id={item.name}
                         photoPlant={item.photoPlant}
-                        arriveDateFormatted={item.arriveDateFormatted}
+                        arriveDate={item.arriveDate}
                         wateryList={item.wateryList}
                         wateryListCount={item.wateryListCount}
                          />
