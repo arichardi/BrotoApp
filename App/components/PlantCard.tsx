@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigation, NavigationProp } from '@react-navigation/native'
+import { useNavigation, NavigatorScreenParams } from '@react-navigation/native'
 import {
 Container,
 PlantaContainer,
@@ -16,15 +16,13 @@ DataArrive,
 DetailsButton,
 ButtonText,
 PhotoPlant,
-ActionIcon,
 
 } from './PlantCardStyles'
 
 import BrotoIcon from "../Assets/BrotoIcon";
-import RegarIcon from '../Assets/RegarIcon'
-import RegadoIcon from '../Assets/RegadoIcon'
 import WateryList from "./WateryList";
 import { brotoDateFormatter, handleAddDate } from "../utils/helpers";
+import WateryButton from "./WateryButton";
 
 export interface PlantCardProps {
     id?: string;
@@ -39,13 +37,12 @@ export interface PlantCardProps {
 }
 
 
-export default function PlantCard({name, subtitle, photoPlant, arriveDate, wateryList, wateryListCount }:PlantCardProps){
+
+
+export default function PlantCard({id, name, subtitle, photoPlant, arriveDate, wateryList, wateryListCount }:PlantCardProps){
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
-    
-    const todayDate = new Date()
-    const todayFormatted = brotoDateFormatter(todayDate, '2-digit')
 
     let arriveDateFormatted = brotoDateFormatter(arriveDate, '2-digit','ano')
 
@@ -69,13 +66,7 @@ export default function PlantCard({name, subtitle, photoPlant, arriveDate, water
 
             </PlantaContainer>
 
-            <ActionIcon onPress={ () => {}}>
-                {todayFormatted === wateryList[wateryList.length-1] ? 
-                <RegadoIcon /> :
-                <RegarIcon />
-            
-            }
-            </ActionIcon>
+            <WateryButton wateryList={wateryList} id={id}/>
 
             </TopCardContainer>
 

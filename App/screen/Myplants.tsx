@@ -33,7 +33,7 @@ export default function MyPlants({navigation}){
                     return <PlantCard 
                         name={item.name}
                         subtitle={item.subtitle}
-                        id={item.name}
+                        id={item.id}
                         photoPlant={item.photoPlant}
                         arriveDate={item.arriveDate}
                         wateryList={item.wateryList}

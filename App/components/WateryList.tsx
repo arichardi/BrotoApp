@@ -6,7 +6,7 @@ import {
 import { WateryCardOne, WateryCardTwo, WateryCardThree} from './WateryCards/WateryCards'
 
     interface Props {
-        wateryList: [];
+        wateryList: string[];
         wateryListCount: number;
     }
 
