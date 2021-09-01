@@ -3,17 +3,17 @@ import { useNavigation } from '@react-navigation/native'
 
 // Interfaces -----------------------------------------------------
 
-interface PlantListDataProps {
+export interface PlantListDataProps {
     id?: string;
-    arriveDate: Date;
-    enviroment: 'in' | 'out';
     name: string;
     subtitle: string;
-    wateryList: string[];
-    wateryListCount: number;
-    photoPlant: {
+    arriveDate: Date;
+    enviroment: 'in' | 'out';
+    photoPlant?: {
         localUri: string
     };
+    wateryList: string[];
+    wateryListCount: number;
 }
 
 interface ContextProps {
@@ -26,7 +26,7 @@ interface ContextProps {
 
 // ------------------------------------------------
 
-const initialStateTest = [
+const initialStateTest: PlantListDataProps[] = [
         {
         'id': '1',
         "arriveDate": new Date(),

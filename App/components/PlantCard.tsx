@@ -34,7 +34,7 @@ export interface PlantCardProps {
         localUri: string;
     };
     arriveDate: Date;
-    wateryList: [];
+    wateryList: string[];
     wateryListCount: number;
 }
 

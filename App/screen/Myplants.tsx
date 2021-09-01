@@ -11,32 +11,12 @@ import PlantAddIconButton from '../Assets/PlantAddIconButton'
 import BackgroundApp from '../components/BackgroundApp';
 import {PlantDataContext} from '../Contexts/PlantData'
 
-//----------------------------------------------------------------
 
-interface PlantStructure {
-    id?: string
-    name: string;
-    subtitle?: string;
-    arriveDate: Date;
-    enviroment: 'in' | 'out';
-    photoPlant?: {
-        localUri: string;
-    };
-    wateryList: [];
-    wateryListCount: number;
-}
+//----------------------------------------------------------------
 
 export default function MyPlants({navigation}){
 
-//Variables ----------------------------------------------
-
  const {plantListData} = useContext(PlantDataContext)
-
-    //functions -----------------------------------------------
-    
-    
-
-    //RN  -----------------------------------------------
 
     return(
         <BackgroundApp>

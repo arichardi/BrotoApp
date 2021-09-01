@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { FlatList, View, TouchableOpacity } from "react-native";
 
-import { PlantCardProps } from '../components/PlantCard'
+import {PlantListDataProps } from '../Contexts/PlantData'
 
 export const Container = styled.View`
     flex: 1;
@@ -32,7 +32,7 @@ export const Underline = styled.View`
 `;
 
 export const PlantList = styled(
-    FlatList as new () => FlatList<PlantCardProps>
+    FlatList as new () => FlatList<PlantListDataProps>
     ).attrs({
         contentContainerStyle: { 
            
