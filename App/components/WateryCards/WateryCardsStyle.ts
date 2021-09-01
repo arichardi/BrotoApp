@@ -4,6 +4,7 @@ export const ContainerOne = styled.View`
     background-color: ${ ({theme}) => theme.colors.green_dark};
     width: 100%;
     height: 40px;
+    margin-bottom: 16px;
     border-radius: 8px;
     justify-content: space-between;
     flex-direction: row;
@@ -24,6 +25,9 @@ export const ContainerTwo = styled.View`
     flex-direction: row;
     align-items: center;
     padding: 14px;
+    margin-left:12px;
+    margin-right: 16px;
+    margin-bottom: 8px;
     
 `;
 
@@ -41,6 +45,7 @@ export const DataContainer = styled.View`
 `;
 export const ContainerThree = styled.View`
     flex-direction: row;
+    margin-bottom: 8px;
 `;
 export const DataContainerThree = styled.View`
     align-items: center;

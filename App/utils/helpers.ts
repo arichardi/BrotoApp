@@ -66,3 +66,20 @@ export function handleAddDate(plantList: PlantStructure[], id: string, date: str
     return listFiltered
   }
     
+export function dayOfWeek(date: string): string{
+
+    const today = new Date()
+    const ano = today.getFullYear().toString()
+    const month = date.slice(3,5)
+    const day = date.slice(0,2)
+
+    
+    const dataList = [ano, month, day]
+    const dataJoin = dataList.join('/')
+    const dateDay = new Date(dataJoin)
+    
+    const semana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+    const result = semana[dateDay.getDay()];
+
+    return result;
+}

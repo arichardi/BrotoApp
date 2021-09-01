@@ -11,6 +11,7 @@ import { WateryCardOne, WateryCardTwo, WateryCardThree} from './WateryCards/Wate
     }
 
 export default function WateryList({wateryList, wateryListCount}: Props){
+    
     return(
         <Container>
             {   
@@ -26,10 +27,16 @@ export default function WateryList({wateryList, wateryListCount}: Props){
                         <WateryCardThree key={item} data={item}/>
                     )) :
 
-                wateryListCount > 4 ?
+                wateryListCount > 3 && wateryListCount < 6 ?
                     wateryList.map( item => (
                         <WateryCard key={item} date={item}/>
-                    )) : <></>
+                    )) : 
+                
+                    wateryListCount > 5 ?
+                    wateryList.slice(-5).map( item => (
+                        <WateryCard key={item} date={item}/>
+                    )) : <></>    
+                    
                 
             }
         </Container>

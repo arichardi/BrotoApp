@@ -36,8 +36,8 @@ const initialStateTest: PlantListDataProps[] = [
         "name": "Cravo",
         "photoPlant": null,
         "subtitle": "planta imaginária",
-        "wateryList": ['01/01', '01/02', '01/03'],
-        "wateryListCount": 3,
+        "wateryList": ['01/01', '02/02','01/03','01/04'],
+        "wateryListCount": 4,
       },
       { 
         'id': '2',

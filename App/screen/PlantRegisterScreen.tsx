@@ -46,15 +46,15 @@ export default function PlantRegisterScreen({navigation}){
     // functions ---------------------------------------------
 
     function handleConfirmInsert(){
-        
-        
         handleInsertData({
+            id:'4',
             name: plantName,
             subtitle: subtitleDescription,
             arriveDate: arriveDate,
-            arriveDateFormatted: FormattedArriveDate,
             enviroment: envButton,
             photoPlant: imagePlant,
+            wateryList: [],
+            wateryListCount: 0,
          })
     }
 
@@ -136,15 +136,7 @@ export default function PlantRegisterScreen({navigation}){
                  onPress={navigation.goBack}/>
                 <AppButtonM title='Confirmar'
                  buttonType='correct'
-                 onPress={ () => handleInsertData({
-                    name: plantName,
-                    subtitle: subtitleDescription,
-                    arriveDate: arriveDate,
-                    arriveDateFormatted: FormattedArriveDate,
-                    enviroment: envButton,
-                    photoPlant: imagePlant,
-                 })
-                    
+                 onPress={ () => handleConfirmInsert()
                  }/>
             </ButtonContainer>
             
