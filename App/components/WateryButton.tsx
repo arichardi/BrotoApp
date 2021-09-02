@@ -12,29 +12,22 @@ import {PlantDataContext} from '../Contexts/PlantData'
 interface Props {
     wateryList: string[];
     id: string;
+    onPress: (id: string) => void;
 }
 
 
-export default function WateryButton({wateryList, id}: Props){
+export default function WateryButton({wateryList, id, onPress}: Props){
 
     const {handleAddDate} = useContext(PlantDataContext)
     const todayDate = new Date()
     const todayFormatted = brotoDateFormatter(todayDate, '2-digit')
-    const [update, setUpdate] = useState('no')
-    useEffect( () => (
-        console.log('updated')
-    ),[update])
 
-    function handleUpdate(id: string){
-        handleAddDate(id)
-        setUpdate('updated')
-    }
 
     return(
         <Container>
             {todayFormatted === wateryList[wateryList.length-1] ? 
                 <RegadoIcon /> :
-                <ActionButton onPress={ () => handleUpdate(id)}>
+                <ActionButton onPress={ () => onPress(id)}>
                     <RegarIcon />            
                 </ActionButton>
             }

@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { useNavigation, NavigatorScreenParams } from '@react-navigation/native'
+import React, {useState, useContext, useEffect} from "react";
+import { useNavigation } from '@react-navigation/native'
 import {
 Container,
 PlantaContainer,
@@ -19,10 +19,12 @@ PhotoPlant,
 
 } from './PlantCardStyles'
 
+import { PlantDataContext } from '../Contexts/PlantData'
 import BrotoIcon from "../Assets/BrotoIcon";
 import WateryList from "./WateryList";
-import { brotoDateFormatter, handleAddDate } from "../utils/helpers";
+import { brotoDateFormatter } from "../utils/helpers";
 import WateryButton from "./WateryButton";
+
 
 export interface PlantCardProps {
     id?: string;
@@ -43,8 +45,17 @@ export default function PlantCard({id, name, subtitle, photoPlant, arriveDate, w
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
+    const [update, setUpdate] = useState('no')
+    const {handleAddDate} = useContext(PlantDataContext)
 
     let arriveDateFormatted = brotoDateFormatter(arriveDate, '2-digit','ano')
+
+    useEffect( () => { console.log ('updated') },[update])
+
+    function handleUpdate(id: string){
+        handleAddDate(id)
+        setUpdate('updated')
+    }
 
     function handleOpenCard(){
         setOpenCard(!openCard)
@@ -66,7 +77,7 @@ export default function PlantCard({id, name, subtitle, photoPlant, arriveDate, w
 
             </PlantaContainer>
 
-            <WateryButton wateryList={wateryList} id={id}/>
+            <WateryButton wateryList={wateryList} id={id} onPress={handleUpdate}/>
 
             </TopCardContainer>
 

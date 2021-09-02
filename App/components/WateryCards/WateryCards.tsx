@@ -11,6 +11,7 @@ import {
     DataContainerThree,
 } from './WateryCardsStyle'
 import RegadoIcon from '../../Assets/RegadoIcon'
+import { dayOfWeek } from '../../utils/helpers'
 
 interface Props{
     data: string;
@@ -30,8 +31,8 @@ export function WateryCardTwo({data}: Props){
         <ContainerTwo>
             <SuccessIcon />
             <DataContainer>
-            <DataTextTwo>Qua</DataTextTwo>
-            <DataTextTwo>08/07</DataTextTwo>
+            <DataTextTwo>{dayOfWeek(data)}</DataTextTwo>
+            <DataTextTwo>{data}</DataTextTwo>
             </DataContainer>
         </ContainerTwo>
     )
@@ -42,7 +43,7 @@ export function WateryCardThree({data}: Props){
         <ContainerThree>
             <RegadoIcon />
             <DataContainerThree>
-            <DataTextThree>Qua</DataTextThree>
+            <DataTextThree>{dayOfWeek(data)}</DataTextThree>
             <DataTextThree>{data}</DataTextThree>
             </DataContainerThree>
         </ContainerThree>
