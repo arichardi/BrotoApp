@@ -31,13 +31,7 @@ export default function MyPlants({navigation}){
                 keyExtractor={ item => item.name}
                 renderItem={ ({item}) => {
                     return <PlantCard 
-                        name={item.name}
-                        subtitle={item.subtitle}
                         id={item.id}
-                        photoPlant={item.photoPlant}
-                        arriveDate={item.arriveDate}
-                        wateryList={item.wateryList}
-                        wateryListCount={item.wateryListCount}
                          />
                 }
                 }

@@ -26,35 +26,47 @@ import { brotoDateFormatter } from "../utils/helpers";
 import WateryButton from "./WateryButton";
 
 
-export interface PlantCardProps {
+export interface PlantListDataProps {
     id?: string;
     name: string;
     subtitle: string;
-    photoPlant?: {
-        localUri: string;
-    };
     arriveDate: Date;
+    enviroment: 'in' | 'out';
+    photoPlant?: {
+        localUri: string
+    };
     wateryList: string[];
     wateryListCount: number;
 }
 
+interface PlantCardProps {
+    id: string
+}
 
 
-
-export default function PlantCard({id, name, subtitle, photoPlant, arriveDate, wateryList, wateryListCount }:PlantCardProps){
+export default function PlantCard({id}:PlantCardProps){
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
+    const {handleAddDate, plantListData} = useContext(PlantDataContext)
+    const [plantCardData, setPlantCardData] =  useState({} as PlantListDataProps)
+    const [lastDate, setLastDate] = useState('')
     const [update, setUpdate] = useState('no')
-    const {handleAddDate} = useContext(PlantDataContext)
 
-    let arriveDateFormatted = brotoDateFormatter(arriveDate, '2-digit','ano')
+    let arriveDateFormatted = brotoDateFormatter(plantCardData.arriveDate, '2-digit','ano')
 
-    useEffect( () => { console.log ('updated') },[update])
+    useEffect( () => { 
+        const cardData = plantListData.filter( item => item.id === id );
+        const cardDataFNS = cardData[0];
+        setPlantCardData(cardDataFNS);
+        const lastDateFNS = cardDataFNS.wateryList[cardDataFNS.wateryList.length - 1]
+        setLastDate(lastDateFNS)
 
-    function handleUpdate(id: string){
+     },[update])
+
+    function handleUpdateWateryIcon(id: string){
         handleAddDate(id)
-        setUpdate('updated')
+        setUpdate('yes')
     }
 
     function handleOpenCard(){
@@ -66,24 +78,24 @@ export default function PlantCard({id, name, subtitle, photoPlant, arriveDate, w
 
             <TopCardContainer>
             <PlantaContainer>
-            { photoPlant ? <PhotoPlant source={{uri: photoPlant.localUri}} /> : <BrotoIcon />}
+            { plantCardData.photoPlant ? <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> : <BrotoIcon />}
 
             <PlantTag onPress={handleOpenCard}>
             <TouchableContainer>
-                <Title>{name}</Title>
-                <Subtitle numberOfLines={1} >{subtitle}</Subtitle>
+                <Title>{plantCardData.name}</Title>
+                <Subtitle numberOfLines={1} >{plantCardData.subtitle}</Subtitle>
             </TouchableContainer>
             </PlantTag>
 
             </PlantaContainer>
 
-            <WateryButton wateryList={wateryList} id={id} onPress={handleUpdate}/>
+            <WateryButton lastDate={lastDate} id={id} onPress={handleUpdateWateryIcon}/>
 
             </TopCardContainer>
 
             { openCard && 
             <BottomCardContainer>
-                <WateryList wateryList={wateryList} wateryListCount={wateryListCount}/>
+                <WateryList wateryList={plantCardData.wateryList} wateryListCount={plantCardData.wateryListCount}/>
                 <ExtraContainer>
 
                     <DateContainer>
@@ -91,7 +103,7 @@ export default function PlantCard({id, name, subtitle, photoPlant, arriveDate, w
                         <DataArrive>{arriveDateFormatted}</DataArrive>
                     </DateContainer>
 
-                    <DetailsButton onPress={ () => Navigation.navigate('PlantDetail', {name, subtitle, photoPlant, arriveDateFormatted}) }>
+                    <DetailsButton onPress={ () => Navigation.navigate('PlantDetail', {id}) }>
                         <ButtonText>Detalhes</ButtonText>
                     </DetailsButton>
 
