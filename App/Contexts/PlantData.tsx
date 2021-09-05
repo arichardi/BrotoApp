@@ -21,7 +21,7 @@ interface ContextProps {
     handleInsertData: (PlantListDataProps) => void;
     handleAddDate: (id: string) => void 
     plantListData: PlantListDataProps[];
-    
+    idList: number
 }
 
 
@@ -60,13 +60,14 @@ export function PlantDataProvider({children}) {
 
 const Navigation = useNavigation()
 const [plantListData, setPlantListData] = useState(initialStateTest)
-
+const [idList, setIdList] = useState(3)
 const dateToday = brotoDateFormatter(new Date(), '2-digit')
 
 //functions -----------------------------------------------------------
 
 function handleInsertData(plant: PlantListDataProps){
     setPlantListData([...plantListData, plant])
+    setIdList( idList + 1)
     Navigation.goBack();
 }
 
@@ -111,6 +112,7 @@ function handleAddDate(id: string){
         handleInsertData: handleInsertData, 
         handleAddDate: handleAddDate,
         plantListData: plantListData,
+        idList: idList
         }}>
         {children}
     </PlantDataContext.Provider>

@@ -41,13 +41,13 @@ export default function PlantRegisterScreen({navigation}){
         year: '2-digit',
     }).format(arriveDate);
 
-    const {handleInsertData} = useContext(PlantDataContext)
+    const {handleInsertData, idList } = useContext(PlantDataContext)
    
     // functions ---------------------------------------------
 
     function handleConfirmInsert(){
         handleInsertData({
-            id:'4',
+            id: idList.toString(),
             name: plantName,
             subtitle: subtitleDescription,
             arriveDate: arriveDate,
