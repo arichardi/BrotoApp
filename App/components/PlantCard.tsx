@@ -16,7 +16,6 @@ DataArrive,
 DetailsButton,
 ButtonText,
 PhotoPlant,
-
 } from './PlantCardStyles'
 
 import { PlantDataContext } from '../Contexts/PlantData'
@@ -37,14 +36,19 @@ export interface PlantListDataProps {
     };
     wateryList: string[];
     wateryListCount: number;
+    
 }
 
 interface PlantCardProps {
-    id: string
+    id: string;
+    deleteMode: boolean;
+    functionDelete: () => void;
 }
 
 
-export default function PlantCard({id}:PlantCardProps){
+export default function PlantCard({id, deleteMode, functionDelete}:PlantCardProps){
+
+    //varibles ------------------------------------------------------------------------
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
@@ -54,6 +58,8 @@ export default function PlantCard({id}:PlantCardProps){
     const [update, setUpdate] = useState('no')
 
     let arriveDateFormatted = brotoDateFormatter(plantCardData.arriveDate, '2-digit','ano')
+
+    //functions ------------------------------------------------------------------------
 
     useEffect( () => { 
         const cardData = plantListData.filter( item => item.id === id );
@@ -73,6 +79,10 @@ export default function PlantCard({id}:PlantCardProps){
         setOpenCard(!openCard)
     }
 
+    function handleDeleteMode(){
+        functionDelete()
+    }
+
     return(
         <Container openCard={openCard} >
 
@@ -80,7 +90,7 @@ export default function PlantCard({id}:PlantCardProps){
             <PlantaContainer>
             { plantCardData.photoPlant ? <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> : <BrotoIcon />}
 
-            <PlantTag onPress={handleOpenCard}>
+            <PlantTag onPress={handleOpenCard} onLongPress={ () => handleDeleteMode()} delayLongPress={400}>
             <TouchableContainer>
                 <Title>{plantCardData.name}</Title>
                 <Subtitle numberOfLines={1} >{plantCardData.subtitle}</Subtitle>

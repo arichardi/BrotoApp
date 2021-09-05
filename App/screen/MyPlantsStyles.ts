@@ -43,10 +43,12 @@ export const PlantList = styled(
 
     `;
 
-export const ButtonAddPlantContainer = styled(TouchableOpacity)`
+export const ButtonContainer = styled.View`
     align-items: center;
     margin-bottom: 8px;
     margin-top: 20px;
     
     
 `
+export const ButtonAddPlantContainer = styled.TouchableOpacity``
+export const ButtonRemovePlantContainer = styled.TouchableOpacity``
