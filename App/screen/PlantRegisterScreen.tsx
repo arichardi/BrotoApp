@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react'
+import { Alert } from 'react-native'
 import AppInput from '../components/AppInput'
 import BackgroundApp from '../components/BackgroundApp'
 import NameDisplay from '../components/NameDIsplay'
@@ -46,6 +47,14 @@ export default function PlantRegisterScreen({navigation}){
     // functions ---------------------------------------------
 
     function handleConfirmInsert(){
+        if(plantName === 'Nome' || plantName === ''){
+            Alert.alert('Faltando informação', 'Precisamos que você insira o nome da plantinha que vamos acompanhar')
+            return
+        }
+        if(envButton === ''){
+            Alert.alert('Faltando informação', 'Precisamos que você insira o local onde pretende guardar a sua plantinha')
+            return
+        }
         handleInsertData({
             id: idList.toString(),
             name: plantName,
