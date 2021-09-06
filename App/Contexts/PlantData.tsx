@@ -15,7 +15,10 @@ export interface PlantListDataProps {
     };
     wateryList: string[];
     wateryListCount: number;
+    fertilizerList: string[];
+    fertilizerCount: number;
     deleteMode: boolean;
+    quarentenaMode: boolean;
 }
 
 interface ContextProps {
@@ -42,7 +45,10 @@ const initialStateTest: PlantListDataProps[] = [
         "subtitle": "planta imaginária",
         "wateryList": ['01/01', '02/02','01/03'],
         "wateryListCount": 3,
+        "fertilizerList" : ['01/01', '02/02', '03/03'],
+        "fertilizerCount":  3,
         "deleteMode": false,
+        'quarentenaMode': false,
       },
       { 
         'id': '2',
@@ -53,7 +59,10 @@ const initialStateTest: PlantListDataProps[] = [
         "subtitle": "planta na janela",
         "wateryList": ['01/06', '01/07', '01/08', '01/09', '01/10' ],
         "wateryListCount": 5,
+        "fertilizerList" : [],
+        "fertilizerCount":  0,
         "deleteMode": false,
+        'quarentenaMode': false,
       },
 ]
 

@@ -34,7 +34,11 @@ export const SubTitle = styled.Text`
     align-self: center;
 
 `;
-export const OtherInfoContainer = styled.View``;
+export const OtherInfoContainer = styled.View`
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`;
 
 export const DateArive = styled.Text`
     padding: 0px 16px;
@@ -55,4 +59,23 @@ export const SeparatorLine = styled.View`
 export const GoBackIcon = styled.TouchableOpacity`
     position: absolute;
     top: -50px
+`;
+
+export const PlantEnvContainer = styled.View`
+    background-color: ${ ({theme}) => theme.colors.green_dark};
+    height: 32px;
+    width: 128px;
+    border-radius: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+`;
+
+export const EnviromentText = styled.Text`
+    margin-right: 8px;
+    color: ${ ({theme}) => theme.colors.backGround};
+    font-family: ${ ({theme}) => theme.fonts.bold};
+    font-size: 14px;
+
 `;

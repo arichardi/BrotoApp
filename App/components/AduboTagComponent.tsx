@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import AduboIcon from '../Assets/AduboIcon'
 import {
     Container,
@@ -8,23 +8,38 @@ import {
     InfoContainer,
     BottomContainer,
 } from './AduboTagComponentStyle'
+import FertilizerList from '../components/FertilizerList'
 
-export default function AduboTagComponent(){
+interface Props {
+    fertilizerList: string[];
+    fertilizerCount: number;
+}
+
+export default function AduboTagComponent({fertilizerList, fertilizerCount}: Props){
+
+    const [openCard, setOpenCard] = useState(false)
+
+    function handleOpenCard(){
+        setOpenCard(!openCard)
+    }
+
     return(
-        <Container>
+        <Container openCard={openCard}>
             <TopContainer>
-                <InfoContainer>
-                    <Title>Quarentena</Title>
-                    <Subtitle>Nunca foi adubado</Subtitle>
+                <InfoContainer onPress={handleOpenCard}>
+                    <Title>Adubação</Title>
+                    <Subtitle>{fertilizerCount === 0 ? `Nunca foi adubado` : `quarta 08/07`}</Subtitle>
                 </InfoContainer>
 
                 <AduboIcon />
 
             </TopContainer>
 
+            { openCard && 
             <BottomContainer>
-
+                <FertilizerList fertilizerCount={fertilizerCount} fertilizerList={fertilizerList}/>
             </BottomContainer>
+            }
         </Container>
     )
 }

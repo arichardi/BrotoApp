@@ -8,6 +8,8 @@ import {
     DateArive,
     SeparatorLine,
     GoBackIcon,
+    PlantEnvContainer,
+    EnviromentText,
 } from './PlantDetailScreenStyle'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 import BackgroundApp from '../components/BackgroundApp'
@@ -18,6 +20,9 @@ import RegaTagComponent from '../components/RegaTagComponent'
 import QuarentenaTagComponent from '../components/QuaretenaTagComponent'
 import AduboTagComponent from '../components/AduboTagComponent'
 import { brotoDateFormatter } from '../utils/helpers'
+import HomeIcon from '../Assets/HomeIcon'
+import SunIcon from '../Assets/SunIcon'
+import theme from '../config/styles/theme'
 
 export default function PlantDetailScreen({route}){
 
@@ -50,6 +55,18 @@ export default function PlantDetailScreen({route}){
             <SubTitle>{plantData.subtitle}</SubTitle>
             <OtherInfoContainer>
                 <DateArive>{`Chegou dia: ${brotoDateFormatter(plantData.arriveDate,'2-digit', 'ano')}`}</DateArive>
+                { plantData.enviroment === 'in' ? (
+                    <PlantEnvContainer >
+                        <EnviromentText>interno</EnviromentText>
+                        <HomeIcon color={theme.colors.backGround}/>
+                    </PlantEnvContainer>
+                ) : (
+                    <PlantEnvContainer >
+                            <EnviromentText>externo</EnviromentText>
+                            <SunIcon color={theme.colors.backGround} />
+                        </PlantEnvContainer>
+                )
+                }
             </OtherInfoContainer>
             </InfoContainer>
             
@@ -57,7 +74,7 @@ export default function PlantDetailScreen({route}){
 
             <RegaTagComponent />
             <QuarentenaTagComponent />
-            <AduboTagComponent />
+            <AduboTagComponent fertilizerList={plantData.fertilizerList} fertilizerCount={plantData.fertilizerCount} />
 
             </Container>
         </BackgroundApp>
