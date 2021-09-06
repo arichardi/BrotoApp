@@ -8,6 +8,9 @@ export const Container = styled.View`
 
 `;
 
+export const ButtonExitDeleteMode = styled.TouchableWithoutFeedback`
+`;
+
 export const Cto = styled.View`
 margin-top: 42px;
 margin-bottom: 88px;

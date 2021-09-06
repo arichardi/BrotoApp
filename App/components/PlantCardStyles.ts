@@ -17,6 +17,7 @@ export const Container = styled(View).attrs({
     margin-right: 12px;
     margin-left: 12px;
     margin-bottom: 8px; 
+    overflow: hidden;
 
 `;
 
@@ -102,4 +103,19 @@ export const PhotoPlant = styled.Image`
 
 export const ActionIcon = styled.TouchableOpacity`
     
+`;
+
+export const DeleteFlag = styled.View`
+height: 64px;
+width: 110%;
+background-color: rgba(238, 108, 41, 0.7);
+position: absolute;
+justify-content: center;
+
+`;
+
+export const DeleteText = styled.Text`
+    color: ${ ({theme}) => theme.colors.backGround};
+    font-family: ${ ({theme}) => theme.fonts.black};
+    align-self: center;
 `;

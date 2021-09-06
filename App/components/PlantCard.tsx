@@ -16,6 +16,8 @@ DataArrive,
 DetailsButton,
 ButtonText,
 PhotoPlant,
+DeleteFlag,
+DeleteText,
 } from './PlantCardStyles'
 
 import { PlantDataContext } from '../Contexts/PlantData'
@@ -26,7 +28,7 @@ import WateryButton from "./WateryButton";
 
 
 export interface PlantListDataProps {
-    id?: string;
+    id: string;
     name: string;
     subtitle: string;
     arriveDate: Date;
@@ -36,23 +38,23 @@ export interface PlantListDataProps {
     };
     wateryList: string[];
     wateryListCount: number;
+    deleteMode: boolean;
     
 }
 
 interface PlantCardProps {
     id: string;
-    deleteMode: boolean;
     functionDelete: () => void;
 }
 
 
-export default function PlantCard({id, deleteMode, functionDelete}:PlantCardProps){
+export default function PlantCard({id, functionDelete}:PlantCardProps){
 
     //varibles ------------------------------------------------------------------------
 
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
-    const {handleAddDate, plantListData} = useContext(PlantDataContext)
+    const {handleAddDate,changeDeleteMode, plantListData} = useContext(PlantDataContext)
     const [plantCardData, setPlantCardData] =  useState({} as PlantListDataProps)
     const [lastDate, setLastDate] = useState('')
     const [update, setUpdate] = useState('no')
@@ -79,7 +81,8 @@ export default function PlantCard({id, deleteMode, functionDelete}:PlantCardProp
         setOpenCard(!openCard)
     }
 
-    function handleDeleteMode(){
+    function handleDeleteMode(id: string){
+        changeDeleteMode(id)
         functionDelete()
     }
 
@@ -87,10 +90,11 @@ export default function PlantCard({id, deleteMode, functionDelete}:PlantCardProp
         <Container openCard={openCard} >
 
             <TopCardContainer>
+  
             <PlantaContainer>
             { plantCardData.photoPlant ? <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> : <BrotoIcon />}
 
-            <PlantTag onPress={handleOpenCard} onLongPress={ () => handleDeleteMode()} delayLongPress={400}>
+            <PlantTag onPress={handleOpenCard} onLongPress={ () => handleDeleteMode(plantCardData.id)} delayLongPress={400}>
             <TouchableContainer>
                 <Title>{plantCardData.name}</Title>
                 <Subtitle numberOfLines={1} >{plantCardData.subtitle}</Subtitle>
@@ -102,6 +106,13 @@ export default function PlantCard({id, deleteMode, functionDelete}:PlantCardProp
             <WateryButton lastDate={lastDate} id={id} onPress={handleUpdateWateryIcon}/>
 
             </TopCardContainer>
+            
+            {
+                plantCardData.deleteMode === true ? (
+                <DeleteFlag >
+                    <DeleteText>Clique na lixeira para excluir</DeleteText>
+                </DeleteFlag > ) : <></>
+            }
 
             { openCard && 
             <BottomCardContainer>

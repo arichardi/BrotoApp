@@ -7,6 +7,7 @@ import { Container,
     ButtonAddPlantContainer,
     ButtonRemovePlantContainer,
     Cto,
+    ButtonExitDeleteMode,
     } from './MyPlantsStyles';
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
@@ -22,18 +23,30 @@ export default function MyPlants({navigation}){
 
 // Variables ----------------------------------------------
 const [deleteMode, setDeleteMode] = useState(false)
-const {plantListData} = useContext(PlantDataContext)
+const {plantListData, handleRemovePlant, clearDeleteMode} = useContext(PlantDataContext)
 
 // function ----------------------------------------------
 
-function handleDeleteMode(){
+function handlestartDeleteMode(){
     setDeleteMode(true)
     console.log('delete mode on')
+}
+
+function deletePlant(){
+    handleRemovePlant()
+    setDeleteMode(false)
+}
+
+function handleDeleteModeExit(){
+    deleteMode ? setDeleteMode(false): {}
+    clearDeleteMode()
+    return
 }
 
 // RN ----------------------------------------------
     return(
         <BackgroundApp>
+        <ButtonExitDeleteMode onPress={handleDeleteModeExit} >
         <Container>
             <Cto>
                 <Underline />
@@ -46,8 +59,7 @@ function handleDeleteMode(){
                 renderItem={ ({item}) => {
                     return <PlantCard 
                         id={item.id}
-                        deleteMode={deleteMode}
-                        functionDelete={handleDeleteMode}
+                        functionDelete={handlestartDeleteMode}
                          />
                 }
                 }
@@ -56,7 +68,7 @@ function handleDeleteMode(){
 
             <ButtonContainer>
                 { deleteMode ? (
-                     <ButtonRemovePlantContainer>
+                     <ButtonRemovePlantContainer onPress={ () => deletePlant()} >
                         <PlantRemoveIconButton />
                     </ButtonRemovePlantContainer>
                     ) : (       
@@ -67,6 +79,7 @@ function handleDeleteMode(){
                 }
             </ButtonContainer>
         </Container>
+        </ButtonExitDeleteMode>
         </BackgroundApp>
 
 

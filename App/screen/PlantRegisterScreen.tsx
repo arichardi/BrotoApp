@@ -64,6 +64,7 @@ export default function PlantRegisterScreen({navigation}){
             photoPlant: imagePlant,
             wateryList: [],
             wateryListCount: 0,
+            deleteMode: false,
          })
     }
 

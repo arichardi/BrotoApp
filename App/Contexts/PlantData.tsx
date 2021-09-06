@@ -5,7 +5,7 @@ import { brotoDateFormatter } from '../utils/helpers';
 // Interfaces -----------------------------------------------------
 
 export interface PlantListDataProps {
-    id?: string;
+    id: string;
     name: string;
     subtitle: string;
     arriveDate: Date;
@@ -15,9 +15,13 @@ export interface PlantListDataProps {
     };
     wateryList: string[];
     wateryListCount: number;
+    deleteMode: boolean;
 }
 
 interface ContextProps {
+    clearDeleteMode: () => void;
+    handleRemovePlant: () => void;  
+    changeDeleteMode: (id: string) => void;
     handleInsertData: (PlantListDataProps) => void;
     handleAddDate: (id: string) => void 
     plantListData: PlantListDataProps[];
@@ -38,6 +42,7 @@ const initialStateTest: PlantListDataProps[] = [
         "subtitle": "planta imaginária",
         "wateryList": ['01/01', '02/02','01/03'],
         "wateryListCount": 3,
+        "deleteMode": false,
       },
       { 
         'id': '2',
@@ -48,6 +53,7 @@ const initialStateTest: PlantListDataProps[] = [
         "subtitle": "planta na janela",
         "wateryList": ['01/06', '01/07', '01/08', '01/09', '01/10' ],
         "wateryListCount": 5,
+        "deleteMode": false,
       },
 ]
 
@@ -83,7 +89,8 @@ function handleAddDate(id: string){
       listSelected[0].wateryList.push(dateToday)
       
       const resultList = [ ... listNotSelected, ... listSelected]
-      return resultList
+      setPlantListData(resultList.sort())
+      return
       
     }
     
@@ -95,20 +102,43 @@ function handleAddDate(id: string){
     const resultList = [ ... listNotSelected, ... listSelected]
     
     //retorna o novo objeto
-   return resultList
+    setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    return
+
     
   }
   
-  function handleRemovePlant(plantList: PlantListDataProps[], id: string){
-    const listFiltered = plantList.filter( lists => lists.id !== id )
-    return listFiltered
+  function handleRemovePlant(){
+    const listFiltered = plantListData.filter( lists => lists.deleteMode === false )
+    setPlantListData(listFiltered)
+    return
+  }
+
+  function clearDeleteMode(){
+    const newList = [... plantListData ]
+    newList.forEach( item => item.deleteMode = false)
+    setPlantListData(newList)
+  }
+
+  function changeDeleteMode(id: string){
+    //acha o elemeto referente
+    const listNotSelected = plantListData.filter( lists => lists.id !== id )
+    const listSelected = plantListData.filter( lists => lists.id === id)
+    //altera o estado de delete mode
+    listSelected[0].deleteMode = true
+    //manda o estado de volta pra pilha
+    const resultList = [ ... listNotSelected, ... listSelected]
+    setPlantListData(resultList.sort( (a,b) => Number(a.id) - Number(b.id) ))
+    return
   }
 
 //RNProvider -----------------------------------------------------------
 
     return(
     <PlantDataContext.Provider value={{
-        
+        clearDeleteMode: clearDeleteMode,
+        handleRemovePlant: handleRemovePlant,
+        changeDeleteMode: changeDeleteMode,
         handleInsertData: handleInsertData, 
         handleAddDate: handleAddDate,
         plantListData: plantListData,
