@@ -42,7 +42,7 @@ export function FertilizerCardTwo({data}: Props){
 export function FertilizerCardThree({data}: Props){
     return(
         <ContainerThree>
-            <RegadoIcon />
+            <RegadoIcon colorPrimary={theme.colors.backGround} colorSecondary={theme.colors.yellow_dark} />
             <DataContainerThree>
             <DataTextThree>{dayOfWeek(data)}</DataTextThree>
             <DataTextThree>{data}</DataTextThree>

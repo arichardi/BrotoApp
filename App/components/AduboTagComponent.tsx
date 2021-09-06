@@ -24,7 +24,7 @@ export default function AduboTagComponent({fertilizerList, fertilizerCount}: Pro
     }
 
     return(
-        <Container openCard={openCard}>
+        <Container openCard={openCard} countList={fertilizerCount}>
             <TopContainer>
                 <InfoContainer onPress={handleOpenCard}>
                     <Title>Adubação</Title>

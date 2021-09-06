@@ -36,7 +36,7 @@ export const DataTextTwo = styled.Text`
     font-family: ${ ({theme}) => theme.fonts.black};
 `;
 export const DataTextThree = styled.Text`
-    color: ${ ({theme}) => theme.colors.pink_dark};
+    color: ${ ({theme}) => theme.colors.backGround};
     font-family: ${ ({theme}) => theme.fonts.black};
 `;
 export const DataContainer = styled.View`
@@ -49,5 +49,5 @@ export const ContainerThree = styled.View`
 `;
 export const DataContainerThree = styled.View`
     align-items: center;
-    margin-left: 12px;
+    margin: 5px;
 `;

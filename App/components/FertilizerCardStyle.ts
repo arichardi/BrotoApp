@@ -5,7 +5,7 @@ export const Container = styled.View`
 `;
 
 export const DateTitle = styled.Text`
-    color: ${ ({theme}) => theme.colors.pink_dark};
+    color: ${ ({theme}) => theme.colors.backGround};
     margin-top: 4px;
     font-family: ${ ({theme}) => theme.fonts.bold};
     font-size: 14px;

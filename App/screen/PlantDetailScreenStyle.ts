@@ -6,8 +6,8 @@ export const Container = styled.View.attrs({
 })`
     background-color: ${ ({theme}) => theme.colors.backGround};
     margin-top: 112px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 12px;
+    margin-right: 12px;
     height: 615px;
     border-radius: 16px;
 

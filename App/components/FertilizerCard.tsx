@@ -4,6 +4,7 @@ import {
     Container,
     DateTitle,
 } from './FertilizerCardStyle'
+import theme from '../config/styles/theme'
 
 interface Props {
     date: string;
@@ -12,7 +13,7 @@ interface Props {
 export default function FertilizerCard({date}: Props){
     return(
         <Container>
-            <RegadoIcon />
+            <RegadoIcon colorPrimary={theme.colors.backGround} colorSecondary={theme.colors.yellow_dark}/>
             <DateTitle>{date}</DateTitle>
         </Container>
     )
