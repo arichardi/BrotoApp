@@ -26,7 +26,7 @@ import theme from '../config/styles/theme'
 
 export default function PlantDetailScreen({route}){
 
-    const {plantListData} = useContext(PlantDataContext)
+    const {plantListData, handleAddfertilizer} = useContext(PlantDataContext)
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
 
@@ -34,7 +34,11 @@ export default function PlantDetailScreen({route}){
         const plant = plantListData.filter( item => item.id === props.id)
         const plantFNS = plant[0]
         setPlantData(plantFNS)
-    }, [])
+    }, [plantData])
+
+    function handlefertilizerbutton(){
+        handleAddfertilizer(plantData.id)
+    }
 
     return (
         <BackgroundApp>
@@ -74,7 +78,7 @@ export default function PlantDetailScreen({route}){
 
             <RegaTagComponent />
             <QuarentenaTagComponent />
-            <AduboTagComponent fertilizerList={plantData.fertilizerList} fertilizerCount={plantData.fertilizerCount} />
+            <AduboTagComponent fertilizerList={plantData.fertilizerList} fertilizerCount={plantData.fertilizerCount} onPress={handlefertilizerbutton} />
 
             </Container>
         </BackgroundApp>

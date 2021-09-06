@@ -35,3 +35,5 @@ export const BottomContainer = styled.View`
     padding: 0px 8px;
 
 `;
+
+export const IconContainer = styled.TouchableOpacity``;

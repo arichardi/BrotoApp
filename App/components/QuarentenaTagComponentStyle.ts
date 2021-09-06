@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 export const Container = styled.View`
     background-color: ${ ({theme}) => theme.colors.pink_dark};
     height: 64px;
-    margin: 0px 16px;
+    margin: 0px 12px;
     border-radius: 16px;
     margin-bottom: 8px;
 `;

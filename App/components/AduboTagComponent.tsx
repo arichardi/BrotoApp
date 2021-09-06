@@ -7,20 +7,22 @@ import {
     TopContainer,
     InfoContainer,
     BottomContainer,
+    IconContainer,
 } from './AduboTagComponentStyle'
 import FertilizerList from '../components/FertilizerList'
 
 interface Props {
     fertilizerList: string[];
     fertilizerCount: number;
+    onPress: () => void
 }
 
-export default function AduboTagComponent({fertilizerList, fertilizerCount}: Props){
+export default function AduboTagComponent({fertilizerList, fertilizerCount, onPress}: Props){
 
     const [openCard, setOpenCard] = useState(false)
 
     function handleOpenCard(){
-        setOpenCard(!openCard)
+        fertilizerCount !== 0 ? setOpenCard(!openCard) : {}
     }
 
     return(
@@ -28,10 +30,12 @@ export default function AduboTagComponent({fertilizerList, fertilizerCount}: Pro
             <TopContainer>
                 <InfoContainer onPress={handleOpenCard}>
                     <Title>Adubação</Title>
-                    <Subtitle>{fertilizerCount === 0 ? `Nunca foi adubado` : `quarta 08/07`}</Subtitle>
+                    <Subtitle>{fertilizerCount === 0 ? `Nunca foi adubado` : `Ultima adubação foi 08/07`}</Subtitle>
                 </InfoContainer>
 
-                <AduboIcon />
+                <IconContainer onPress={ () => onPress()}>
+                    <AduboIcon />
+                </IconContainer>
 
             </TopContainer>
 
