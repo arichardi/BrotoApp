@@ -53,6 +53,7 @@ export const PlantTag = styled.TouchableWithoutFeedback`
 
 export const Title = styled.Text<quarentine>`
     font-size: 14px;
+    letter-spacing: 0.5px;
     font-family: ${ ({theme}) => theme.fonts.black};
     color: ${ ({theme, quarentine}) => quarentine? theme.colors.backGround : theme.colors.green_dark};
     width: 200px;
@@ -76,9 +77,10 @@ export const DateContainer = styled.View`
     flex-direction: row;
 `;
 
-export const DataTitle = styled.Text`
-    color: ${ ({theme}) => theme.colors.green_dark};
+export const DataTitle = styled.Text<quarentine>`
+    color: ${ ({theme, quarentine}) => quarentine? theme.colors.backGround : theme.colors.green_dark};
     font-family: ${ ({theme}) => theme.fonts.black};
+    letter-spacing: 0.5px;
 `;
 
 export const DataArrive = styled.Text`
@@ -87,13 +89,14 @@ export const DataArrive = styled.Text`
     margin-left: 4px;
 `;
 
-export const ButtonText = styled.Text`
-    color: ${ ({theme}) => theme.colors.green_dark};;
+export const ButtonText = styled.Text<quarentine>`
+    color: ${ ({theme, quarentine}) => quarentine? theme.colors.pink_dark : theme.colors.green_dark };
     font-family: ${ ({theme}) => theme.fonts.black};
+    letter-spacing: 0.5px;
 `;
 
-export const DetailsButton = styled.TouchableOpacity`
-    border: 3px solid ${ ({theme}) => theme.colors.green_dark};
+export const DetailsButton = styled.TouchableOpacity<quarentine>`
+    border: 3px solid ${ ({theme, quarentine}) => quarentine? theme.colors.backGround : theme.colors.green_dark };
     height: 32px;
     width: 128px;
     border-radius: 64px;

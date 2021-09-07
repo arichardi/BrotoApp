@@ -118,12 +118,15 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
                 <ExtraContainer>
 
                     <DateContainer>
-                        <DataTitle>Chegou dia:</DataTitle>
+                        <DataTitle quarentine={plantCardData.quarentenaMode}>Chegou dia:</DataTitle>
                         <DataArrive>{arriveDateFormatted}</DataArrive>
                     </DateContainer>
 
-                    <DetailsButton onPress={ () => Navigation.navigate('PlantDetail', {id}) }>
-                        <ButtonText>Detalhes</ButtonText>
+                    <DetailsButton 
+                        quarentine={plantCardData.quarentenaMode} 
+                        onPress={ () => Navigation.navigate('PlantDetail', {id}) }
+                        >
+                        <ButtonText quarentine={plantCardData.quarentenaMode} >Detalhes</ButtonText>
                     </DetailsButton>
 
                 </ExtraContainer>
