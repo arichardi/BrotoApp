@@ -22,6 +22,8 @@ import {
     PhotoIconContainer,
  } from './PlantRegisterScreenStyle'
 
+ type Enviro = 'in' | 'out' | ''
+
 export default function PlantRegisterScreen({navigation}){
 
     // States & Vars ----------------------------------------
@@ -29,7 +31,7 @@ export default function PlantRegisterScreen({navigation}){
     
     const [arriveDate, setArriveDate] = useState(new Date())
     const [showDatePicker, setShowDatePicker] = useState(false)
-    const [envButton, setEnvButton] = useState('')
+    const [envButton, setEnvButton] = useState<Enviro>('')
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
     const [subtitleDescription, setSubtitleSescription] = useState('')
@@ -65,6 +67,10 @@ export default function PlantRegisterScreen({navigation}){
             wateryList: [],
             wateryListCount: 0,
             deleteMode: false,
+            fertilizerCount: 0,
+            fertilizerList: [],
+            lastQuarentine: '',
+            quarentenaMode: false
          })
     }
 

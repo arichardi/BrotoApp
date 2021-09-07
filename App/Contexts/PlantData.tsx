@@ -11,7 +11,7 @@ export interface PlantListDataProps {
     name: string;
     subtitle: string;
     arriveDate: Date;
-    enviroment: 'in' | 'out';
+    enviroment: 'in' | 'out' | '';
     photoPlant?: {
         localUri: string
     };
@@ -30,7 +30,7 @@ interface ContextProps {
   clearDeleteMode: () => void;
   handleRemovePlant: () => void;  
   changeDeleteMode: (id: string) => void;
-  handleInsertData: (PlantListDataProps) => void;
+  handleInsertData: ({} : PlantListDataProps) => void;
   handleAddDate: (id: string) => void 
   plantListData: PlantListDataProps[];
   idList: number

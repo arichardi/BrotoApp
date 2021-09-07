@@ -7,6 +7,7 @@ _ Onboard screen
 _ Sistema abre e fecha
 _Corrigir sistema de nomes
 _ fazer tela de edição
+_ corrigir erros de registro de itens
 
 X clicar fora para deselecionar a lixeira
 X_ Arrumar o icone do bug_
