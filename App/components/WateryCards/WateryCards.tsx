@@ -12,39 +12,47 @@ import {
 } from './WateryCardsStyle'
 import RegadoIcon from '../../Assets/RegadoIcon'
 import { dayOfWeek } from '../../utils/helpers'
+import theme from '../../config/styles/theme'
 
 interface Props{
     data: string;
+    quarentine: boolean;
 }
 
-export function WateryCardOne({data}: Props){
+export function WateryCardOne({data, quarentine}: Props){
     return(
-        <ContainerOne>
-            <DataText>{ `A últma reg foi ${data}` }</DataText>
-            <SuccessIcon />
+        <ContainerOne quarentine={quarentine}>
+            <DataText quarentine={quarentine} >{ `A últma reg foi ${data}` }</DataText>
+            { quarentine ? 
+                <SuccessIcon color={theme.colors.green_dark}/>:
+                <SuccessIcon />
+            }
         </ContainerOne>
     )
 }
 
-export function WateryCardTwo({data}: Props){
+export function WateryCardTwo({data, quarentine}: Props){
     return(
-        <ContainerTwo>
-            <SuccessIcon />
+        <ContainerTwo quarentine={quarentine}>
+             { quarentine ? 
+                <SuccessIcon color={theme.colors.green_dark}/>:
+                <SuccessIcon />
+            }
             <DataContainer>
-            <DataTextTwo>{dayOfWeek(data)}</DataTextTwo>
-            <DataTextTwo>{data}</DataTextTwo>
+            <DataTextTwo quarentine={quarentine} > {dayOfWeek(data)} </DataTextTwo>
+            <DataTextTwo quarentine={quarentine} > {data} </DataTextTwo>
             </DataContainer>
         </ContainerTwo>
     )
 }
 
-export function WateryCardThree({data}: Props){
+export function WateryCardThree({data, quarentine}: Props){
     return(
         <ContainerThree>
-            <RegadoIcon />
+            { quarentine ? <RegadoIcon colorPrimary={theme.colors.backGround} colorSecondary={theme.colors.green_dark} /> : <RegadoIcon />}
             <DataContainerThree>
-            <DataTextThree>{dayOfWeek(data)}</DataTextThree>
-            <DataTextThree>{data}</DataTextThree>
+            <DataTextThree quarentine={quarentine} >{dayOfWeek(data)}</DataTextThree>
+            <DataTextThree quarentine={quarentine} >{data}</DataTextThree>
             </DataContainerThree>
         </ContainerThree>
     )

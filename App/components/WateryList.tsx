@@ -17,16 +17,16 @@ export default function WateryList({wateryList, wateryListCount, quarentine}: Pr
     return(
         <Container>
             {   
-                wateryListCount === 1 ? <WateryCardOne data={wateryList[0]}/> :
+                wateryListCount === 1 ? <WateryCardOne quarentine={quarentine} data={wateryList[0]}/> :
 
                 wateryListCount === 2 ?
                     wateryList.map( item => (
-                        <WateryCardTwo key={item} data={item}/>
+                        <WateryCardTwo quarentine={quarentine} key={item} data={item}/>
                     )) : 
 
                 wateryListCount === 3  ?
                     wateryList.map( item => (
-                        <WateryCardThree key={item} data={item}/>
+                        <WateryCardThree quarentine={quarentine} key={item} data={item}/>
                     )) :
 
                 wateryListCount > 3 && wateryListCount < 6 ?
