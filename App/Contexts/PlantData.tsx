@@ -62,8 +62,8 @@ const initialStateTest: PlantListDataProps[] = [
         "subtitle": "planta na janela",
         "wateryList": ['01/06', '01/07', '01/08', '01/09', '01/10' ],
         "wateryListCount": 5,
-        "fertilizerList" : [],
-        "fertilizerCount":  0,
+        "fertilizerList" : ['01/01', '02/02'],
+        "fertilizerCount":  2,
         "deleteMode": false,
         'quarentenaMode': false,
       },
@@ -103,7 +103,7 @@ function handleAddDate(id: string){
       listSelected[0].wateryList.push(dateToday)
       
       const resultList = [ ... listNotSelected, ... listSelected]
-      setPlantListData(resultList.sort())
+      setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
       return
       
     }
@@ -128,19 +128,13 @@ function handleAddDate(id: string){
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
     const listSelected = plantListData.filter( lists => lists.id === id)
 
-    //Verifica se o último atualizado é do dia de hoje
-    if(listSelected[0].fertilizerList[fertilizerList.length - 1] == dateToday ){
-      Alert.alert('Data Duplicada', 'A data de hoje já foi informada anteriormente')
-      return
-    }
-
-    //verifica se o item tem 10 entradas e limita o arquivo
+     //verifica se o item tem 10 entradas e limita o arquivo
     if(listSelected[0].fertilizerCount >= 5 ){
       listSelected[0].fertilizerList.shift()
       listSelected[0].fertilizerList.push(dateToday)
       
       const resultList = [ ... listNotSelected, ... listSelected]
-      setPlantListData(resultList.sort())
+      setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
       return
       
     }

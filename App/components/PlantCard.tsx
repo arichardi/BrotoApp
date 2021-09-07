@@ -86,6 +86,8 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
         functionDelete()
     }
 
+    // RN -----------------------------------------------------------------
+
     return(
         <Container openCard={openCard} >
 

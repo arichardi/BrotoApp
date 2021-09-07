@@ -10,15 +10,18 @@ import {
     IconContainer,
 } from './AduboTagComponentStyle'
 import FertilizerList from '../components/FertilizerList'
+import { brotoDateFormatter } from '../utils/helpers'
 
 interface Props {
     fertilizerList: string[];
     fertilizerCount: number;
+    lastDate: string;
     onPress: () => void
 }
 
-export default function AduboTagComponent({fertilizerList, fertilizerCount, onPress}: Props){
+export default function AduboTagComponent({fertilizerList, fertilizerCount, lastDate, onPress}: Props){
 
+    const todayFormatted = brotoDateFormatter(new Date(), '2-digit')
     const [openCard, setOpenCard] = useState(false)
 
     function handleOpenCard(){
@@ -30,10 +33,10 @@ export default function AduboTagComponent({fertilizerList, fertilizerCount, onPr
             <TopContainer>
                 <InfoContainer onPress={handleOpenCard}>
                     <Title>Adubação</Title>
-                    <Subtitle>{fertilizerCount === 0 ? `Nunca foi adubado` : `Ultima adubação foi 08/07`}</Subtitle>
+                    <Subtitle>{fertilizerCount === 0 ? `Nunca foi adubado` : `Ultima adubação foi ${lastDate}`}</Subtitle>
                 </InfoContainer>
 
-                <IconContainer onPress={ () => onPress()}>
+                <IconContainer onPress={ todayFormatted === lastDate ? () => {} : () => onPress()}>
                     <AduboIcon />
                 </IconContainer>
 

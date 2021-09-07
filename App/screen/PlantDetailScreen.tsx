@@ -23,22 +23,33 @@ import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
+import fertilizerList from '../components/FertilizerList'
 
 export default function PlantDetailScreen({route}){
+
+    //variables ----------------------------------------------
 
     const {plantListData, handleAddfertilizer} = useContext(PlantDataContext)
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
+    const [lastFertilizerData, setLastFertilizerData] = useState('')
 
     useEffect( () => {
         const plant = plantListData.filter( item => item.id === props.id)
         const plantFNS = plant[0]
         setPlantData(plantFNS)
-    }, [plantData])
+        const lastFertilizerDataFNS = plantFNS.fertilizerList[plantFNS.fertilizerList.length - 1]
+        console.log(lastFertilizerDataFNS)
+        setLastFertilizerData(lastFertilizerDataFNS)
+    }, [plantListData])
+
+    //Functions ----------------------------------------------
 
     function handlefertilizerbutton(){
         handleAddfertilizer(plantData.id)
     }
+
+    //RN ----------------------------------------------
 
     return (
         <BackgroundApp>
@@ -78,7 +89,10 @@ export default function PlantDetailScreen({route}){
 
             <RegaTagComponent />
             <QuarentenaTagComponent />
-            <AduboTagComponent fertilizerList={plantData.fertilizerList} fertilizerCount={plantData.fertilizerCount} onPress={handlefertilizerbutton} />
+            <AduboTagComponent fertilizerList={plantData.fertilizerList}
+                fertilizerCount={plantData.fertilizerCount}
+                onPress={handlefertilizerbutton}
+                lastDate={lastFertilizerData} />
 
             </Container>
         </BackgroundApp>
