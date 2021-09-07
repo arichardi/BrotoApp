@@ -29,7 +29,7 @@ export default function PlantDetailScreen({route}){
 
     //variables ----------------------------------------------
 
-    const {plantListData, handleAddfertilizer} = useContext(PlantDataContext)
+    const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
     const [lastFertilizerData, setLastFertilizerData] = useState('')
@@ -39,7 +39,6 @@ export default function PlantDetailScreen({route}){
         const plantFNS = plant[0]
         setPlantData(plantFNS)
         const lastFertilizerDataFNS = plantFNS.fertilizerList[plantFNS.fertilizerList.length - 1]
-        console.log(lastFertilizerDataFNS)
         setLastFertilizerData(lastFertilizerDataFNS)
     }, [plantListData])
 
@@ -47,6 +46,10 @@ export default function PlantDetailScreen({route}){
 
     function handlefertilizerbutton(){
         handleAddfertilizer(plantData.id)
+    }
+
+    function handleQuarentineButton(){
+        handleQuarentine(plantData.id)
     }
 
     //RN ----------------------------------------------
@@ -88,7 +91,11 @@ export default function PlantDetailScreen({route}){
             <SeparatorLine />
 
             <RegaTagComponent />
-            <QuarentenaTagComponent />
+            <QuarentenaTagComponent 
+            quarentenaMode={plantData.quarentenaMode}
+            onPress={handleQuarentineButton} 
+            lastQuarentine={plantData.lastQuarentine}
+            />
             <AduboTagComponent fertilizerList={plantData.fertilizerList}
                 fertilizerCount={plantData.fertilizerCount}
                 onPress={handlefertilizerbutton}

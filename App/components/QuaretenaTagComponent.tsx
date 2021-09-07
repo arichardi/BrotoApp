@@ -7,25 +7,39 @@ import {
     Subtitle,
     TopContainer,
     InfoContainer,
-    BottomContainer,
+    IconContainer,
+    InfoContainerOff,
 } from './QuarentenaTagComponentStyle'
 
-export default function QuarentenaTagComponent(){
+interface Props {
+    quarentenaMode: boolean;
+    lastQuarentine: string;
+    onPress: () => void;
+}
+
+export default function QuarentenaTagComponent({quarentenaMode, lastQuarentine , onPress}: Props){
     return(
         <Container>
             <TopContainer>
+                { quarentenaMode ? (  
                 <InfoContainer>
-                    <Title>Quarentena</Title>
-                    <Subtitle>Nunca ficou em quarentena</Subtitle>
+                    <Title>EM QUARENTENA</Title>
+                    <Subtitle>{`desde o dia ${lastQuarentine}`}</Subtitle>
                 </InfoContainer>
+                ) : (     
+                <InfoContainerOff>
+                    <Title>Quarentena</Title>
+                    <Subtitle>
+                        {lastQuarentine === '' ? `Nunca ficou em quarentena`: `A última quarentena foi ${lastQuarentine}`}
+                        </Subtitle>
+                </InfoContainerOff>
+                ) }
 
-                <BugIcon />
+                <IconContainer onPress={ () => onPress()}>
+                    <BugIcon />
+                </IconContainer>
 
             </TopContainer>
-
-            <BottomContainer>
-
-            </BottomContainer>
         </Container>
     )
 }

@@ -21,9 +21,11 @@ export interface PlantListDataProps {
     fertilizerCount: number;
     deleteMode: boolean;
     quarentenaMode: boolean;
+    lastQuarentine: string;
 }
 
 interface ContextProps {
+  handleQuarentine: (id: string) => void;
   handleAddfertilizer: (id: string) => void;
   clearDeleteMode: () => void;
   handleRemovePlant: () => void;  
@@ -52,6 +54,7 @@ const initialStateTest: PlantListDataProps[] = [
         "fertilizerCount":  4,
         "deleteMode": false,
         'quarentenaMode': false,
+        'lastQuarentine': ''
       },
       { 
         'id': '2',
@@ -65,7 +68,8 @@ const initialStateTest: PlantListDataProps[] = [
         "fertilizerList" : ['01/01', '02/02'],
         "fertilizerCount":  2,
         "deleteMode": false,
-        'quarentenaMode': false,
+        'quarentenaMode': true,
+        'lastQuarentine': '01/01',
       },
 ]
 
@@ -152,6 +156,27 @@ function handleAddDate(id: string){
 
   }
   
+  function handleQuarentine(id: string){
+
+    //organiza e separa os objetos da lista
+    const listNotSelected = plantListData.filter( lists => lists.id !== id )
+    const listSelected = plantListData.filter( lists => lists.id === id)
+
+    //altera a data da quarentena se não estiver em quarentena
+    listSelected[0].quarentenaMode === false ? 
+    listSelected[0].lastQuarentine = brotoDateFormatter(new Date(), '2-digit') : {}
+
+    //altera o estado da quarentena
+    listSelected[0].quarentenaMode = !listSelected[0].quarentenaMode
+    
+    //adiciona o novo elemento no objeto
+    const resultList = [ ... listNotSelected, ... listSelected]
+    
+    //retorna o novo objeto
+    setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    return
+  }
+
   function handleRemovePlant(){
     const listFiltered = plantListData.filter( lists => lists.deleteMode === false )
     setPlantListData(listFiltered)
@@ -180,6 +205,7 @@ function handleAddDate(id: string){
 
     return(
     <PlantDataContext.Provider value={{
+      handleQuarentine: handleQuarentine,
       handleAddfertilizer: handleAddfertilizer,
       clearDeleteMode: clearDeleteMode,
       handleRemovePlant: handleRemovePlant,

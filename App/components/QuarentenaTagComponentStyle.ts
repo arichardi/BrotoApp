@@ -24,5 +24,12 @@ export const TopContainer = styled.View`
     align-items: center;
     padding: 8px;
 `;
-export const InfoContainer = styled.View``;
-export const BottomContainer = styled.View``;
+
+export const InfoContainer = styled.View`
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+`;
+export const InfoContainerOff = styled.View`
+`;
+export const IconContainer = styled.TouchableOpacity``;
