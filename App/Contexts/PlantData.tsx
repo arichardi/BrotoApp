@@ -1,8 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { Alert } from 'react-native'
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { brotoDateFormatter } from '../utils/helpers';
-import fertilizerList from '../components/FertilizerList';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // Interfaces -----------------------------------------------------
 
@@ -80,18 +81,73 @@ export function PlantDataProvider({children}) {
 
 //variables ---------------------------------------------------------
 
+const dataKey = '@brotoApp:dataPlant'
+const idKey = '@brotoApp:idList'
 const Navigation = useNavigation()
-const [plantListData, setPlantListData] = useState(initialStateTest)
-const [idList, setIdList] = useState(3)
+const [plantListData, setPlantListData] = useState([] as PlantListDataProps[])
+const [idList, setIdList] = useState(0)
 const dateToday = brotoDateFormatter(new Date(), '2-digit')
 
 //functions -----------------------------------------------------------
 
+
 useEffect( () => {}, [plantListData])
 
+//loading use Effect
+useEffect( () => {
+  async function loadingData(){
+    try {
+     const data = await AsyncStorage.getItem(dataKey)
+     const dataParsed = JSON.parse(data)
+     setPlantListData(dataParsed)
+
+     if (idList !== 0) {
+     const dataId = await AsyncStorage.getItem(idKey)
+     const IdParsed = JSON.parse(dataId)
+     setIdList(IdParsed)
+     }
+
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Houveram erros durante o carregamento de informações')
+    }
+  }
+  loadingData()
+}, [])
+
+
+// salve func
+ async function salvingData(data: PlantListDataProps[]){
+
+  try {
+    await AsyncStorage.setItem(dataKey, JSON.stringify(data) )
+    console.log('data salved with success !!!')
+  } catch (error) {
+    console.log(error)
+    Alert.alert('Houveram erros que impediram a informação de ser salva')
+  }
+}
+
+async function salvingIDData(idData: number){
+
+  try {
+    await AsyncStorage.setItem(idKey, JSON.stringify(idData) )
+    console.log('id salved with success !!!')
+  } catch (error) {
+    console.log(error)
+    Alert.alert('Houveram erros que impediram o id de ser salvo')
+  }
+}
+
+
 function handleInsertData(plant: PlantListDataProps){
+
     setPlantListData([...plantListData, plant])
     setIdList( idList + 1)
+    
+    salvingData(plantListData)
+    salvingIDData(idList)
+
     Navigation.goBack();
 }
 
@@ -108,6 +164,7 @@ function handleAddDate(id: string){
       
       const resultList = [ ... listNotSelected, ... listSelected]
       setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+      salvingData(plantListData)
       return
       
     }
@@ -121,6 +178,7 @@ function handleAddDate(id: string){
     
     //retorna o novo objeto
     setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    salvingData(plantListData)
     return
 
     
@@ -139,6 +197,7 @@ function handleAddDate(id: string){
       
       const resultList = [ ... listNotSelected, ... listSelected]
       setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+      salvingData(plantListData)
       return
       
     }
@@ -152,6 +211,7 @@ function handleAddDate(id: string){
     
     //retorna o novo objeto
     setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    salvingData(plantListData)
     return
 
   }
@@ -174,12 +234,14 @@ function handleAddDate(id: string){
     
     //retorna o novo objeto
     setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    salvingData(plantListData)
     return
   }
 
   function handleRemovePlant(){
     const listFiltered = plantListData.filter( lists => lists.deleteMode === false )
     setPlantListData(listFiltered)
+    salvingData(plantListData)
     return
   }
 
@@ -187,6 +249,7 @@ function handleAddDate(id: string){
     const newList = [... plantListData ]
     newList.forEach( item => item.deleteMode = false)
     setPlantListData(newList)
+    salvingData(plantListData)
   }
 
   function changeDeleteMode(id: string){
@@ -198,6 +261,7 @@ function handleAddDate(id: string){
     //manda o estado de volta pra pilha
     const resultList = [ ... listNotSelected, ... listSelected]
     setPlantListData(resultList.sort( (a,b) => Number(a.id) - Number(b.id) ))
+    salvingData(plantListData)
     return
   }
 
