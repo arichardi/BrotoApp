@@ -2,20 +2,27 @@ import styled from 'styled-components/native'
 import { View } from 'react-native'
 
 interface ContainerProps {
-    openCard: boolean
+    openCard: boolean;
+    quarentine: boolean;
+}
+
+interface quarentine {
+    quarentine: boolean;
 }
 
 export const Container = styled(View).attrs({
     elevation: 8,
 })<ContainerProps>`
 
-    background-color: ${ ({theme}) => theme.colors.backGround};
+    background-color: ${ ({theme, quarentine}) => 
+    quarentine ? theme.colors.pink_dark :
+    theme.colors.backGround};
     height: ${ ({openCard}) => openCard? 216 : 64}px;
     padding: 8px 12px;
     border-radius: 16px;
     margin-top: 0px;
-    margin-right: 12px;
-    margin-left: 12px;
+    margin-right: 8px;
+    margin-left: 8px;
     margin-bottom: 8px; 
     overflow: hidden;
 
@@ -44,18 +51,18 @@ margin-left: 16px;
 export const PlantTag = styled.TouchableWithoutFeedback`
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<quarentine>`
     font-size: 14px;
     font-family: ${ ({theme}) => theme.fonts.black};
-    color: ${ ({theme}) => theme.colors.green_dark};
-    width: 100px;
+    color: ${ ({theme, quarentine}) => quarentine? theme.colors.backGround : theme.colors.green_dark};
+    width: 200px;
 `;
 
-export const Subtitle = styled.Text`
+export const Subtitle = styled.Text<quarentine>`
     font-size: 14px;
     font-family: ${ ({theme}) => theme.fonts.regular};
-    color: ${ ({theme}) => theme.colors.green_light};
-    width: 180px;
+    color: ${ ({theme, quarentine}) => quarentine? theme.colors.backGround : theme.colors.green_dark};
+    width: 200px;
 `;
 
 export const ExtraContainer = styled.View`

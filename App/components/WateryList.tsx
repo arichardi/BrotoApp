@@ -8,9 +8,10 @@ import { WateryCardOne, WateryCardTwo, WateryCardThree} from './WateryCards/Wate
     interface Props {
         wateryList: string[];
         wateryListCount: number;
+        quarentine: boolean;
     }
 
-export default function WateryList({wateryList, wateryListCount}: Props){
+export default function WateryList({wateryList, wateryListCount, quarentine}: Props){
     
     return(
         <Container>

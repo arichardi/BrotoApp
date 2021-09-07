@@ -25,22 +25,9 @@ import BrotoIcon from "../Assets/BrotoIcon";
 import WateryList from "./WateryList";
 import { brotoDateFormatter } from "../utils/helpers";
 import WateryButton from "./WateryButton";
+import { PlantListDataProps } from "../Contexts/PlantData";
+import theme from '../config/styles/theme'
 
-
-export interface PlantListDataProps {
-    id: string;
-    name: string;
-    subtitle: string;
-    arriveDate: Date;
-    enviroment: 'in' | 'out';
-    photoPlant?: {
-        localUri: string
-    };
-    wateryList: string[];
-    wateryListCount: number;
-    deleteMode: boolean;
-    
-}
 
 interface PlantCardProps {
     id: string;
@@ -89,23 +76,28 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
     // RN -----------------------------------------------------------------
 
     return(
-        <Container openCard={openCard} >
+        <Container openCard={openCard} quarentine={plantCardData.quarentenaMode}>
 
             <TopCardContainer>
   
             <PlantaContainer>
-            { plantCardData.photoPlant ? <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> : <BrotoIcon />}
+            { plantCardData.photoPlant ? 
+            <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> :
+            plantCardData.quarentenaMode ?
+             <BrotoIcon colorPri={theme.colors.pink_dark} colorSec={theme.colors.whites} />:
+             <BrotoIcon />
+             }
 
             <PlantTag onPress={handleOpenCard} onLongPress={ () => handleDeleteMode(plantCardData.id)} delayLongPress={400}>
             <TouchableContainer>
-                <Title>{plantCardData.name}</Title>
-                <Subtitle numberOfLines={1} >{plantCardData.subtitle}</Subtitle>
+                <Title quarentine={plantCardData.quarentenaMode} >{plantCardData.quarentenaMode? `${plantCardData.name} - Quarentena` : plantCardData.name}</Title>
+                <Subtitle numberOfLines={1} quarentine={plantCardData.quarentenaMode} >{plantCardData.subtitle}</Subtitle>
             </TouchableContainer>
             </PlantTag>
 
             </PlantaContainer>
 
-            <WateryButton lastDate={lastDate} id={id} onPress={handleUpdateWateryIcon}/>
+            <WateryButton lastDate={lastDate} id={id} onPress={handleUpdateWateryIcon} quarentine={plantCardData.quarentenaMode}/>
 
             </TopCardContainer>
             
@@ -118,7 +110,11 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
 
             { openCard && 
             <BottomCardContainer>
-                <WateryList wateryList={plantCardData.wateryList} wateryListCount={plantCardData.wateryListCount}/>
+                <WateryList 
+                    wateryList={plantCardData.wateryList}
+                    wateryListCount={plantCardData.wateryListCount}
+                    quarentine={plantCardData.quarentenaMode}
+                 />
                 <ExtraContainer>
 
                     <DateContainer>
