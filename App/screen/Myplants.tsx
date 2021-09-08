@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react'
+import { ActivityIndicator } from 'react-native'
 import { Container,
     Title,
     Underline,
@@ -22,6 +23,7 @@ import PlantRemoveIconButton from '../Assets/PlantRemoveIconButton';
 export default function MyPlants({navigation}){
 
 // Variables ----------------------------------------------
+const [isLoading, setIsLoading] = useState(true)
 const [deleteMode, setDeleteMode] = useState(false)
 const {plantListData, handleRemovePlant, clearDeleteMode} = useContext(PlantDataContext)
 

@@ -2,7 +2,8 @@ import React, { createContext, useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { brotoDateFormatter } from '../utils/helpers';
-import fertilizerList from '../components/FertilizerList';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // Interfaces -----------------------------------------------------
 
@@ -81,16 +82,53 @@ export function PlantDataProvider({children}) {
 //variables ---------------------------------------------------------
 
 const Navigation = useNavigation()
-const [plantListData, setPlantListData] = useState(initialStateTest)
-const [idList, setIdList] = useState(3)
+const [plantListData, setPlantListData] = useState([])
+const [idList, setIdList] = useState(0)
 const dateToday = brotoDateFormatter(new Date(), '2-digit')
+const dataKey = '@brotoApp:PlantListData'
 
 //functions -----------------------------------------------------------
 
-useEffect( () => {}, [plantListData])
+async function loadData(){
+  try {
+    const response = await AsyncStorage.getItem(dataKey)
+    if(response === null ){
+      setPlantListData([])
+      return
+    }
+    const data: PlantListDataProps[] = JSON.parse(response)
+    const dataFormated: PlantListDataProps[]  = data.map( item => {
+      return {
+        id: item.id,
+        arriveDate: new Date(item.arriveDate),
+        enviroment: item.enviroment,
+        name: item.name,
+        photoPlant: item.photoPlant,
+        subtitle: item.subtitle,
+        wateryList: item.wateryList,
+        wateryListCount: item.wateryListCount,
+        fertilizerList : item.fertilizerList,
+        fertilizerCount:  item.fertilizerCount,
+        deleteMode: item.deleteMode,
+        quarentenaMode: item.quarentenaMode,
+        lastQuarentine: item.lastQuarentine,
+      }});
+    setPlantListData(dataFormated)
+    const lastId: number = Number(dataFormated[dataFormated.length - 1].id)
+    setIdList(lastId)
 
-function handleInsertData(plant: PlantListDataProps){
-    setPlantListData([...plantListData, plant])
+  } catch (error) {
+    Alert.alert('Ocorreu um erro durante o carregamento de dados')
+    console.log(error)
+  }
+}
+
+useEffect( () => {
+  loadData()
+}, [plantListData])
+
+async function handleInsertData(plant: PlantListDataProps){
+    await AsyncStorage.setItem(dataKey,JSON.stringify([...plantListData, plant]) )
     setIdList( idList + 1)
     Navigation.goBack();
 }
