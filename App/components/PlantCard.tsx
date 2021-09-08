@@ -50,10 +50,11 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
 
     //functions ------------------------------------------------------------------------
 
-    useEffect( () => { 
+    useEffect( () => {
         const cardData = plantListData.filter( item => item.id === id );
         const cardDataFNS = cardData[0];
         setPlantCardData(cardDataFNS);
+        console.log(cardDataFNS)
         const lastDateFNS = cardDataFNS.wateryList[cardDataFNS.wateryList.length - 1]
         setLastDate(lastDateFNS)
 

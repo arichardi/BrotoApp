@@ -41,6 +41,7 @@ interface ContextProps {
 
 // ------------------------------------------------
 
+
 const initialStateTest: PlantListDataProps[] = [
         {
         'id': '1',
@@ -84,34 +85,43 @@ export function PlantDataProvider({children}) {
 const dataKey = '@brotoApp:dataPlant'
 const Navigation = useNavigation()
 const [plantListData, setPlantListData] = useState([] as PlantListDataProps[])
-const [idList, setIdList] = useState(0)
+const [idList, setIdList] = useState(1)
 const dateToday = brotoDateFormatter(new Date(), '2-digit')
-
+const [update, setupdate] = useState('ok')
 //functions -----------------------------------------------------------
 
 
-useEffect( () => {}, [plantListData])
+//useEffect( () => {}, [plantListData])
 
 //loading use Effect
 useEffect( () => {
   async function loadingData(){
-    try {
-    const data = await AsyncStorage.getItem(dataKey)
-    const dataParsed = JSON.parse(data)
-    console.log(dataParsed)
-    const lastObjID = dataParsed[dataParsed.lngth - 1].id 
-    lastObjID ? setIdList(lastObjID) : setIdList(0)
-    setPlantListData(dataParsed)
 
+    try {
+      const data = await AsyncStorage.getItem(dataKey)
+      const dataParsed = data ? JSON.parse(data): plantListData
+      console.log(dataParsed)
+      const lastObjID = dataParsed[dataParsed.length - 1].id 
+      lastObjID ? setIdList(lastObjID) : setIdList(0)
+      setPlantListData(dataParsed)
 
     } catch (error) {
-      console.log(error)
-      Alert.alert('Houveram erros durante o carregamento de informações')
+        console.log(error)
+        Alert.alert('Houveram erros durante o carregamento de informações')
     }
   }
 
+/*   async function cleanData(){
+    try {
+      AsyncStorage.removeItem(dataKey)
+      console.log('dados limpos')
+    } catch (error) {
+      console.log(error)
+    }
+  } */
+
   loadingData()
-}, [])
+}, [update])
 
 
 // salve func
@@ -120,6 +130,7 @@ useEffect( () => {
   try {
     await AsyncStorage.setItem(dataKey, JSON.stringify(data) )
     console.log('data salved with success !!!')
+    setupdate('ok')
   } catch (error) {
     console.log(error)
     Alert.alert('Houveram erros que impediram a informação de ser salva')
