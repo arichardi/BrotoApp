@@ -82,7 +82,6 @@ export function PlantDataProvider({children}) {
 //variables ---------------------------------------------------------
 
 const dataKey = '@brotoApp:dataPlant'
-const idKey = '@brotoApp:idList'
 const Navigation = useNavigation()
 const [plantListData, setPlantListData] = useState([] as PlantListDataProps[])
 const [idList, setIdList] = useState(0)
@@ -97,21 +96,20 @@ useEffect( () => {}, [plantListData])
 useEffect( () => {
   async function loadingData(){
     try {
-     const data = await AsyncStorage.getItem(dataKey)
-     const dataParsed = JSON.parse(data)
-     setPlantListData(dataParsed)
+    const data = await AsyncStorage.getItem(dataKey)
+    const dataParsed = JSON.parse(data)
+    console.log(dataParsed)
+    const lastObjID = dataParsed[dataParsed.lngth - 1].id 
+    lastObjID ? setIdList(lastObjID) : setIdList(0)
+    setPlantListData(dataParsed)
 
-     if (idList !== 0) {
-     const dataId = await AsyncStorage.getItem(idKey)
-     const IdParsed = JSON.parse(dataId)
-     setIdList(IdParsed)
-     }
 
     } catch (error) {
       console.log(error)
       Alert.alert('Houveram erros durante o carregamento de informações')
     }
   }
+
   loadingData()
 }, [])
 
@@ -128,25 +126,12 @@ useEffect( () => {
   }
 }
 
-async function salvingIDData(idData: number){
-
-  try {
-    await AsyncStorage.setItem(idKey, JSON.stringify(idData) )
-    console.log('id salved with success !!!')
-  } catch (error) {
-    console.log(error)
-    Alert.alert('Houveram erros que impediram o id de ser salvo')
-  }
-}
 
 
 function handleInsertData(plant: PlantListDataProps){
 
-    setPlantListData([...plantListData, plant])
-    setIdList( idList + 1)
-    
-    salvingData(plantListData)
-    salvingIDData(idList)
+    //setPlantListData([...plantListData, plant])
+    salvingData([...plantListData, plant])
 
     Navigation.goBack();
 }
