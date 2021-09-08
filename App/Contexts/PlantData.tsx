@@ -89,6 +89,10 @@ const dataKey = '@brotoApp:PlantListData'
 
 //functions -----------------------------------------------------------
 
+async function clearData(){
+  await AsyncStorage.removeItem(dataKey)
+}
+
 async function loadData(){
   try {
     const response = await AsyncStorage.getItem(dataKey)
@@ -115,7 +119,7 @@ async function loadData(){
       }});
     setPlantListData(dataFormated)
     const lastId: number = Number(dataFormated[dataFormated.length - 1].id)
-    setIdList(lastId)
+    setIdList(lastId + 1)
 
   } catch (error) {
     Alert.alert('Ocorreu um erro durante o carregamento de dados')
@@ -124,7 +128,8 @@ async function loadData(){
 }
 
 useEffect( () => {
-  loadData()
+  //clearData();
+  loadData();
 }, [plantListData])
 
 async function handleInsertData(plant: PlantListDataProps){
@@ -133,7 +138,7 @@ async function handleInsertData(plant: PlantListDataProps){
     Navigation.goBack();
 }
 
-function handleAddDate(id: string){
+async function handleAddDate(id: string){
   
     //organiza e separa os objetos da lista
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
@@ -158,7 +163,8 @@ function handleAddDate(id: string){
     const resultList = [ ... listNotSelected, ... listSelected]
     
     //retorna o novo objeto
-    setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
+    //setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
     return
 
     
