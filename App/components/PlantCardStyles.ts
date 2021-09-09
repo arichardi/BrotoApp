@@ -1,9 +1,11 @@
 import styled from 'styled-components/native'
+import { RFPercentage } from 'react-native-responsive-fontsize';
 import { View } from 'react-native'
 
 interface ContainerProps {
     openCard: boolean;
     quarentine: boolean;
+    wateryLength: Number;
 }
 
 interface quarentine {
@@ -17,7 +19,9 @@ export const Container = styled(View).attrs({
     background-color: ${ ({theme, quarentine}) => 
     quarentine ? theme.colors.pink_dark :
     theme.colors.backGround};
-    height: ${ ({openCard}) => openCard? 216 : 64}px;
+    height: ${ ({openCard, wateryLength}) => openCard ? 
+    wateryLength > 0 ? RFPercentage(32) :
+    RFPercentage(23) : RFPercentage(10.3)}px;
     padding: 8px 12px;
     border-radius: 16px;
     margin-top: 0px;

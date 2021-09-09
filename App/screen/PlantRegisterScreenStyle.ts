@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { View } from 'react-native'
 
 export const Container = styled(View).attrs({
@@ -6,10 +7,10 @@ export const Container = styled(View).attrs({
 })`
     
     background-color: ${ ({theme}) => theme.colors.backGround};
-    margin-top: 112px;
+    margin-top: ${RFPercentage(17.8)}px;
     margin-left: 16px;
     margin-right: 16px;
-    height: 615px;
+    height: ${RFPercentage(93)}px;
     border-radius: 16px;
 `;
 
@@ -19,20 +20,20 @@ export const InputContainer = styled.View`
 `;
 
 export const Where = styled.Text`
-    font-size: 14px;
+    font-size: ${RFValue(16)}px;
     font-family: ${ ({theme}) => theme.fonts.bold};
     color: ${ ({theme}) => theme.colors.green_light};
 `;
 
 export const NomeContainer = styled.View`
-    margin-top: 32px;
-    margin-bottom: 24px;
+    margin-top: ${RFPercentage(5)}px;
+    margin-bottom: ${RFPercentage(4)}px;
 `;
 
 export const ButtonContainer = styled.View`
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 120px;
+    margin-top: ${RFPercentage(18)}px;
 `;
 
 export const AmbientContainer = styled.View`

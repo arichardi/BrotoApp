@@ -28,7 +28,6 @@ export default function PlantRegisterScreen({navigation}){
 
     // States & Vars ----------------------------------------
 
-    
     const [arriveDate, setArriveDate] = useState(new Date())
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [envButton, setEnvButton] = useState<Enviro>('')

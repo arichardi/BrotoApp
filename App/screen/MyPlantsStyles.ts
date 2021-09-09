@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
-import { FlatList, View, TouchableOpacity } from "react-native";
+import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { FlatList} from "react-native";
 
 import {PlantListDataProps } from '../Contexts/PlantData'
 
@@ -12,26 +13,26 @@ export const ButtonExitDeleteMode = styled.TouchableWithoutFeedback`
 `;
 
 export const Cto = styled.View`
-margin-top: 42px;
-margin-bottom: 88px;
+margin-top: ${RFPercentage(7)}px;
+margin-bottom: ${RFPercentage(14)}px;
 margin-left: 16px;
 
 `;
 
 export const Title = styled.Text`
-    font-size: 32px;
+    font-size: ${RFValue(32)}px;
     font-family: ${ ({theme}) => theme.fonts.display};
     color: ${ ({ theme }) => theme.colors.green_dark};
     margin-left: 8px;
 `;
 
 export const Underline = styled.View`
-    height: 15px;
-    width: 274px;
+    height: ${RFValue(15)}px;
+    width: ${RFValue(274)}px;
     border-radius: 15px;
     background-color: ${ ({ theme }) => theme.colors.pink_dark};
     position: relative;
-    top: 42px;
+    top: ${RFPercentage(6.2)}px;
 `;
 
 export const PlantList = styled(
@@ -48,7 +49,7 @@ export const PlantList = styled(
 
 export const ButtonContainer = styled.View`
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     margin-top: 20px;
     
     

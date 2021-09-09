@@ -76,7 +76,7 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
     // RN -----------------------------------------------------------------
 
     return(
-        <Container openCard={openCard} quarentine={plantCardData.quarentenaMode}>
+        <Container openCard={openCard} quarentine={plantCardData.quarentenaMode} wateryLength={plantCardData.wateryListCount}>
 
             <TopCardContainer>
   
