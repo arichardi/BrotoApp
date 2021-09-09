@@ -101,6 +101,11 @@ async function loadData(){
       return
     }
     const data: PlantListDataProps[] = JSON.parse(response)
+    if( data.length === 0){
+      setPlantListData([])
+      return
+    }
+
     const dataFormated: PlantListDataProps[]  = data.map( item => {
       return {
         id: item.id,
@@ -118,22 +123,29 @@ async function loadData(){
         lastQuarentine: item.lastQuarentine,
       }});
     setPlantListData(dataFormated)
-    const lastId: number = Number(dataFormated[dataFormated.length - 1].id)
-    setIdList(lastId + 1)
+    if (dataFormated){
+      const lastId: number = Number(dataFormated[dataFormated.length - 1].id)
+      setIdList(lastId + 1)
+    }
 
   } catch (error) {
     Alert.alert('Ocorreu um erro durante o carregamento de dados')
     console.log(error)
   }
 }
-
+//first loading
 useEffect( () => {
   //clearData();
   loadData();
-}, [plantListData])
+}, [])
+
+//reload
+useEffect( () => {}, [plantListData])
+
 
 async function handleInsertData(plant: PlantListDataProps){
     await AsyncStorage.setItem(dataKey,JSON.stringify([...plantListData, plant]) )
+    setPlantListData([...plantListData, plant])
     setIdList( idList + 1)
     Navigation.goBack();
 }
@@ -150,6 +162,7 @@ async function handleAddDate(id: string){
       listSelected[0].wateryList.push(dateToday)
       
       const resultList = [ ... listNotSelected, ... listSelected]
+      await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
       setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
       return
       
@@ -164,13 +177,13 @@ async function handleAddDate(id: string){
     
     //retorna o novo objeto
     await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
-    //setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
     return
 
     
   }
 
-  function handleAddfertilizer(id:string){
+  async function handleAddfertilizer(id:string){
 
     //organiza e separa os objetos da lista
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
@@ -182,6 +195,7 @@ async function handleAddDate(id: string){
       listSelected[0].fertilizerList.push(dateToday)
       
       const resultList = [ ... listNotSelected, ... listSelected]
+      await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
       setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
       return
       
@@ -195,12 +209,13 @@ async function handleAddDate(id: string){
     const resultList = [ ... listNotSelected, ... listSelected]
     
     //retorna o novo objeto
+    await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
     setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
     return
 
   }
   
-  function handleQuarentine(id: string){
+  async function handleQuarentine(id: string){
 
     //organiza e separa os objetos da lista
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
@@ -217,23 +232,26 @@ async function handleAddDate(id: string){
     const resultList = [ ... listNotSelected, ... listSelected]
     
     //retorna o novo objeto
+    await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
     setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
     return
   }
 
-  function handleRemovePlant(){
+  async function handleRemovePlant(){
     const listFiltered = plantListData.filter( lists => lists.deleteMode === false )
+    await AsyncStorage.setItem(dataKey,JSON.stringify(listFiltered) )
     setPlantListData(listFiltered)
     return
   }
 
-  function clearDeleteMode(){
+  async function clearDeleteMode(){
     const newList = [... plantListData ]
     newList.forEach( item => item.deleteMode = false)
+    await AsyncStorage.setItem(dataKey,JSON.stringify(newList) )
     setPlantListData(newList)
   }
 
-  function changeDeleteMode(id: string){
+  async function changeDeleteMode(id: string){
     //acha o elemeto referente
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
     const listSelected = plantListData.filter( lists => lists.id === id)
@@ -241,6 +259,8 @@ async function handleAddDate(id: string){
     listSelected[0].deleteMode = true
     //manda o estado de volta pra pilha
     const resultList = [ ... listNotSelected, ... listSelected]
+
+    await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a,b) => Number(a.id) - Number(b.id) )) )
     setPlantListData(resultList.sort( (a,b) => Number(a.id) - Number(b.id) ))
     return
   }
