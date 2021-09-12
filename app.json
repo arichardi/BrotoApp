@@ -1,6 +1,7 @@
 {
   "expo": {
-    "name": "brotoApp",
+    "name": "BrotoApp",
+    "icon": "./App/AppRessources/LogoBroto.png",
     "slug": "brotoApp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +10,12 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
-  },
-  "name": "brotoApp"
+    ],
+    "android": {
+      "package": "com.brotoApp.BrotoApp",
+      "versionCode": 1
+    }
+  }
+
+  
 }
