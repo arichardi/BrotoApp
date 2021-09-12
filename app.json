@@ -1,18 +1,23 @@
 {
   "expo": {
     "name": "BrotoApp",
-    "icon": "./App/AppRessources/LogoBroto.png",
     "slug": "brotoApp",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./App/AppRessources/logobroto.png",
     "androidStatusBar": {
       "translucent": true
+    },
+    "splash": {
+      "image": "./App/AppRessources/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F1ece6"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
-      "package": "com.brotoApp.BrotoApp",
+      "package": "com.brotoApp",
       "versionCode": 1
     }
   }
