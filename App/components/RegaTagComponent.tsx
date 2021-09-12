@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import RegadoIcon from '../Assets/RegadoIcon'
 import theme from '../config/styles/theme'
 import {
@@ -9,23 +9,37 @@ import {
     InfoContainer,
     BottomContainer,
 } from './RegaTagComponentStyle'
+import WateryListSecondaryColor from './WateryListSecondaryColor'
 
-export default function RegaTagComponent(){
+export default function RegaTagComponent({lastWatery, wateryList, wateryListCount, quarentine}){
+
+    const [openCard, setOpenCard] = useState(false)
+
+    function handleOpenCard(){
+        setOpenCard(!openCard)
+    }
+
     return(
-        <Container>
+        <Container openCard={openCard} countList={wateryListCount}>
             <TopContainer>
-                <InfoContainer>
+                <InfoContainer onPress={handleOpenCard}>
                     <Title>Regas</Title>
-                    <Subtitle>Última Rega: 08/07</Subtitle>
+                    <Subtitle>{`Última Rega: ${lastWatery}`}</Subtitle>
                 </InfoContainer>
 
                 <RegadoIcon colorPrimary={theme.colors.backGround} colorSecondary={theme.colors.green_dark}/>
 
             </TopContainer>
 
+            { openCard &&
             <BottomContainer>
-
+                <WateryListSecondaryColor 
+                    wateryList={wateryList}
+                    wateryListCount={wateryListCount}
+                    quarentine={quarentine}
+                />
             </BottomContainer>
+            }
         </Container>
     )
 }

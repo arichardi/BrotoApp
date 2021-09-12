@@ -29,7 +29,7 @@ export const Where = styled.Text`
 
 export const NomeContainer = styled.View`
     margin-top: ${RFPercentage(5)}px;
-    margin-bottom: ${RFPercentage(4)}px;
+    margin-bottom: ${RFPercentage(2)}px;
 `;
 
 export const ButtonContainer = styled.View`

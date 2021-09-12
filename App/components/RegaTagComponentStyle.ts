@@ -1,8 +1,14 @@
 import styled from 'styled-components/native'
 
-export const Container = styled.View`
+interface ContainerProps {
+    openCard: boolean;
+    countList: number;
+}
+
+export const Container = styled.View<ContainerProps>`
     background-color: ${ ({theme}) => theme.colors.green_dark};
-    height: 64px;
+    height: ${ ({openCard, countList}) => openCard === false ? 64:
+    countList < 4 ? 128 : 150 }px;
     margin: 0px 12px;
     border-radius: 16px;
     margin-bottom: 8px;
@@ -24,5 +30,5 @@ export const TopContainer = styled.View`
     align-items: center;
     padding: 8px;
 `;
-export const InfoContainer = styled.View``;
+export const InfoContainer = styled.TouchableOpacity``;
 export const BottomContainer = styled.View``;

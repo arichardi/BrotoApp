@@ -33,6 +33,7 @@ export default function PlantDetailScreen({route}){
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
     const [lastFertilizerData, setLastFertilizerData] = useState('')
+    const [lastwateryData, setLastWateryData] = useState('')
 
     useEffect( () => {
         const plant = plantListData.filter( item => item.id === props.id)
@@ -40,6 +41,8 @@ export default function PlantDetailScreen({route}){
         setPlantData(plantFNS)
         const lastFertilizerDataFNS = plantFNS.fertilizerList[plantFNS.fertilizerList.length - 1]
         setLastFertilizerData(lastFertilizerDataFNS)
+        const lastWateryDateFNS = plantFNS.wateryList[plantFNS.wateryList.length -1 ]
+        setLastWateryData(lastWateryDateFNS)
     }, [plantListData])
 
     //Functions ----------------------------------------------
@@ -90,7 +93,12 @@ export default function PlantDetailScreen({route}){
             
             <SeparatorLine />
 
-            <RegaTagComponent />
+            <RegaTagComponent 
+                lastWatery={lastwateryData}
+                wateryList={plantData.wateryList}
+                wateryListCount={plantData.wateryListCount}
+                quarentine={plantData.quarentenaMode}
+            />
             <QuarentenaTagComponent 
             quarentenaMode={plantData.quarentenaMode}
             onPress={handleQuarentineButton} 

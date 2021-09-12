@@ -22,7 +22,7 @@ interface Props{
 export function WateryCardOne({data, quarentine}: Props){
     return(
         <ContainerOne quarentine={quarentine}>
-            <DataText quarentine={quarentine} >{ `A últma reg foi ${data}` }</DataText>
+            <DataText quarentine={quarentine} >{ `A últma rega foi ${data}` }</DataText>
             { quarentine ? 
                 <SuccessIcon color={theme.colors.green_dark}/>:
                 <SuccessIcon />
