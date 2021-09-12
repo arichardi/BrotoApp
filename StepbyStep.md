@@ -1,14 +1,13 @@
 Coisas faltantes
 
 _Verificar sistema de tamanhos
-\_Open card de acordo com o tamanho
 _ Onboard screen
 _ Sistema abre e fecha
 \_Corrigir sistema de nomes
 _ fazer tela de edição
-_ Detalhar as regas em detalhes
-_
+\_ Detalhar as regas em detalhes
 
+X Open card de acordo com o tamanho
 X sistema de deleteMode não está funcionando
 X adicionar contador de regas
 X Colocar o sistema de quarentena

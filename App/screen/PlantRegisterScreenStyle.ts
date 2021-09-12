@@ -2,6 +2,8 @@ import styled from 'styled-components/native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { View } from 'react-native'
 
+//height 93
+
 export const Container = styled(View).attrs({
     elevation: 8
 })`
@@ -10,7 +12,7 @@ export const Container = styled(View).attrs({
     margin-top: ${RFPercentage(17.8)}px;
     margin-left: 16px;
     margin-right: 16px;
-    height: ${RFPercentage(93)}px;
+    height: ${RFPercentage(90)}px;
     border-radius: 16px;
 `;
 

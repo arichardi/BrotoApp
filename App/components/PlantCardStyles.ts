@@ -120,7 +120,7 @@ export const ActionIcon = styled.TouchableOpacity`
 `;
 
 export const DeleteFlag = styled.View`
-height: 64px;
+height: ${RFPercentage(11)}px;
 width: 110%;
 background-color: rgba(238, 108, 41, 0.7);
 position: absolute;

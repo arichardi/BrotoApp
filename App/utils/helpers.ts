@@ -83,3 +83,16 @@ export function dayOfWeek(date: string): string{
 
     return result;
 }
+
+export function displayFormatter(name:string){
+
+    const displayWords = name.split(' ')
+    const wordsNumbers = displayWords.length
+    const objectName = displayWords.map( word => {
+      return { 
+        word: word.charAt(0).toUpperCase() + word.slice(1),
+        wordSize: word.length
+      }
+    } )
+    return { words: objectName, size: wordsNumbers }
+}

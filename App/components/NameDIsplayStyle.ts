@@ -23,7 +23,8 @@ export const Title = styled.Text`
 
 export const Underline = styled(View)<UnderlineProps>`
     height: 15px;
-    width: ${ ({size}) => size * 26 }px;
+    width: ${ ({size}) => size > 6 ? 
+    size * 23: size * 26 }px;
     border-radius: 15px;
     background-color: ${ ({ theme }) => theme.colors.pink_dark};
     position: relative;
