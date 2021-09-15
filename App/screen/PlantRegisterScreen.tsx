@@ -20,6 +20,9 @@ import {
     ButtonContainer,
     AmbientContainer,
     PhotoIconContainer,
+    PhotoModal,
+    ContainerPhotoModal,
+    TextPhotoModal,
  } from './PlantRegisterScreenStyle'
 
  type Enviro = 'in' | 'out' | ''
@@ -36,6 +39,7 @@ export default function PlantRegisterScreen({navigation}){
     const [subtitleDescription, setSubtitleSescription] = useState('')
     const [errorName, setErrorName] = useState('false')
     const [errorEnv, setErrorEnv] = useState('false')
+    const [photoModal, setPhotoModal] = useState(false)
     
     let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
@@ -119,7 +123,7 @@ export default function PlantRegisterScreen({navigation}){
             <PhotoIconContainer>
                 <PhotoIcon 
                 editMode={true}
-                onPress={openImagePicker}
+                onPress={() => setPhotoModal(true)}
                 photoPlant={imagePlant}
                 />
             </PhotoIconContainer>
@@ -168,6 +172,15 @@ export default function PlantRegisterScreen({navigation}){
         
         />
         }
+
+            <PhotoModal 
+            isVisible={photoModal}
+            onBackdropPress={ () => setPhotoModal(false)}
+            >
+                <ContainerPhotoModal>
+                    
+                </ContainerPhotoModal>
+            </PhotoModal>
 
         </BackgroundApp>
     )

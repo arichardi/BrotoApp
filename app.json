@@ -17,6 +17,10 @@
       "**/*"
     ],
     "android": {
+      "adaptiveIcon":{
+        "foregroundImage": "./App/AppRessources/Vector.png",
+        "backgroundColor": "#42623e"
+      },
       "package": "com.brotoApp",
       "versionCode": 1
     }

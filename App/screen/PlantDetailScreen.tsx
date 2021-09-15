@@ -11,6 +11,7 @@ import {
     PlantEnvContainer,
     EnviromentText,
 } from './PlantDetailScreenStyle'
+
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
@@ -110,6 +111,7 @@ export default function PlantDetailScreen({route}){
                 lastDate={lastFertilizerData} />
 
             </Container>
+            
         </BackgroundApp>
     )
 }

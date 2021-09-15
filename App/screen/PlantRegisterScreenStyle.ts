@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { View } from 'react-native'
+import Modal from 'react-native-modal'
 
 //height 93
 
@@ -48,3 +49,17 @@ export const PhotoIconContainer = styled.View`
     top: -64px;
     left: 30%;
 `;
+
+export const PhotoModal = styled(Modal)`
+align-items: center;
+justify-content: center;
+`;
+
+export const ContainerPhotoModal = styled.View`
+    background-color: ${ ({theme}) => theme.colors.backGround};
+    height: ${ RFPercentage(30)}px;
+    width: ${ RFPercentage(45)}px;
+    border-radius: 16px;
+
+`;
+export const TextPhotoModal = styled.Text``;
