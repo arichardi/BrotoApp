@@ -3,7 +3,6 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { View } from 'react-native'
 import Modal from 'react-native-modal'
 
-//height 93
 
 export const Container = styled(View).attrs({
     elevation: 8
@@ -62,4 +61,10 @@ export const ContainerPhotoModal = styled.View`
     border-radius: 16px;
 
 `;
-export const TextPhotoModal = styled.Text``;
+export const PhotoModalText = styled.Text``;
+export const TextGaleryPhotoModal = styled.View``;
+export const ContainerGaleryFotoModal = styled.View``;
+export const ContainerCamFotoModal = styled.View``;
+export const TextCamPhotoModal = styled.Text``;
+export const GaleryButton = styled.TouchableOpacity``;
+export const PhotoButton = styled.TouchableOpacity``;
