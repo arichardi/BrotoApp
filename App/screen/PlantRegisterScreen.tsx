@@ -29,6 +29,7 @@ import {
     TextCamPhotoModal,
     GaleryButton,
     PhotoButton,
+    ContainerOptions,
  } from './PlantRegisterScreenStyle'
 import GaleryIcon from '../Assets/GaleryIcon'
 import CameraIcon from '../Assets/CameraIcon'
@@ -186,19 +187,24 @@ export default function PlantRegisterScreen({navigation}){
             onBackdropPress={ () => setPhotoModal(false)}
             >
                 <ContainerPhotoModal>
-                    <PhotoModalText>De onde vamos pegar a foto ?</PhotoModalText>
+                    <PhotoModalText>Onde vamos pegar a foto ?</PhotoModalText>
+                    <ContainerOptions>
+
                     <ContainerGaleryFotoModal>
                         <GaleryButton>
                             <GaleryIcon />
                         </GaleryButton>
                         <TextGaleryPhotoModal>Galery</TextGaleryPhotoModal>
                     </ContainerGaleryFotoModal>
+
                     <ContainerCamFotoModal>
                         <PhotoButton>
-                            <CameraIcon />
+                            <CameraIcon size={'40'}/>
                         </PhotoButton>
                         <TextCamPhotoModal>Tirar Foto</TextCamPhotoModal>
                     </ContainerCamFotoModal>
+
+                    </ContainerOptions>
                 </ContainerPhotoModal>
             </PhotoModal>
 

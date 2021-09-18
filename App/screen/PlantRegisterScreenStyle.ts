@@ -56,15 +56,59 @@ justify-content: center;
 
 export const ContainerPhotoModal = styled.View`
     background-color: ${ ({theme}) => theme.colors.backGround};
-    height: ${ RFPercentage(30)}px;
+    height: ${ RFPercentage(29)}px;
     width: ${ RFPercentage(45)}px;
     border-radius: 16px;
+    align-items: center;
 
 `;
-export const PhotoModalText = styled.Text``;
-export const TextGaleryPhotoModal = styled.View``;
-export const ContainerGaleryFotoModal = styled.View``;
-export const ContainerCamFotoModal = styled.View``;
-export const TextCamPhotoModal = styled.Text``;
-export const GaleryButton = styled.TouchableOpacity``;
-export const PhotoButton = styled.TouchableOpacity``;
+export const PhotoModalText = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};
+    font-family: ${ ({theme}) => theme.fonts.black};
+    font-size: ${RFValue(16)}px;
+    margin-top: ${RFPercentage(2)}px;
+    margin-bottom: ${RFPercentage(4)}px;
+`;
+
+export const TextGaleryPhotoModal = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};
+    font-family: ${ ({theme}) => theme.fonts.black};
+    font-size: ${RFValue(16)}px;
+    margin-top: ${RFPercentage(1)}px;
+
+`;
+export const ContainerGaleryFotoModal = styled.View`
+    align-items: center;
+    margin-right: ${RFPercentage(10)}px;
+`;
+
+export const ContainerOptions = styled.View`
+    flex-direction: row;
+`;
+
+export const ContainerCamFotoModal = styled.View`
+    align-items: center;
+`;
+
+export const TextCamPhotoModal = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};
+    font-family: ${ ({theme}) => theme.fonts.black};
+    font-size: ${RFValue(16)}px;
+    margin-top: ${RFPercentage(1)}px;
+`;
+export const GaleryButton = styled.TouchableOpacity`
+    background-color: ${ ({theme}) => theme.colors.green_light};
+    height: 72px;
+    width: 72px;
+    border-radius: 36px;
+    justify-content: center;
+    align-items: center;
+`;
+export const PhotoButton = styled.TouchableOpacity`
+    background-color: ${ ({theme}) => theme.colors.green_light};
+    height: 72px;
+    width: 72px;
+    border-radius: 36px;
+    justify-content: center;
+    align-items: center;
+`;
