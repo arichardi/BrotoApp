@@ -104,6 +104,25 @@ export default function PlantRegisterScreen({navigation}){
         }
 
         setImagePlant({localUri: pickerResult.uri})
+        setPhotoModal(false)
+
+    }
+
+    async function openCamPicker(){
+        let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+        if(permissionResult.granted === false){
+            alert('Permission to access Camera is required')
+            return
+        }
+
+        let pickerResult = await ImagePicker.launchCameraAsync();
+        if (pickerResult.cancelled === true){
+            return
+        }
+
+        setImagePlant({localUri: pickerResult.uri})
+        setPhotoModal(false)
 
     }
 
@@ -185,20 +204,22 @@ export default function PlantRegisterScreen({navigation}){
             <PhotoModal 
             isVisible={photoModal}
             onBackdropPress={ () => setPhotoModal(false)}
+            animationIn={'zoomIn'}
+            animationOut={'fadeOutDown'}
             >
                 <ContainerPhotoModal>
                     <PhotoModalText>Onde vamos pegar a foto ?</PhotoModalText>
                     <ContainerOptions>
 
                     <ContainerGaleryFotoModal>
-                        <GaleryButton>
+                        <GaleryButton onPress={openImagePicker}>
                             <GaleryIcon />
                         </GaleryButton>
                         <TextGaleryPhotoModal>Galery</TextGaleryPhotoModal>
                     </ContainerGaleryFotoModal>
 
                     <ContainerCamFotoModal>
-                        <PhotoButton>
+                        <PhotoButton onPress={openCamPicker}>
                             <CameraIcon size={'40'}/>
                         </PhotoButton>
                         <TextCamPhotoModal>Tirar Foto</TextCamPhotoModal>
