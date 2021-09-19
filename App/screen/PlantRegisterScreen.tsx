@@ -30,9 +30,14 @@ import {
     GaleryButton,
     PhotoButton,
     ContainerOptions,
+    CalendarModal,
+    ButtonCalendarContainer,
+    CalendarModalContainer,
+    CalendarText,
  } from './PlantRegisterScreenStyle'
 import GaleryIcon from '../Assets/GaleryIcon'
 import CameraIcon from '../Assets/CameraIcon'
+import Calendar from '../components/Calendar'
 
  type Enviro = 'in' | 'out' | ''
 
@@ -49,6 +54,7 @@ export default function PlantRegisterScreen({navigation}){
     const [errorName, setErrorName] = useState('false')
     const [errorEnv, setErrorEnv] = useState('false')
     const [photoModal, setPhotoModal] = useState(false)
+    const [openCalendarModal, setOpenCalendarModal] = useState(false)
     
     let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
@@ -164,7 +170,7 @@ export default function PlantRegisterScreen({navigation}){
                 <AppInput placeholder='Nome da Plantinha'onChangeText={setPlantName}/>
                 <AppInput placeholder='Descritivo'onChangeText={setSubtitleSescription} />
                 <DatePickerButton
-                onPress={handleShowDataPicker}
+                onPress={() => setOpenCalendarModal(true)}
                 dateTitle={FormattedArriveDate}
                 />
             </InputContainer>
@@ -200,11 +206,12 @@ export default function PlantRegisterScreen({navigation}){
         
         />
         }
-
+    
             <PhotoModal 
             isVisible={photoModal}
             onBackdropPress={ () => setPhotoModal(false)}
-            animationIn={'zoomIn'}
+            onBackButtonPress={ () => setPhotoModal(false)}
+            animationIn={'fadeInUp'}
             animationOut={'fadeOutDown'}
             >
                 <ContainerPhotoModal>
@@ -228,6 +235,28 @@ export default function PlantRegisterScreen({navigation}){
                     </ContainerOptions>
                 </ContainerPhotoModal>
             </PhotoModal>
+
+            <CalendarModal
+                isVisible={openCalendarModal}
+                onBackdropPress={ () => setOpenCalendarModal(false)}
+                onBackButtonPress={ () => setOpenCalendarModal(false)}
+                animationIn={'fadeInUp'}
+                animationOut={'fadeOutDown'}
+            >
+                <CalendarModalContainer>
+                    <CalendarText>Escolha a sua Data?</CalendarText>
+                    <Calendar />
+                <ButtonCalendarContainer>
+                    <AppButtonM title='Cancelar'
+                    buttonType='cancel' 
+                    />
+                    <AppButtonM title='Confirmar'
+                    buttonType='correct'
+                    style={{ marginLeft: 16,}}
+                    />
+                 </ButtonCalendarContainer>
+                 </CalendarModalContainer>
+            </CalendarModal>
 
         </BackgroundApp>
     )
