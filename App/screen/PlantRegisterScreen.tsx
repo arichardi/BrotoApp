@@ -245,10 +245,11 @@ export default function PlantRegisterScreen({navigation}){
             >
                 <CalendarModalContainer>
                     <CalendarText>Escolha a sua Data?</CalendarText>
-                    <Calendar />
+                    <Calendar dateSelected={arriveDate} onChangeDate={setArriveDate}/>
                 <ButtonCalendarContainer>
                     <AppButtonM title='Cancelar'
                     buttonType='cancel' 
+                    onPress={() => setOpenCalendarModal(false)}
                     />
                     <AppButtonM title='Confirmar'
                     buttonType='correct'
