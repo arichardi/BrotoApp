@@ -55,20 +55,16 @@ export default function Calendar({dateSelected, onChangeDate }: Props){
         return result
     }
 
-    function dateParseRegisterCalendar(date: Date): string{
-        const day = zeroLoader(`${date.getDate()}`);
-        const month = zeroLoader(`${date.getMonth() + 1}`);
-        const year = date.getFullYear();
-        const result = `${year}-${month}-${day}`;
-        return result
-    }
-
+    
 
     function onDayPress(day: dateCalendar){
         setMarkedDay(day.dateString)
-        //const registerDate = `${day.month}-${day.day}-${day.year}`
-        console.log(new Date(day.timestamp))
-        onChangeDate(new Date(day.timestamp))        
+        //data registrada
+        const registerDate = new Date(day.dateString)
+        //data compensando o fuso Br
+        const correctedDate = new Date(registerDate.valueOf() + registerDate.getTimezoneOffset() * 60000)
+        console.log(correctedDate)
+        onChangeDate(correctedDate)        
     }
 
 

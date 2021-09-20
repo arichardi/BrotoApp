@@ -102,7 +102,7 @@ export default function PlantRegisterScreen({navigation}){
         }).format(date);
         setArriveDateString(FormattedArriveDate)
         setArriveDate(date)
-        console.log(`arrivedate: ${arriveDate}, formatted: ${arriveDateString}`)
+        console.log(`arrivedate: ${arriveDate}, formatted: ${arriveDateString}, date function ${date} calendarDate ${calendarDate}`)
         setOpenCalendarModal(false)
     }
 
