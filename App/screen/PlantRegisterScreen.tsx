@@ -46,6 +46,7 @@ export default function PlantRegisterScreen({navigation}){
     // States & Vars ----------------------------------------
 
     const [arriveDate, setArriveDate] = useState(new Date())
+    const [calendarDate, setCalendarDate] = useState(new Date())
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [envButton, setEnvButton] = useState<Enviro>('')
     const [plantName, setPlantName] = useState('Nome')
@@ -61,7 +62,8 @@ export default function PlantRegisterScreen({navigation}){
         month: '2-digit',
         year: '2-digit',
     }).format(arriveDate);
-
+    
+    const [arriveDateString, setArriveDateString] = useState(FormattedArriveDate)
     const {handleInsertData, idList } = useContext(PlantDataContext)
    
     // functions ---------------------------------------------
@@ -90,6 +92,23 @@ export default function PlantRegisterScreen({navigation}){
             lastQuarentine: '',
             quarentenaMode: false
          })
+    }
+
+    function handleConfirmCalendarModal(date: Date){
+        let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit',
+        }).format(date);
+        setArriveDateString(FormattedArriveDate)
+        setArriveDate(date)
+        console.log(`arrivedate: ${arriveDate}, formatted: ${arriveDateString}`)
+        setOpenCalendarModal(false)
+    }
+
+    function handleCancelCalendaryModal(){
+        setCalendarDate(new Date())
+        setOpenCalendarModal(false)
     }
 
     function handleEnviroment(type : 'in' | 'out'){
@@ -171,7 +190,7 @@ export default function PlantRegisterScreen({navigation}){
                 <AppInput placeholder='Descritivo'onChangeText={setSubtitleSescription} />
                 <DatePickerButton
                 onPress={() => setOpenCalendarModal(true)}
-                dateTitle={FormattedArriveDate}
+                dateTitle={arriveDateString}
                 />
             </InputContainer>
 
@@ -245,15 +264,16 @@ export default function PlantRegisterScreen({navigation}){
             >
                 <CalendarModalContainer>
                     <CalendarText>Escolha a sua Data?</CalendarText>
-                    <Calendar dateSelected={arriveDate} onChangeDate={setArriveDate}/>
+                    <Calendar dateSelected={calendarDate} onChangeDate={setCalendarDate}/>
                 <ButtonCalendarContainer>
                     <AppButtonM title='Cancelar'
                     buttonType='cancel' 
-                    onPress={() => setOpenCalendarModal(false)}
+                    onPress={() => handleCancelCalendaryModal()}
                     />
                     <AppButtonM title='Confirmar'
                     buttonType='correct'
                     style={{ marginLeft: 16,}}
+                    onPress={ () => handleConfirmCalendarModal(calendarDate)}
                     />
                  </ButtonCalendarContainer>
                  </CalendarModalContainer>
