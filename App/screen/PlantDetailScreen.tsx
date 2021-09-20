@@ -24,7 +24,6 @@ import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
-import fertilizerList from '../components/FertilizerList'
 
 export default function PlantDetailScreen({route}){
 

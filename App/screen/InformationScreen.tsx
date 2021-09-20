@@ -1,9 +1,11 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import {
     Container,
     PhotoIconContainer,
     InfoContainer,
     GoBackIcon,
+    DataStructure,
+    FlatlistData,
 } from './InformationScreenStyle'
 
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
@@ -13,13 +15,21 @@ import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
 
 
+
 export default function InformationScreen({route}){
+
+
+
+interface DetailsTheme {
+    category: 'rega' | 'quarentena' | 'abudo'
+}
 
     //variables ----------------------------------------------
 
     const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
+
 
 
 
@@ -46,6 +56,10 @@ export default function InformationScreen({route}){
             <NameDisplay>{`${plantData.name}`}</NameDisplay>
             </InfoContainer>
             
+            <DataStructure>
+            
+            </DataStructure>
+
             </Container>
             
         </BackgroundApp>
