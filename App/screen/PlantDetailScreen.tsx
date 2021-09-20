@@ -25,7 +25,7 @@ import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
 
-export default function PlantDetailScreen({route}){
+export default function PlantDetailScreen({route, navigation}){
 
     //variables ----------------------------------------------
 
@@ -101,7 +101,7 @@ export default function PlantDetailScreen({route}){
             />
             <QuarentenaTagComponent 
             quarentenaMode={plantData.quarentenaMode}
-            onPress={handleQuarentineButton} 
+            onPress={navigation} 
             lastQuarentine={plantData.lastQuarentine}
             />
             <AduboTagComponent fertilizerList={plantData.fertilizerList}
