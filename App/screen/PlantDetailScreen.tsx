@@ -24,6 +24,8 @@ import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
+import modal from 'react-native-modal'
+import RegaTagButton from '../components/RegaTagButton'
 
 export default function PlantDetailScreen({route, navigation}){
 
@@ -93,12 +95,7 @@ export default function PlantDetailScreen({route, navigation}){
             
             <SeparatorLine />
 
-            <RegaTagComponent 
-                lastWatery={lastwateryData}
-                wateryList={plantData.wateryList}
-                wateryListCount={plantData.wateryListCount}
-                quarentine={plantData.quarentenaMode}
-            />
+            <RegaTagButton />
             <QuarentenaTagComponent 
             quarentenaMode={plantData.quarentenaMode}
             onPress={navigation} 
@@ -111,6 +108,8 @@ export default function PlantDetailScreen({route, navigation}){
 
             </Container>
             
+            
+
         </BackgroundApp>
     )
 }

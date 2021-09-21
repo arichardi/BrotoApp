@@ -1,14 +1,22 @@
 import React from 'react'
 import {
     Container,
-    CTO
+    CTO,
+    ExtraInfoContainer,
+    TextDetails,
+    AreaText,
+BoxHideDetails,
 } from './AddDataModalStyle'
+import DatePickerButton from './DatePickerButton'
 
 export default function AddDataModal(){
     return(
         <Container>
             <CTO></CTO>
-            <DataInsert />
+            <DatePickerButton 
+            onPress={() => {}}
+            dateTitle='08/07'
+            />
 
             <ExtraInfoContainer>
                 <BoxHideDetails />
@@ -16,7 +24,7 @@ export default function AddDataModal(){
                 <AreaText></AreaText>
             </ExtraInfoContainer>
 
-            <Buttons />
+            {/* adicionar os dois botões*/}
         </Container>
     )
 }
