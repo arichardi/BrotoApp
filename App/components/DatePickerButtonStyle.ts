@@ -4,6 +4,7 @@ export const Container = styled.TouchableOpacity`
     background-color: ${ ({theme}) => theme.colors.backGround};
     height: 40px;
     border-radius: 20px;
+    width: 100%;
 
 `;
 

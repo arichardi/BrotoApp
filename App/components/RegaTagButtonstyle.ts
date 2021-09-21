@@ -26,3 +26,7 @@ export const Subtitle = styled.Text`
     color: ${ ({theme}) => theme.colors.backGround};
     font-family: ${ ({theme}) => theme.fonts.regular};
 `;
+
+export const IconContainer = styled.TouchableOpacity`
+    
+`;
