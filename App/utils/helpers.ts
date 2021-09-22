@@ -13,6 +13,7 @@ interface PlantStructure {
     wateryListCount: number;
 }
 
+//This function will format the date to exit in a string formatted to pt-br standart
 export function brotoDateFormatter(date: Date, month: 'short' | 'long' | '2-digit', year?: 'ano'){
     
     if(year === 'ano'){
@@ -33,39 +34,7 @@ export function brotoDateFormatter(date: Date, month: 'short' | 'long' | '2-digi
     
 }
 
-export function handleAddDate(plantList: PlantStructure[], id: string, date: string ){
-  
-    //organiza e separa os objetos da lista
-    const listNotSelected = plantList.filter( lists => lists.id !== id )
-    const listSelected = plantList.filter( lists => lists.id === id)
-    
-    //verifica se o item tem 10 entradas e limita o arquivo
-    if(listSelected[0].wateryListCount >= 10 ){
-      listSelected[0].wateryList.shift()
-      listSelected[0].wateryList.push(date)
-      
-      const resultList = [ ... listNotSelected, ... listSelected]
-      return resultList
-      
-    }
-    
-    //acessa o item desejado do objeto e adiciona a data
-    listSelected[0].wateryList.push(date)
-    listSelected[0].wateryListCount += 1
-    
-    //adiciona o novo elemento no objeto
-    const resultList = [ ... listNotSelected, ... listSelected]
-    
-    //retorna o novo objeto
-   return resultList
-    
-  }
-  
-  function handleRemovePlant(plantList: PlantStructure[], id: string){
-    const listFiltered = plantList.filter( lists => lists.id !== id )
-    return listFiltered
-  }
-    
+//In this function you enter an string date and he brings to you the day of the week formatted pt-br    
 export function dayOfWeek(date: string): string{
 
     const today = new Date()
@@ -95,4 +64,23 @@ export function displayFormatter(name:string){
       }
     } )
     return { words: objectName, size: wordsNumbers }
+}
+
+//insert an string and return a date
+function stringToDate(date: string): Date {
+    const [ day , month ] = date.split('/')
+    const newDate = new Date((new Date().getFullYear()), Number(month) - 1, Number(day))
+    return newDate
+}
+
+//calculate an interval between an array of string dates
+function dayInterval(dateList: [], index: number): string | number {
+    const mainDate = stringToDate(dateList[index])
+    if(!dateList[index - 1]){
+        return 'Não possui registro anterior'
+    }
+    const pastDate = stringToDate(dateList[index - 1])
+    const differenceDate = Math.abs( mainDate.getTime() - pastDate.getTime())
+    const differenceInDays = Math.ceil( differenceDate / (1000 * 60 * 60 * 24))
+    return differenceInDays
 }
