@@ -11,7 +11,11 @@ import RegadoIcon from '../Assets/RegadoIcon'
 import Modal from 'react-native-modal'
 import AddDataModal from './AddDataModal'
 
-export default function RegaTagButton(){
+interface Props{
+    onPress: () => void
+}
+
+export default function RegaTagButton({onPress}: Props){
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -19,7 +23,7 @@ export default function RegaTagButton(){
         <>
         <Container>
 
-            <InfoContainer>
+            <InfoContainer onPress={onPress}>
                 <Title>Regas</Title>
                 <Subtitle>{`Última Rega foi dia xx/xx`}</Subtitle>
             </InfoContainer>

@@ -27,6 +27,7 @@ export const PhotoIconContainer = styled.View`
 `;
 export const PhotoIcon = styled.View``;
 
+
 export const InfoContainer = styled.View`
     margin-top: 24px;
 `;

@@ -40,7 +40,10 @@ export default function AddDataModal({type, onCancel}: Props){
             <ExtraInfoContainer>
                 <BoxHideDetails />
                 <TextDetails>Detalhes</TextDetails>
-                <AreaText></AreaText>
+                <AreaText 
+                    multiline
+                    numberOfLines={6}
+                ></AreaText>
             </ExtraInfoContainer>
 
             <ButtonContainer>

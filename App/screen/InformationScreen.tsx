@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {
     Container,
     PhotoIconContainer,
@@ -7,16 +7,14 @@ import {
     DataStructure,
     FlatlistData,
 } from './InformationScreenStyle'
-
+import {useRoute} from '@react-navigation/native'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
 import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
 
-
-
-export default function InformationScreen({route}){
+export default function InformationScreen(){
 
 
 
@@ -26,16 +24,17 @@ interface DetailsTheme {
 
     //variables ----------------------------------------------
 
+    const route = useRoute();
+    const [plantData, setPlantData] = useState( {} as PlantListDataProps)
     const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
-    const props = route.params;
-    const [plantData, setPlantData] = useState({} as PlantListDataProps)
-
-
-
 
     //Functions ----------------------------------------------
 
-
+    useEffect( () => {
+        const plant = plantListData.filter( item => item.id === route.params.id)
+        const plantFNS = plant[0]
+        setPlantData(plantFNS)
+    }, [plantData])
 
 
     //RN ----------------------------------------------
@@ -43,7 +42,7 @@ interface DetailsTheme {
     return (
         <BackgroundApp>
             <Container>
-
+            
             <PhotoIconContainer>
                 <PhotoIcon editMode={false} photoPlant={plantData.photoPlant}/>
             </PhotoIconContainer>
@@ -53,12 +52,13 @@ interface DetailsTheme {
             </GoBackIcon>
 
             <InfoContainer>
-            <NameDisplay>{`${plantData.name}`}</NameDisplay>
+                <NameDisplay>{`${plantData.name}`}</NameDisplay>
             </InfoContainer>
-            
-            <DataStructure>
-            
+
+            <DataStructure category={route.params.category} >
+                <FlatlistData />
             </DataStructure>
+
 
             </Container>
             

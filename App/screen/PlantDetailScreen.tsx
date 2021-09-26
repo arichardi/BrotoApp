@@ -11,7 +11,7 @@ import {
     PlantEnvContainer,
     EnviromentText,
 } from './PlantDetailScreenStyle'
-
+import { useNavigation } from '@react-navigation/core'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
@@ -27,11 +27,12 @@ import theme from '../config/styles/theme'
 import modal from 'react-native-modal'
 import RegaTagButton from '../components/RegaTagButton'
 
-export default function PlantDetailScreen({route, navigation}){
+export default function PlantDetailScreen({ route }){
 
     //variables ----------------------------------------------
 
     const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
+    const Navigation = useNavigation()
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
     const [lastFertilizerData, setLastFertilizerData] = useState('')
@@ -55,6 +56,10 @@ export default function PlantDetailScreen({route, navigation}){
 
     function handleQuarentineButton(){
         handleQuarentine(plantData.id)
+    }
+
+    function handleNavigationDetailsWatery(){
+        Navigation.navigate('Information', { id: plantData.id, category: 'rega'} )
     }
 
     //RN ----------------------------------------------
@@ -97,11 +102,11 @@ export default function PlantDetailScreen({route, navigation}){
             
             <SeparatorLine />
 
-            <RegaTagButton />
-            
+            <RegaTagButton onPress={ () => handleNavigationDetailsWatery()}/>
+
             <QuarentenaTagComponent 
             quarentenaMode={plantData.quarentenaMode}
-            onPress={navigation} 
+            onPress={() => {}} 
             lastQuarentine={plantData.lastQuarentine}
             />
             <AduboTagComponent fertilizerList={plantData.fertilizerList}

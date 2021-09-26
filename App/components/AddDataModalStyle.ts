@@ -22,7 +22,7 @@ export const CTO = styled.Text`
 export const ExtraInfoContainer = styled.View`
     height: ${RFPercentage(20)}px;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 12px;
     border-color: ${ ({theme}) => theme.colors.green_dark};
     border-width: 2px;
     border-radius: 12px;
@@ -32,8 +32,8 @@ export const TextDetails = styled.Text`
     font-family: ${ ({theme}) => theme.fonts.black};
     font-size: 14px;
     color: ${ ({theme}) => theme.colors.green_light};
-    position: relative;
-    top: -36px;
+    position: absolute;
+    top: -12px;
     left: 15px;
     `;
 
@@ -41,13 +41,15 @@ export const BoxHideDetails = styled.View`
     width: 70px;
     height: 25px;
     background-color: ${ ({theme}) => theme.colors.backGround};
-    position: relative;
+    position: absolute;
     top: -15px;
     left: 10px;
 `;
 
 export const AreaText = styled.TextInput`
     padding: 8px;
+    height: 100px;
+    margin-top: 16px;
 `;
 
 export const ButtonContainer = styled.View`
