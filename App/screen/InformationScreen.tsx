@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
+import { Text, View } from 'react-native'
 import {
     Container,
     PhotoIconContainer,
@@ -6,6 +7,7 @@ import {
     GoBackIcon,
     DataStructure,
     FlatlistData,
+    ItemSeparator,
 } from './InformationScreenStyle'
 import {useRoute} from '@react-navigation/native'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
@@ -13,10 +15,10 @@ import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
 import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
+import WateryDetailCard from '../components/WateryDetailCard'
+import AppButtonM from '../components/AppButtonM'
 
 export default function InformationScreen(){
-
-
 
 interface DetailsTheme {
     category: 'rega' | 'quarentena' | 'abudo'
@@ -56,9 +58,25 @@ interface DetailsTheme {
             </InfoContainer>
 
             <DataStructure category={route.params.category} >
-                <FlatlistData />
+                <FlatlistData 
+                    data={plantData.wateryList}
+                    keyExtractor={ item => item}
+                    renderItem={ ({item}) => {
+                        return <WateryDetailCard title={item} />
+                    }}
+                    ItemSeparatorComponent={ () => {
+                        return (
+                            <ItemSeparator category='rega'/>
+                        )
+                    }}
+                        />
             </DataStructure>
 
+            <AppButtonM 
+                title='Nova Rega'
+                buttonType='correct'
+                style={{alignSelf: 'center', marginTop: 12, marginBottom: 8}}
+            />
 
             </Container>
             

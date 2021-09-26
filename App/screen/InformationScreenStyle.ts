@@ -39,10 +39,27 @@ export const GoBackIcon = styled.TouchableOpacity`
 `;
 
 export const DataStructure = styled.View<DetailsTheme>`
-
+    background-color: ${ ({theme}) => theme.colors.backGround};
+    margin: 8px;
+    border-width: 3px;
+    border-radius: 16px;
+    border-color: ${ ({theme, category }) => category === 'rega'? theme.colors.green_dark:
+    category === 'quarentena'? theme.colors.pink_dark : theme.colors.yellow_dark
+    };
+    height: ${ RFPercentage(56)}px;
 `;
 
 export const FlatlistData = styled.FlatList<DetailsTheme>`
 
+`;
+
+export const ItemSeparator = styled.View<DetailsTheme>`
+    background-color: ${ ({theme, category }) => category === 'rega'? theme.colors.green_dark:
+    category === 'quarentena'? theme.colors.pink_dark : theme.colors.yellow_dark
+    };
+    height: 2px;
+    width: 90%;
+    align-self: center;
+    margin: 8px;
 `;
 
