@@ -78,6 +78,7 @@ export default function PlantDetailScreen({route, navigation}){
             <SubTitle>{plantData.subtitle}</SubTitle>
             <OtherInfoContainer>
                 <DateArive>{`Chegou dia: ${brotoDateFormatter(plantData.arriveDate,'2-digit', 'ano')}`}</DateArive>
+                
                 { plantData.enviroment === 'in' ? (
                     <PlantEnvContainer >
                         <EnviromentText>interno</EnviromentText>
@@ -90,12 +91,14 @@ export default function PlantDetailScreen({route, navigation}){
                         </PlantEnvContainer>
                 )
                 }
+
             </OtherInfoContainer>
             </InfoContainer>
             
             <SeparatorLine />
 
             <RegaTagButton />
+            
             <QuarentenaTagComponent 
             quarentenaMode={plantData.quarentenaMode}
             onPress={navigation} 

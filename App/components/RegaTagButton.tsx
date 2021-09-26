@@ -39,6 +39,7 @@ export default function RegaTagButton(){
 
                 <AddDataModal 
                     type='Rega'
+                    onCancel={() => setOpenModal(false)}
                 />
 
             </Modal>

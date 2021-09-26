@@ -7,12 +7,13 @@ import {
 
 interface Props extends TouchableOpacityProps {
     title: string;
-    buttonType: 'correct' | 'cancel'
+    buttonType: 'correct' | 'cancel';
+    size?: 'medium' | 'small';
 }
 
-export default function AppButtonM({title, buttonType, ...rest}: Props){
+export default function AppButtonM({title, buttonType, size='medium', ...rest}: Props){
     return(
-        <Container buttonType={buttonType} {...rest}>
+        <Container buttonType={buttonType} size={size} {...rest}>
             <Title buttonType={buttonType} >{title}</Title>
         </Container>
     )

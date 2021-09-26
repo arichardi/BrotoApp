@@ -7,7 +7,6 @@ export const Container = styled.View`
     width: 100%;
     background-color: ${ ({theme}) => theme.colors.backGround};
     border-radius: 12px;
-    align-items: center;
     padding: 0px 20px;
 `;
 
@@ -17,6 +16,7 @@ export const CTO = styled.Text`
     font-family: ${ ({theme}) => theme.fonts.black};
     font-size: 14px;
     color: ${ ({theme}) => theme.colors.green_dark};
+    align-self: center;
 `;
 
 export const ExtraInfoContainer = styled.View`
@@ -53,4 +53,5 @@ export const AreaText = styled.TextInput`
 export const ButtonContainer = styled.View`
     margin-top: 20px;
     flex-direction: row;
+    justify-content: space-between;
 `;

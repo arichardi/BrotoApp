@@ -10,15 +10,16 @@ import {
 } from './AddDataModalStyle'
 import DatePickerButton from './DatePickerButton'
 import Modal from 'react-native-modal'
-import Calendar from './Calendar'
 import AppButtonM from './AppButtonM'
+import CalendarDatePicker from './CalendarDatePicker'
 
 interface Props {
-    type: 'Adubação' | 'Rega' | 'Quarentera'
-    function?: 'Change' | 'Add'
+    type: 'Adubação' | 'Rega' | 'Quarentera';
+    function?: 'Change' | 'Add';
+    onCancel: () => void;
 }
 
-export default function AddDataModal({type}: Props){
+export default function AddDataModal({type, onCancel}: Props){
 
     const [openModal, setOpenModal] = useState(false)
     const today = new Date()
@@ -46,10 +47,13 @@ export default function AddDataModal({type}: Props){
                 <AppButtonM 
                     buttonType='cancel'
                     title='Cancelar'
+                    onPress={onCancel}
+                    size='small'
                 />
                 <AppButtonM 
                     buttonType='correct'
                     title='Adicionar'
+                    size='small'
                 />
             </ButtonContainer>
 
@@ -62,9 +66,11 @@ export default function AddDataModal({type}: Props){
             animationIn={'fadeInUp'}
             animationOut={'fadeOutDown'}>
                 
-            <Calendar 
-                dateSelected={today}
-                onChangeDate={ today => {}}
+            <CalendarDatePicker 
+                date={today} 
+                onChangeDate={() => {}}
+                onCancel={() => setOpenModal(false)}
+                onConfirm={() => {}}
             />
 
         </Modal>
