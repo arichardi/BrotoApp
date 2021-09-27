@@ -17,14 +17,14 @@ import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
 import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
-import RegaTagComponent from '../components/RegaTagComponent'
-import QuarentenaTagComponent from '../components/QuaretenaTagComponent'
 import AduboTagComponent from '../components/AduboTagComponent'
 import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
 import RegaTagButton from '../components/RegaTagButton'
+import QuarentenaTagButton from '../components/QuarentenaTagButton'
+import FertilizerTagButton from '../components/FertilizerTagButton'
 
 export default function PlantDetailScreen({ route }){
 
@@ -57,8 +57,8 @@ export default function PlantDetailScreen({ route }){
         handleQuarentine(plantData.id)
     }
 
-    function handleNavigationDetailsWatery(){
-        Navigation.navigate('Information', { id: plantData.id, category: 'rega'} )
+    function handleNavigationDetailsWatery(type: 'rega' | 'quarentena' | 'abudo'){
+        Navigation.navigate('Information', { id: plantData.id, category: type} )
     }
 
     //RN ----------------------------------------------
@@ -101,17 +101,9 @@ export default function PlantDetailScreen({ route }){
             
             <SeparatorLine />
 
-            <RegaTagButton onPress={ () => handleNavigationDetailsWatery()}/>
-
-            <QuarentenaTagComponent 
-            quarentenaMode={plantData.quarentenaMode}
-            onPress={() => {}} 
-            lastQuarentine={plantData.lastQuarentine}
-            />
-            <AduboTagComponent fertilizerList={plantData.fertilizerList}
-                fertilizerCount={plantData.fertilizerCount}
-                onPress={handlefertilizerbutton}
-                lastDate={lastFertilizerData} />
+            <RegaTagButton onPress={ () => handleNavigationDetailsWatery('rega')}/>
+            <QuarentenaTagButton onPress={ () => handleNavigationDetailsWatery('quarentena')}/>
+            <FertilizerTagButton onPress={ () => handleNavigationDetailsWatery('abudo')}/>
 
             </Container>
             
