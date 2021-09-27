@@ -3,6 +3,7 @@ import {TouchableOpacity ,TouchableOpacityProps } from 'react-native'
 
 interface ButtonTypeProps extends TouchableOpacityProps {
     buttonType: 'correct' | 'cancel'
+    size: 'medium' | 'small';
 }
 
 interface titleTypeProps {
@@ -18,8 +19,8 @@ export const Container = styled(TouchableOpacity)<ButtonTypeProps>`
     }px;
     border-color: ${ ({theme, buttonType}) => (
         buttonType === 'cancel' ? theme.colors.attention : theme.colors.backGround)};
-        height: 44px;
-        width: 140px;
+        height: ${ ({size}) => size === 'medium'? 44 : 32}px;
+        width: ${ ({size}) => size === 'medium'? 140 : 128}px;
         border-radius: 22px;
         justify-content: center;
         align-items: center;

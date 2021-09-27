@@ -38,6 +38,7 @@ import {
 import GaleryIcon from '../Assets/GaleryIcon'
 import CameraIcon from '../Assets/CameraIcon'
 import Calendar from '../components/Calendar'
+import CalendarDatePicker from '../components/CalendarDatePicker'
 
  type Enviro = 'in' | 'out' | ''
 
@@ -262,21 +263,13 @@ export default function PlantRegisterScreen({navigation}){
                 animationIn={'fadeInUp'}
                 animationOut={'fadeOutDown'}
             >
-                <CalendarModalContainer>
-                    <CalendarText>Escolha a sua Data?</CalendarText>
-                    <Calendar dateSelected={calendarDate} onChangeDate={setCalendarDate}/>
-                <ButtonCalendarContainer>
-                    <AppButtonM title='Cancelar'
-                    buttonType='cancel' 
-                    onPress={() => handleCancelCalendaryModal()}
+
+                <CalendarDatePicker 
+                    date={calendarDate}
+                    onChangeDate={setCalendarDate}
+                    onConfirm={() => handleConfirmCalendarModal(calendarDate)}
+                    onCancel={() => handleCancelCalendaryModal()}
                     />
-                    <AppButtonM title='Confirmar'
-                    buttonType='correct'
-                    style={{ marginLeft: 16,}}
-                    onPress={ () => handleConfirmCalendarModal(calendarDate)}
-                    />
-                 </ButtonCalendarContainer>
-                 </CalendarModalContainer>
             </CalendarModal>
 
         </BackgroundApp>

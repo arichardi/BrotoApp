@@ -1,16 +1,25 @@
+import {View} from 'react-native'
 import styled from 'styled-components/native'
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import {TouchableOpacity} from 'react-native-gesture-handler'
 
-export const Container = styled.View.attrs({
+
+interface DetailsTheme {
+    category: 'rega' | 'quarentena' | 'abudo'
+}
+
+export const Container = styled(View).attrs({
     elevation: 8
 })`
+    
     background-color: ${ ({theme}) => theme.colors.backGround};
-    margin-top: 112px;
-    margin-left: 12px;
-    margin-right: 12px;
-    height: 615px;
+    margin-top: ${RFPercentage(17.8)}px;
+    margin-left: 16px;
+    margin-right: 16px;
+    height: ${RFPercentage(90)}px;
     border-radius: 16px;
-
 `;
+
 export const PhotoIconContainer = styled.View`
     position: absolute;
     top: -64px;
@@ -19,11 +28,51 @@ export const PhotoIconContainer = styled.View`
 `;
 export const PhotoIcon = styled.View``;
 
+
 export const InfoContainer = styled.View`
     margin-top: 24px;
 `;
 
 export const GoBackIcon = styled.TouchableOpacity`
     position: absolute;
-    top: -50px
+    top: -50px;
+    
+
+`;
+
+export const DataStructure = styled.View<DetailsTheme>`
+    background-color: ${ ({theme}) => theme.colors.backGround};
+    margin: 8px;
+    border-width: 3px;
+    border-radius: 16px;
+    border-color: ${ ({theme, category }) => category === 'rega'? theme.colors.green_dark:
+    category === 'quarentena'? theme.colors.pink_dark : theme.colors.yellow_dark
+    };
+    height: ${ RFPercentage(56)}px;
+`;
+
+export const FlatlistData = styled.FlatList`
+
+`;
+
+export const ItemSeparator = styled.View<DetailsTheme>`
+    background-color: ${ ({theme, category }) => category === 'rega'? theme.colors.green_dark:
+    category === 'quarentena'? theme.colors.pink_dark : theme.colors.yellow_dark
+    };
+    height: 2px;
+    width: 90%;
+    align-self: center;
+    margin: 8px;
+`;
+
+export const Title = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};
+    align-self: center;
+    font-family: ${ ({theme}) => theme.fonts.black};
+    font-size: ${RFValue(16)}px;
+    margin-top: 8px;
+`;
+
+export const BackToPlantDatails = styled(TouchableOpacity)`
+        
 `;

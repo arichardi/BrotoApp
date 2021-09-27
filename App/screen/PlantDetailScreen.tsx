@@ -11,7 +11,7 @@ import {
     PlantEnvContainer,
     EnviromentText,
 } from './PlantDetailScreenStyle'
-
+import { useNavigation } from '@react-navigation/core'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
@@ -24,13 +24,14 @@ import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
-import fertilizerList from '../components/FertilizerList'
+import RegaTagButton from '../components/RegaTagButton'
 
-export default function PlantDetailScreen({route}){
+export default function PlantDetailScreen({ route }){
 
     //variables ----------------------------------------------
 
     const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
+    const Navigation = useNavigation()
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
     const [lastFertilizerData, setLastFertilizerData] = useState('')
@@ -56,6 +57,10 @@ export default function PlantDetailScreen({route}){
         handleQuarentine(plantData.id)
     }
 
+    function handleNavigationDetailsWatery(){
+        Navigation.navigate('Information', { id: plantData.id, category: 'rega'} )
+    }
+
     //RN ----------------------------------------------
 
     return (
@@ -77,6 +82,7 @@ export default function PlantDetailScreen({route}){
             <SubTitle>{plantData.subtitle}</SubTitle>
             <OtherInfoContainer>
                 <DateArive>{`Chegou dia: ${brotoDateFormatter(plantData.arriveDate,'2-digit', 'ano')}`}</DateArive>
+                
                 { plantData.enviroment === 'in' ? (
                     <PlantEnvContainer >
                         <EnviromentText>interno</EnviromentText>
@@ -89,20 +95,17 @@ export default function PlantDetailScreen({route}){
                         </PlantEnvContainer>
                 )
                 }
+
             </OtherInfoContainer>
             </InfoContainer>
             
             <SeparatorLine />
 
-            <RegaTagComponent 
-                lastWatery={lastwateryData}
-                wateryList={plantData.wateryList}
-                wateryListCount={plantData.wateryListCount}
-                quarentine={plantData.quarentenaMode}
-            />
+            <RegaTagButton onPress={ () => handleNavigationDetailsWatery()}/>
+
             <QuarentenaTagComponent 
             quarentenaMode={plantData.quarentenaMode}
-            onPress={handleQuarentineButton} 
+            onPress={() => {}} 
             lastQuarentine={plantData.lastQuarentine}
             />
             <AduboTagComponent fertilizerList={plantData.fertilizerList}
@@ -112,6 +115,8 @@ export default function PlantDetailScreen({route}){
 
             </Container>
             
+            
+
         </BackgroundApp>
     )
 }

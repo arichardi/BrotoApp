@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react'
-import { ActivityIndicator } from 'react-native'
 import { Container,
     Title,
     Underline,
