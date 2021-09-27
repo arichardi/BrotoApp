@@ -14,7 +14,7 @@ import AppButtonM from './AppButtonM'
 import CalendarDatePicker from './CalendarDatePicker'
 
 interface Props {
-    type: 'Adubação' | 'Rega' | 'Quarentera';
+    type: 'Adubação' | 'Rega' | 'Quarentena';
     function?: 'Change' | 'Add';
     onCancel: () => void;
 }
@@ -35,11 +35,12 @@ export default function AddDataModal({type, onCancel}: Props){
             <DatePickerButton 
             onPress={handleOpenModal}
             dateTitle='08/07'
+            type={type}
             />
 
-            <ExtraInfoContainer>
+            <ExtraInfoContainer type={type}>
                 <BoxHideDetails />
-                <TextDetails>Detalhes</TextDetails>
+                <TextDetails type={type} >Detalhes</TextDetails>
                 <AreaText 
                     multiline
                     numberOfLines={6}
@@ -70,7 +71,8 @@ export default function AddDataModal({type, onCancel}: Props){
             animationOut={'fadeOutDown'}>
                 
             <CalendarDatePicker 
-                date={today} 
+                date={today}
+                type={type}
                 onChangeDate={() => {}}
                 onCancel={() => setOpenModal(false)}
                 onConfirm={() => {}}

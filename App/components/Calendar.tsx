@@ -20,6 +20,7 @@ LocaleConfig.defaultLocale = 'pt-br'
 interface Props {
     dateSelected: Date;
     onChangeDate: (date: Date) => void;
+    type?: 'Adubação' | 'Rega' | 'Quarentena'
  
 }
 
@@ -31,11 +32,13 @@ interface dateCalendar {
     year: number
 }
 
-export default function Calendar({dateSelected, onChangeDate }: Props){
+export default function Calendar({dateSelected,type, onChangeDate }: Props){
 
     const todayCalendar = dateParseCalendar(dateSelected)
     const theme = useTheme()
     const [markedDay, setMarkedDay] = useState(todayCalendar)
+    const selectColorCalendar = type === 'Rega' ? theme.colors.green_dark : 
+    type === 'Quarentena'? theme.colors.pink_dark : theme.colors.yellow_dark
 
 
     function zeroLoader(number: string): string{
@@ -109,7 +112,7 @@ export default function Calendar({dateSelected, onChangeDate }: Props){
                 markedDates={{
                     [markedDay]: {
                         selected: true,
-                        selectedColor: theme.colors.green_dark,
+                        selectedColor: selectColorCalendar,
                         selectedTextColor: theme.colors.backGround,
                     }
                 }}

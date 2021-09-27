@@ -42,7 +42,7 @@ export default function FertilizerTagButton({onPress}: Props){
                 animationOut={'fadeOutDown'}>
 
                 <AddDataModal 
-                    type='Rega'
+                    type='Adubação'
                     onCancel={() => setOpenModal(false)}
                 />
 

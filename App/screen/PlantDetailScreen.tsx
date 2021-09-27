@@ -17,7 +17,6 @@ import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
 import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
-import AduboTagComponent from '../components/AduboTagComponent'
 import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'

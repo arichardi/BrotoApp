@@ -42,7 +42,7 @@ export default function QuarentenaTagButton({onPress}: Props){
                 animationOut={'fadeOutDown'}>
 
                 <AddDataModal 
-                    type='Rega'
+                    type='Quarentena'
                     onCancel={() => setOpenModal(false)}
                 />
 

@@ -9,19 +9,20 @@ import AppButtonM from './AppButtonM'
 
 interface Props {
     date: Date;
+    type?: 'Adubação' | 'Rega' | 'Quarentena'
     onChangeDate: (date: Date) => void;
     onConfirm: () => void;
     onCancel: () => void;
 }
 
-export default function CalendarDatePicker({date, onChangeDate, onConfirm, onCancel}: Props){
+export default function CalendarDatePicker({date, type = 'Rega', onChangeDate, onConfirm, onCancel}: Props){
 
 
     return(
         <Container>
             <CalendarText>Escolha a sua Data?</CalendarText>
 
-            <Calendar dateSelected={date} onChangeDate={onChangeDate}/>
+            <Calendar dateSelected={date} onChangeDate={onChangeDate} type={type}/>
 
             <ButtonCalendarContainer>
                 <AppButtonM title='Cancelar'
