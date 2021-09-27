@@ -9,8 +9,9 @@ import {
     FlatlistData,
     ItemSeparator,
     Title,
+    BackToPlantDatails,
 } from './InformationScreenStyle'
-import {useRoute} from '@react-navigation/native'
+import {useRoute, useNavigation} from '@react-navigation/native'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 import BackgroundApp from '../components/BackgroundApp'
 import PhotoIcon from '../components/PhotoIcon'
@@ -27,12 +28,13 @@ interface DetailsTheme {
 
 interface Props {
     id: string,
-    category: 'rega' | 'quarentena' | 'abudo'
+    category: 'rega' | 'quarentena' | 'abudo';
 }
 
     //variables ----------------------------------------------
 
     const route = useRoute();
+    const navigation = useNavigation();
     const props: Props  = route.params
     const [plantData, setPlantData] = useState( {} as PlantListDataProps)
     const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
@@ -46,6 +48,10 @@ interface Props {
     }, [plantData])
 
 
+    function handleGetBack(){
+        navigation.goBack();
+    }
+
     //RN ----------------------------------------------
 
     return (
@@ -56,8 +62,10 @@ interface Props {
                 <PhotoIcon editMode={false} photoPlant={plantData.photoPlant}/>
             </PhotoIconContainer>
 
-            <GoBackIcon >
+            <GoBackIcon>
+            <BackToPlantDatails onPress={handleGetBack}>
                 <BackIcon />
+            </BackToPlantDatails>
             </GoBackIcon>
 
             <InfoContainer>

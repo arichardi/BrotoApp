@@ -24,7 +24,6 @@ import { brotoDateFormatter } from '../utils/helpers'
 import HomeIcon from '../Assets/HomeIcon'
 import SunIcon from '../Assets/SunIcon'
 import theme from '../config/styles/theme'
-import modal from 'react-native-modal'
 import RegaTagButton from '../components/RegaTagButton'
 
 export default function PlantDetailScreen({ route }){

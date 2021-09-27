@@ -1,7 +1,8 @@
 import {View} from 'react-native'
 import styled from 'styled-components/native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import Modal from 'react-native-modal'
+import {TouchableOpacity} from 'react-native-gesture-handler'
+
 
 interface DetailsTheme {
     category: 'rega' | 'quarentena' | 'abudo'
@@ -34,7 +35,8 @@ export const InfoContainer = styled.View`
 
 export const GoBackIcon = styled.TouchableOpacity`
     position: absolute;
-    top: -50px
+    top: -50px;
+    
 
 `;
 
@@ -63,5 +65,14 @@ export const ItemSeparator = styled.View<DetailsTheme>`
     margin: 8px;
 `;
 
-export const Title = styled.Text``;
+export const Title = styled.Text`
+    color: ${ ({theme}) => theme.colors.green_dark};
+    align-self: center;
+    font-family: ${ ({theme}) => theme.fonts.black};
+    font-size: ${RFValue(16)}px;
+    margin-top: 8px;
+`;
 
+export const BackToPlantDatails = styled(TouchableOpacity)`
+        
+`;
