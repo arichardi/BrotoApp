@@ -49,7 +49,7 @@ export const DataStructure = styled.View<DetailsTheme>`
     height: ${ RFPercentage(56)}px;
 `;
 
-export const FlatlistData = styled.FlatList<DetailsTheme>`
+export const FlatlistData = styled.FlatList`
 
 `;
 
@@ -62,4 +62,6 @@ export const ItemSeparator = styled.View<DetailsTheme>`
     align-self: center;
     margin: 8px;
 `;
+
+export const Title = styled.Text``;
 

@@ -8,6 +8,7 @@ import {
     DataStructure,
     FlatlistData,
     ItemSeparator,
+    Title,
 } from './InformationScreenStyle'
 import {useRoute} from '@react-navigation/native'
 import {PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
@@ -24,16 +25,22 @@ interface DetailsTheme {
     category: 'rega' | 'quarentena' | 'abudo'
 }
 
+interface Props {
+    id: string,
+    category: 'rega' | 'quarentena' | 'abudo'
+}
+
     //variables ----------------------------------------------
 
     const route = useRoute();
+    const props: Props  = route.params
     const [plantData, setPlantData] = useState( {} as PlantListDataProps)
     const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
 
     //Functions ----------------------------------------------
 
     useEffect( () => {
-        const plant = plantListData.filter( item => item.id === route.params.id)
+        const plant = plantListData.filter( item => item.id === props.id)
         const plantFNS = plant[0]
         setPlantData(plantFNS)
     }, [plantData])
@@ -57,10 +64,12 @@ interface DetailsTheme {
                 <NameDisplay>{`${plantData.name}`}</NameDisplay>
             </InfoContainer>
 
-            <DataStructure category={route.params.category} >
+            <DataStructure category={props.category} >
+                <Title>Histórico de Regas</Title>
+                <ItemSeparator category='rega'/>
                 <FlatlistData 
                     data={plantData.wateryList}
-                    keyExtractor={ item => item}
+                    keyExtractor={ (item, index) => index.toString()}
                     renderItem={ ({item}) => {
                         return <WateryDetailCard title={item} />
                     }}
