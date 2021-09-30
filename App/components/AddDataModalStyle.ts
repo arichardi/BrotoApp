@@ -1,13 +1,17 @@
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
 
-interface type {
+interface typeColors {
     type: 'Adubação' | 'Rega' | 'Quarentena'
 }
 
-export const Container = styled.View`
+interface typeSize {
+    details: boolean
+}
+
+export const Container = styled.View<typeSize>`
     
-    height: ${RFPercentage(50)}px;
+    height: ${ ({details}) => details ? RFPercentage(50): RFPercentage(27) }px;
     width: 100%;
     background-color: ${ ({theme}) => theme.colors.backGround};
     border-radius: 12px;
@@ -23,7 +27,7 @@ export const CTO = styled.Text`
     align-self: center;
 `;
 
-export const ExtraInfoContainer = styled.View<type>`
+export const ExtraInfoContainer = styled.View<typeColors>`
     height: ${RFPercentage(20)}px;
     width: 100%;
     margin-top: 12px;
@@ -33,7 +37,7 @@ export const ExtraInfoContainer = styled.View<type>`
     border-radius: 12px;
 `;
 
-export const TextDetails = styled.Text<type>`
+export const TextDetails = styled.Text<typeColors>`
     font-family: ${ ({theme}) => theme.fonts.black};
     font-size: 14px;
     color: ${ ({theme, type}) => type === 'Rega' ? theme.colors.green_light:

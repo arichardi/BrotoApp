@@ -17,9 +17,10 @@ interface Props {
     type: 'Adubação' | 'Rega' | 'Quarentena';
     function?: 'Change' | 'Add';
     onCancel: () => void;
+    details?: boolean;
 }
 
-export default function AddDataModal({type, onCancel}: Props){
+export default function AddDataModal({type, onCancel, details = true}: Props){
 
     const [openModal, setOpenModal] = useState(false)
     const today = new Date()
@@ -30,14 +31,15 @@ export default function AddDataModal({type, onCancel}: Props){
 
     return(
         <>
-        <Container>
+        <Container details={details}>
             <CTO>{`Adicionar uma nova ${type}`}</CTO>
             <DatePickerButton 
             onPress={handleOpenModal}
             dateTitle='08/07'
             type={type}
             />
-
+            {
+            details && (
             <ExtraInfoContainer type={type}>
                 <BoxHideDetails />
                 <TextDetails type={type} >Detalhes</TextDetails>
@@ -46,6 +48,7 @@ export default function AddDataModal({type, onCancel}: Props){
                     numberOfLines={6}
                 ></AreaText>
             </ExtraInfoContainer>
+            )}
 
             <ButtonContainer>
                 <AppButtonM 
