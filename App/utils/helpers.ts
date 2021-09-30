@@ -67,14 +67,14 @@ export function displayFormatter(name:string){
 }
 
 //insert an string and return a date
-function stringToDate(date: string): Date {
+export function stringToDate(date: string): Date {
     const [ day , month ] = date.split('/')
     const newDate = new Date((new Date().getFullYear()), Number(month) - 1, Number(day))
     return newDate
 }
 
 //calculate an interval between an array of string dates
-function dayInterval(dateList: [], index: number): string | number {
+export function dayInterval(dateList: string[], index: number): string | number {
     const mainDate = stringToDate(dateList[index])
     if(!dateList[index - 1]){
         return 'Não possui registro anterior'

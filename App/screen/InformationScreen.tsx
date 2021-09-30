@@ -20,11 +20,9 @@ import BackIcon from '../Assets/BackIcon';
 import WateryDetailCard from '../components/WateryDetailCard'
 import AppButtonM from '../components/AppButtonM'
 
+
 export default function InformationScreen(){
 
-interface DetailsTheme {
-    category: 'rega' | 'quarentena' | 'abudo'
-}
 
 interface Props {
     id: string,
@@ -74,16 +72,21 @@ interface Props {
 
             <DataStructure category={props.category} >
                 <Title>Histórico de Regas</Title>
-                <ItemSeparator category='rega'/>
+                <ItemSeparator category={props.category}/>
                 <FlatlistData 
                     data={plantData.wateryList}
                     keyExtractor={ (item, index) => index.toString()}
-                    renderItem={ ({item}) => {
-                        return <WateryDetailCard title={item} />
+                    renderItem={ ({item, index}) => {
+                        return <WateryDetailCard
+                            title={item as string}
+                            category={props.category}
+                            index={index}
+                            wateryList={plantData.wateryList}
+                            />
                     }}
                     ItemSeparatorComponent={ () => {
                         return (
-                            <ItemSeparator category='rega'/>
+                            <ItemSeparator category={props.category}/>
                         )
                     }}
                         />

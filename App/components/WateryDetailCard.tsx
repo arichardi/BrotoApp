@@ -12,9 +12,19 @@ import {
     TextEnfasis,
 } from './WateryDetailCardStyle'
 import theme from '../config/styles/theme'
-import { dayOfWeek } from '../utils/helpers'
+import { dayOfWeek, dayInterval } from '../utils/helpers'
 
-export default function WateryDetailCard({title}){
+interface Props {
+    title: string;
+    category: 'rega' | 'quarentena' | 'abudo';
+    index: number;
+    wateryList: string[];
+}
+
+export default function WateryDetailCard({title, category, index, wateryList}: Props){
+
+
+
     return(
         <Container>
             <DayContainerPack>
@@ -22,13 +32,19 @@ export default function WateryDetailCard({title}){
                     <DayText>{dayOfWeek(title)}</DayText>
                     <DayText>{title}</DayText>
                 </DayContainer>
-                <Separator />
+                <Separator category={category}/>
             </DayContainerPack>
 
             <TextContainer>
-                <Text>A rega anterior foi há</Text>
-                <TextEnfasis>{`2`}</TextEnfasis>
-                <Text>dias</Text>
+                { typeof(dayInterval( wateryList, index)) === 'number'?
+                    (<>
+                    <Text>A rega anterior foi há</Text>
+                    <TextEnfasis>{dayInterval( wateryList, index)}</TextEnfasis>
+                    <Text>dias</Text>
+                    </>) :
+                    (<Text>{dayInterval( wateryList, index)}</Text>)
+            }
+
             </TextContainer>
 
             <ButtonEdit>
