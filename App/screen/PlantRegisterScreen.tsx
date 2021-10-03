@@ -8,7 +8,6 @@ import AppButtonM from '../components/AppButtonM'
 import PhotoIcon from '../components/PhotoIcon'
 import DatePickerButton from '../components/DatePickerButton'
 import * as ImagePicker from 'expo-image-picker'
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { PlantDataContext } from '../Contexts/PlantData'
 
@@ -31,13 +30,10 @@ import {
     PhotoButton,
     ContainerOptions,
     CalendarModal,
-    ButtonCalendarContainer,
-    CalendarModalContainer,
-    CalendarText,
+
  } from './PlantRegisterScreenStyle'
 import GaleryIcon from '../Assets/GaleryIcon'
 import CameraIcon from '../Assets/CameraIcon'
-import Calendar from '../components/Calendar'
 import CalendarDatePicker from '../components/CalendarDatePicker'
 
  type Enviro = 'in' | 'out' | ''
@@ -48,7 +44,6 @@ export default function PlantRegisterScreen({navigation}){
 
     const [arriveDate, setArriveDate] = useState(new Date())
     const [calendarDate, setCalendarDate] = useState(new Date())
-    const [showDatePicker, setShowDatePicker] = useState(false)
     const [envButton, setEnvButton] = useState<Enviro>('')
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
@@ -152,21 +147,7 @@ export default function PlantRegisterScreen({navigation}){
 
     }
 
-    function handleShowDataPicker(){
-        setShowDatePicker(true)
-    }
 
-    function handleDatePicker(event, selectDate){
-        const currentDate = selectDate || arriveDate
-        setShowDatePicker(false)
-        let FormattedArriveDate = Intl.DateTimeFormat('pt-BR', {
-            day: '2-digit',
-            month: '2-digit',
-            year: '2-digit',
-        }).format(currentDate);
-        setArriveDate(currentDate)
-        
-    }
 
     // RN COMPS -------------------------------------------------------
 
@@ -217,17 +198,6 @@ export default function PlantRegisterScreen({navigation}){
 
         </Container>
 
-        { showDatePicker && 
-        <DateTimePicker 
-            testID='dateTimePicker'
-            value={arriveDate}
-            mode='date'
-            display='default'
-            onChange={handleDatePicker}
-        
-        />
-        }
-    
             <PhotoModal 
             isVisible={photoModal}
             onBackdropPress={ () => setPhotoModal(false)}

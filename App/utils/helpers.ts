@@ -85,3 +85,55 @@ export function dayInterval(dateList: string[], index: number): string | number 
     const differenceInDays = Math.ceil( differenceDate / (1000 * 60 * 60 * 24))
     return differenceInDays
 }
+
+//convert a list of dates with year in a list of dates without year
+export function dateResize(list: string[]){
+    const listResize = list.map( item => {
+      const [day, mount, year] = item.split('/')
+      const newDate = `${day}/${mount}`
+      return newDate
+    })
+    return listResize
+  }
+
+  //compare functions for string data
+export function sortFormatted(a: string, b: string){
+  
+    const dataArayOne = a.split('/')
+    const dayOne = Number(dataArayOne[0])
+    const mountOne = Number(dataArayOne[1])
+    const yearOne = Number(dataArayOne[2])
+  
+    const dataArayTwo = b.split('/')
+    const dayTwo = Number(dataArayTwo[0])
+    const mountTwo = Number(dataArayTwo[1])
+    const yearTwo = Number(dataArayTwo[2])
+  
+    //compare year elements
+    if(yearOne !== undefined && yearTwo !== undefined){
+    if(yearOne < yearTwo){
+      return -1
+    }
+    if (yearOne > yearTwo){
+      return 1
+    }
+  }
+    //compare mounts
+    if(mountOne < mountTwo){
+      return -1
+    }
+    if (mountOne > mountTwo){
+      return 1
+    }
+  
+    //compare days
+    if (dayOne < dayTwo){
+      return -1
+    }
+  
+    if (dayOne > dayTwo){
+      return 1
+    }
+    return 0
+  
+  }

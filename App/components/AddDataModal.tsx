@@ -36,7 +36,7 @@ export default function AddDataModal({type, plantId, onCancel, details = true, c
     }
 
     function handleConfirmCalendarDate(){
-        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit'))
+        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit', 'ano'))
         setOpenModal(false)
     }
 

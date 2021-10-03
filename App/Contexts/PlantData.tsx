@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { brotoDateFormatter } from '../utils/helpers';
+import { brotoDateFormatter, sortFormatted } from '../utils/helpers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -84,7 +84,7 @@ export function PlantDataProvider({children}) {
 const Navigation = useNavigation()
 const [plantListData, setPlantListData] = useState([])
 const [idList, setIdList] = useState(0)
-const dateToday = brotoDateFormatter(new Date(), '2-digit')
+const dateToday = brotoDateFormatter(new Date(), '2-digit', 'ano')
 const dataKey = '@brotoApp:PlantListData'
 
 //functions -----------------------------------------------------------
@@ -162,7 +162,7 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
     if(listSelected[0].wateryListCount >= 10 ){
       listSelected[0].wateryList.shift()
       listSelected[0].wateryList.push(dateOther)
-
+      listSelected[0].wateryList.sort(sortFormatted)
       
       const resultList = [ ... listNotSelected, ... listSelected]
       await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
@@ -173,6 +173,7 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
     
     //acessa o item desejado do objeto e adiciona a data, atenção ao dateOther caso informado
     listSelected[0].wateryList.push(dateOther)
+    listSelected[0].wateryList.sort(sortFormatted)
     listSelected[0].wateryListCount += 1
     
     

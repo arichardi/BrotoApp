@@ -94,10 +94,12 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
 
             <PlantTag onPress={handleOpenCard} onLongPress={ () => handleDeleteMode(plantCardData.id)} delayLongPress={400}>
             <TouchableContainer>
+
                 <Title quarentine={plantCardData.quarentenaMode} >
                     {plantCardData.quarentenaMode? `${plantCardData.name} - Quarentena` : plantCardData.name}
                 </Title>
                 <Subtitle numberOfLines={1} quarentine={plantCardData.quarentenaMode} >{plantCardData.subtitle}</Subtitle>
+                
             </TouchableContainer>
             </PlantTag>
 
