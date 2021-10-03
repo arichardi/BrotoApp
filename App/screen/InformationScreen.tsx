@@ -19,6 +19,7 @@ import NameDisplay from '../components/NameDIsplay'
 import BackIcon from '../Assets/BackIcon';
 import WateryDetailCard from '../components/WateryDetailCard'
 import AppButtonM from '../components/AppButtonM'
+import { dateResize } from '../utils/helpers'
 
 
 export default function InformationScreen(){
@@ -41,7 +42,9 @@ interface Props {
 
     useEffect( () => {
         const plant = plantListData.filter( item => item.id === props.id)
-        const plantFNS = plant[0]
+        let plantFNS = plant[0]
+        plantFNS.wateryList = dateResize(plantFNS.wateryList)
+        plantFNS.wateryList.reverse()
         setPlantData(plantFNS)
     }, [plantData])
 
