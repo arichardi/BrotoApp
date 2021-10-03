@@ -61,6 +61,7 @@ export default function AddDataModal({type, plantId, onCancel, details = true, c
             onPress={handleOpenModal}
             dateTitle={calendarDateFormatted}
             type={type}
+            title={`Data da ${type}`}
             />
             {
             details && (

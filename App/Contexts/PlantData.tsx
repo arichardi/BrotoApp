@@ -157,6 +157,7 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
     const listSelected = plantListData.filter( lists => lists.id === id)
     
+
     //verifica se o item tem 10 entradas e limita o arquivo
     if(listSelected[0].wateryListCount >= 10 ){
       listSelected[0].wateryList.shift()
@@ -173,6 +174,7 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
     //acessa o item desejado do objeto e adiciona a data, atenção ao dateOther caso informado
     listSelected[0].wateryList.push(dateOther)
     listSelected[0].wateryListCount += 1
+    
     
     //adiciona o novo elemento no objeto
     const resultList = [ ... listNotSelected, ... listSelected]

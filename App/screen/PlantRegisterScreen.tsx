@@ -192,6 +192,7 @@ export default function PlantRegisterScreen({navigation}){
                 <DatePickerButton
                 onPress={() => setOpenCalendarModal(true)}
                 dateTitle={arriveDateString}
+                title='Data da chegada'
                 />
             </InputContainer>
 
