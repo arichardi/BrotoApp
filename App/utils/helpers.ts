@@ -14,6 +14,7 @@ interface PlantStructure {
 }
 
 //This function will format the date to exit in a string formatted to pt-br standart
+//enter a date and exit a formatted string
 export function brotoDateFormatter(date: Date, month: 'short' | 'long' | '2-digit', year?: 'ano'){
     
     if(year === 'ano'){

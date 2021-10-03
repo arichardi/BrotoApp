@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {
     Container,
     CTO,
@@ -12,21 +12,45 @@ import DatePickerButton from './DatePickerButton'
 import Modal from 'react-native-modal'
 import AppButtonM from './AppButtonM'
 import CalendarDatePicker from './CalendarDatePicker'
+import { brotoDateFormatter } from '../utils/helpers'
+import { PlantDataContext } from '../Contexts/PlantData'
 
 interface Props {
     type: 'Adubação' | 'Rega' | 'Quarentena';
     function?: 'Change' | 'Add';
     onCancel: () => void;
     details?: boolean;
+    plantId: string;
+    closePreviousModal: (bol: boolean) => void;
 }
 
-export default function AddDataModal({type, onCancel, details = true}: Props){
+export default function AddDataModal({type, plantId, onCancel, details = true, closePreviousModal}: Props){
 
     const [openModal, setOpenModal] = useState(false)
-    const today = new Date()
+    const [calendarDate, setCalendarDate] = useState(new Date())
+    const [calendarDateFormatted, setCalendarDateFormatted] = useState(brotoDateFormatter(calendarDate, '2-digit'))
+    const {handleAddDate} = useContext(PlantDataContext)
         
     function handleOpenModal(){
         setOpenModal(true)
+    }
+
+    function handleConfirmCalendarDate(){
+        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit'))
+        setOpenModal(false)
+    }
+
+    function handleConfirmAddData(){
+        handleAddDate(plantId, calendarDateFormatted)
+        closePreviousModal(false)
+
+    }
+
+    function handleCancelCalendarDate(){
+        setCalendarDate(new Date())
+        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit'))
+        setOpenModal(false)
+        
     }
 
     return(
@@ -35,7 +59,7 @@ export default function AddDataModal({type, onCancel, details = true}: Props){
             <CTO>{`Adicionar uma nova ${type}`}</CTO>
             <DatePickerButton 
             onPress={handleOpenModal}
-            dateTitle='08/07'
+            dateTitle={calendarDateFormatted}
             type={type}
             />
             {
@@ -61,6 +85,7 @@ export default function AddDataModal({type, onCancel, details = true}: Props){
                     buttonType='correct'
                     title='Adicionar'
                     size='small'
+                    onPress={handleConfirmAddData}
                 />
             </ButtonContainer>
 
@@ -74,11 +99,11 @@ export default function AddDataModal({type, onCancel, details = true}: Props){
             animationOut={'fadeOutDown'}>
                 
             <CalendarDatePicker 
-                date={today}
+                date={calendarDate}
                 type={type}
-                onChangeDate={() => {}}
+                onChangeDate={setCalendarDate}
                 onCancel={() => setOpenModal(false)}
-                onConfirm={() => {}}
+                onConfirm={handleConfirmCalendarDate}
             />
 
         </Modal>

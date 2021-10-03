@@ -32,7 +32,7 @@ interface ContextProps {
   handleRemovePlant: () => void;  
   changeDeleteMode: (id: string) => void;
   handleInsertData: ({} : PlantListDataProps) => void;
-  handleAddDate: (id: string) => void 
+  handleAddDate: (id: string, otherDate?: string) => void 
   plantListData: PlantListDataProps[];
   idList: number
 }
@@ -122,6 +122,7 @@ async function loadData(){
         quarentenaMode: item.quarentenaMode,
         lastQuarentine: item.lastQuarentine,
       }});
+      
     setPlantListData(dataFormated)
     if (dataFormated){
       const lastId: number = Number(dataFormated[dataFormated.length - 1].id)
@@ -150,8 +151,8 @@ async function handleInsertData(plant: PlantListDataProps){
     Navigation.goBack();
 }
 
-async function handleAddDate(id: string){
-  
+async function handleAddDate(id: string, dateOther: string = dateToday){
+ 
     //organiza e separa os objetos da lista
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
     const listSelected = plantListData.filter( lists => lists.id === id)
@@ -159,7 +160,8 @@ async function handleAddDate(id: string){
     //verifica se o item tem 10 entradas e limita o arquivo
     if(listSelected[0].wateryListCount >= 10 ){
       listSelected[0].wateryList.shift()
-      listSelected[0].wateryList.push(dateToday)
+      listSelected[0].wateryList.push(dateOther)
+
       
       const resultList = [ ... listNotSelected, ... listSelected]
       await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
@@ -168,8 +170,8 @@ async function handleAddDate(id: string){
       
     }
     
-    //acessa o item desejado do objeto e adiciona a data
-    listSelected[0].wateryList.push(dateToday)
+    //acessa o item desejado do objeto e adiciona a data, atenção ao dateOther caso informado
+    listSelected[0].wateryList.push(dateOther)
     listSelected[0].wateryListCount += 1
     
     //adiciona o novo elemento no objeto

@@ -12,10 +12,11 @@ import Modal from 'react-native-modal'
 import AddDataModal from './AddDataModal'
 
 interface Props{
-    onPress: () => void
+    onPress: () => void;
+    plantId: string;
 }
 
-export default function RegaTagButton({onPress}: Props){
+export default function RegaTagButton({onPress, plantId}: Props){
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -45,6 +46,8 @@ export default function RegaTagButton({onPress}: Props){
                     type='Rega'
                     onCancel={() => setOpenModal(false)}
                     details={false}
+                    plantId={plantId}
+                    closePreviousModal={setOpenModal}
                 />
 
             </Modal>
