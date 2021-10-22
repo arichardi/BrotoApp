@@ -14,9 +14,11 @@ import AddDataModal from './AddDataModal'
 interface Props{
     onPress: () => void;
     plantId: string;
+    lastWatery: string
+    wateryList: string[]
 }
 
-export default function RegaTagButton({onPress, plantId}: Props){
+export default function RegaTagButton({onPress, plantId, lastWatery, wateryList}: Props){
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -26,7 +28,9 @@ export default function RegaTagButton({onPress, plantId}: Props){
 
             <InfoContainer onPress={onPress}>
                 <Title>Regas</Title>
-                <Subtitle>{`Última Rega foi dia xx/xx`}</Subtitle>
+                <Subtitle>
+                    { lastWatery === '00/00'? 'Não há registro de regas' : `Última Rega foi dia ${lastWatery}`}
+                </Subtitle>
             </InfoContainer>
 
             <IconContainer onPress={() => setOpenModal(true)}>
@@ -48,6 +52,7 @@ export default function RegaTagButton({onPress, plantId}: Props){
                     details={false}
                     plantId={plantId}
                     closePreviousModal={setOpenModal}
+                    wateryList={wateryList}
                 />
 
             </Modal>

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { Alert } from 'react-native'
 import {
     Container,
@@ -13,33 +13,45 @@ import DatePickerButton from './DatePickerButton'
 import Modal from 'react-native-modal'
 import AppButtonM from './AppButtonM'
 import CalendarDatePicker from './CalendarDatePicker'
-import { brotoDateFormatter, dateChanger, dateCheck } from '../utils/helpers'
-import { PlantDataContext } from '../Contexts/PlantData'
+import { brotoDateFormatter, dateChanger, dateCheck, stringToDate } from '../utils/helpers'
+import { PlantDataContext, PlantListDataProps } from '../Contexts/PlantData'
 
 interface Props {
     type: 'Adubação' | 'Rega' | 'Quarentena';
-    function?: 'Change' | 'Add';
     onCancel: () => void;
+    onConfirm: (date: string) => void;
+    onUpdate: () => void;
     details?: boolean;
     plantId: string;
     closePreviousModal: (bol: boolean) => void;
     wateryList: string[];
+    oldDate: string;
+
 }
 
-export default function AddDataModal({type, plantId, wateryList , onCancel, details = true, closePreviousModal}: Props){
+export default function UpdateDataModal({type, plantId, wateryList , onCancel, onConfirm, onUpdate, details = true, closePreviousModal, oldDate}: Props){
 
     const [openModal, setOpenModal] = useState(false)
     const [calendarDate, setCalendarDate] = useState(new Date())
     const [calendarDateFormatted, setCalendarDateFormatted] = useState(brotoDateFormatter(calendarDate, '2-digit', 'ano'))
-    const {handleAddDate, plantListData} = useContext(PlantDataContext)
+    const {handleChangeDate, plantListData} = useContext(PlantDataContext)
+    const [PlantData, setPlantData] = useState( {} as PlantListDataProps)
     
+    useEffect( () => {
+        if(oldDate){
+            setCalendarDate(stringToDate(oldDate))
+            setCalendarDateFormatted(oldDate)
+        }
+    },[])
+
+    useEffect( () => {
+        const plant = plantListData.filter( item => item.id === plantId)
+        const plantFNS = plant[0] 
+        setPlantData(plantFNS)
+    }, [plantListData])
+
     function handleOpenModal(){
         setOpenModal(true)
-    }
-
-    function handleConfirmCalendarDate(){
-        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit', 'ano'))
-        setOpenModal(false)
     }
 
     function handleConfirmAddData(waterylist: string[]){
@@ -49,22 +61,22 @@ export default function AddDataModal({type, plantId, wateryList , onCancel, deta
             Alert.alert('Datas duplicadas', `Essa data já foi registrada anteriormente no sistema, por favor escolha outra data`)
             return 1
         }
-        handleAddDate(plantId, calendarDateFormatted)
+        //handleAddDate(plantId, calendarDateFormatted)
         closePreviousModal(false)
 
     }
 
-    function handleCancelCalendarDate(){
-        setCalendarDate(new Date())
-        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit'))
+    function handleConfirmButton(){
+        setCalendarDateFormatted(brotoDateFormatter(calendarDate, '2-digit', 'ano'))
+        onConfirm(brotoDateFormatter(calendarDate, '2-digit', 'ano'))
         setOpenModal(false)
     }
-
+    
 
     return(
         <>
         <Container details={details}>
-            <CTO>{`Adicionar uma nova ${type}`}</CTO>
+            <CTO>{`Alterar os dados da ${type}`}</CTO>
             <DatePickerButton 
             onPress={handleOpenModal}
             dateTitle={calendarDateFormatted}
@@ -92,9 +104,9 @@ export default function AddDataModal({type, plantId, wateryList , onCancel, deta
                 />
                 <AppButtonM 
                     buttonType='correct'
-                    title='Adicionar'
+                    title='Alterar'
                     size='small'
-                    onPress={() => handleConfirmAddData(wateryList)}
+                    onPress={onUpdate}
                 />
             </ButtonContainer>
 
@@ -112,7 +124,7 @@ export default function AddDataModal({type, plantId, wateryList , onCancel, deta
                 type={type}
                 onChangeDate={setCalendarDate}
                 onCancel={() => setOpenModal(false)}
-                onConfirm={handleConfirmCalendarDate}
+                onConfirm={handleConfirmButton}
             />
 
         </Modal>

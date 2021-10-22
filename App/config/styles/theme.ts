@@ -9,9 +9,10 @@ export default {
         pink_light: '#F4d9c9',
         yellow_dark: '#ffb40b',
         Yellow_light: '#f8d078',
+        brown: '#664935',
         
 
-        attention: '#ee6c29',
+        attention: '#E35C16',
         whites: '#FFFFFF',
     },
 

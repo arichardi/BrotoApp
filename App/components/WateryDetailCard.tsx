@@ -19,10 +19,10 @@ interface Props {
     category: 'rega' | 'quarentena' | 'abudo';
     index: number;
     wateryList: string[];
+    onPress: (date: string, activeIndex: number) => void;
 }
 
-export default function WateryDetailCard({title, category, index, wateryList}: Props){
-
+export default function WateryDetailCard({title, category, index, wateryList, onPress}: Props){
 
 
     return(
@@ -47,7 +47,7 @@ export default function WateryDetailCard({title, category, index, wateryList}: P
 
             </TextContainer>
 
-            <ButtonEdit>
+            <ButtonEdit onPress={ () => onPress(title, index)}>
                 <EditDetail color={theme.colors.green_dark}/>
             </ButtonEdit>
         </Container>

@@ -137,3 +137,21 @@ export function sortFormatted(a: string, b: string){
     return 0
   
   }
+
+//check for duplicate dates
+export function dateCheck(list: string[], dateToCheck: string): boolean{
+  for (let item of list){
+    if(dateToCheck === item){
+      console.log(`found an duplicate item ${item}`)
+      return true
+    }
+  }
+  console.log('no duplicate were found')
+  return false
+}
+
+export function dateChanger(list: string[], newDate: string, indexRemove: number): string[]{
+  const oldList = [...list]
+  oldList.splice(indexRemove, 1, newDate)
+  return oldList
+}

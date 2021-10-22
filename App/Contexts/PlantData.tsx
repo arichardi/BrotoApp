@@ -33,6 +33,7 @@ interface ContextProps {
   changeDeleteMode: (id: string) => void;
   handleInsertData: ({} : PlantListDataProps) => void;
   handleAddDate: (id: string, otherDate?: string) => void 
+  handleChangeDate: (id: string, indexCut: number, substituteDate: string) => void
   plantListData: PlantListDataProps[];
   idList: number
 }
@@ -155,7 +156,7 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
  
     //organiza e separa os objetos da lista
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
-    const listSelected = plantListData.filter( lists => lists.id === id)
+    const listSelected: PlantListDataProps[] = plantListData.filter( lists => lists.id === id)
     
 
     //verifica se o item tem 10 entradas e limita o arquivo
@@ -187,6 +188,30 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
 
     
   }
+
+  async function handleChangeDate(id: string, indexCut: number, substituteDate: string){
+
+    //localiza a planta na lista
+    const listNotSelected = plantListData.filter( lists => lists.id !== id )
+    const listSelected: PlantListDataProps[] = plantListData.filter( lists => lists.id === id)
+
+    //remove a data do index referente e substitue pelo informado
+    listSelected[0].wateryList.splice(indexCut, 1, substituteDate)
+    console.log(indexCut)
+
+    //coloca a lista em ordem
+    listSelected[0].wateryList.sort(sortFormatted)
+
+    //coloca a lista em um novo pacote
+    const resultList = [ ... listNotSelected, ... listSelected]
+
+    //salva a lista no DB
+    await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
+    setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    console.log('internal updated')
+    return
+  }
+
 
   async function handleAddfertilizer(id:string){
 
@@ -281,6 +306,7 @@ async function handleAddDate(id: string, dateOther: string = dateToday){
       changeDeleteMode: changeDeleteMode,
       handleInsertData: handleInsertData, 
       handleAddDate: handleAddDate,
+      handleChangeDate: handleChangeDate,
       plantListData: plantListData,
       idList: idList
        }}>
