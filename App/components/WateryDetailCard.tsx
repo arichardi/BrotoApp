@@ -12,7 +12,7 @@ import {
     TextEnfasis,
 } from './WateryDetailCardStyle'
 import theme from '../config/styles/theme'
-import { dayOfWeek, dayInterval } from '../utils/helpers'
+import { dayOfWeek, dayInterval, invertIndex } from '../utils/helpers'
 
 interface Props {
     title: string;
@@ -24,6 +24,7 @@ interface Props {
 
 export default function WateryDetailCard({title, category, index, wateryList, onPress}: Props){
 
+    const invertedIndex = invertIndex(wateryList.length, index)
 
     return(
         <Container>
@@ -47,7 +48,7 @@ export default function WateryDetailCard({title, category, index, wateryList, on
 
             </TextContainer>
 
-            <ButtonEdit onPress={ () => onPress(title, index)}>
+            <ButtonEdit onPress={ () => onPress(title, invertedIndex)}>
                 <EditDetail color={theme.colors.green_dark}/>
             </ButtonEdit>
         </Container>

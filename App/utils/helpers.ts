@@ -155,3 +155,15 @@ export function dateChanger(list: string[], newDate: string, indexRemove: number
   oldList.splice(indexRemove, 1, newDate)
   return oldList
 }
+
+export function invertIndex(size: number, element: number): number{
+  let correct = []
+  let invert = []
+  
+  for (let x = 0; x < size; x++){
+    correct.push(x)
+    invert.unshift(x)
+  }
+
+  return invert[element]
+}
