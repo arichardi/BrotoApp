@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const DateTitle = styled.Text<Quarentine>`
-    color: ${ ({theme, quarentine}) => quarentine ? theme.colors.backGround : theme.colors.pink_dark};
+    color: ${ ({theme, quarentine}) => quarentine ? theme.colors.backGround : theme.colors.attention};
     margin-top: 4px;
     font-family: ${ ({theme}) => theme.fonts.bold};
     font-size: 14px;

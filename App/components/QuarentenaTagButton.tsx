@@ -24,7 +24,7 @@ export default function QuarentenaTagButton({onPress}: Props){
         <Container>
 
             <InfoContainer onPress={onPress}>
-                <Title>Regas</Title>
+                <Title>Quarentena</Title>
                 <Subtitle>{`Última Quarentena foi dia xx/xx`}</Subtitle>
             </InfoContainer>
 

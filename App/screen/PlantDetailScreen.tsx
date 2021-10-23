@@ -116,7 +116,11 @@ export default function PlantDetailScreen({ route }){
             />
 
             <QuarentenaTagButton onPress={ () => handleNavigationDetailsWatery('quarentena')}/>
-            <FertilizerTagButton onPress={ () => handleNavigationDetailsWatery('abudo')}/>
+
+            <FertilizerTagButton 
+            onPress={ () => handleNavigationDetailsWatery('abudo')}
+            
+            />
 
             </Container>
             
