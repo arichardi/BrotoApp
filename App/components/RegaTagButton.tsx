@@ -12,10 +12,13 @@ import Modal from 'react-native-modal'
 import AddDataModal from './AddDataModal'
 
 interface Props{
-    onPress: () => void
+    onPress: () => void;
+    plantId: string;
+    lastWatery: string
+    wateryList: string[]
 }
 
-export default function RegaTagButton({onPress}: Props){
+export default function RegaTagButton({onPress, plantId, lastWatery, wateryList}: Props){
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -25,7 +28,9 @@ export default function RegaTagButton({onPress}: Props){
 
             <InfoContainer onPress={onPress}>
                 <Title>Regas</Title>
-                <Subtitle>{`Última Rega foi dia xx/xx`}</Subtitle>
+                <Subtitle>
+                    { lastWatery === '00/00'? 'Não há registro de regas' : `Última Rega foi dia ${lastWatery}`}
+                </Subtitle>
             </InfoContainer>
 
             <IconContainer onPress={() => setOpenModal(true)}>
@@ -45,6 +50,9 @@ export default function RegaTagButton({onPress}: Props){
                     type='Rega'
                     onCancel={() => setOpenModal(false)}
                     details={false}
+                    plantId={plantId}
+                    closePreviousModal={setOpenModal}
+                    wateryList={wateryList}
                 />
 
             </Modal>

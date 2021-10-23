@@ -76,7 +76,11 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
     // RN -----------------------------------------------------------------
 
     return(
-        <Container openCard={openCard} quarentine={plantCardData.quarentenaMode} wateryLength={plantCardData.wateryListCount}>
+        <Container 
+            openCard={openCard}
+            quarentine={plantCardData.quarentenaMode}
+            wateryLength={plantCardData.wateryListCount}
+        >
 
             <TopCardContainer>
   
@@ -90,8 +94,12 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
 
             <PlantTag onPress={handleOpenCard} onLongPress={ () => handleDeleteMode(plantCardData.id)} delayLongPress={400}>
             <TouchableContainer>
-                <Title quarentine={plantCardData.quarentenaMode} >{plantCardData.quarentenaMode? `${plantCardData.name} - Quarentena` : plantCardData.name}</Title>
+
+                <Title quarentine={plantCardData.quarentenaMode} >
+                    {plantCardData.quarentenaMode? `${plantCardData.name} - Quarentena` : plantCardData.name}
+                </Title>
                 <Subtitle numberOfLines={1} quarentine={plantCardData.quarentenaMode} >{plantCardData.subtitle}</Subtitle>
+                
             </TouchableContainer>
             </PlantTag>
 

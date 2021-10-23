@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { brotoDateFormatter } from '../utils/helpers';
+import { brotoDateFormatter, sortFormatted } from '../utils/helpers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -32,7 +32,8 @@ interface ContextProps {
   handleRemovePlant: () => void;  
   changeDeleteMode: (id: string) => void;
   handleInsertData: ({} : PlantListDataProps) => void;
-  handleAddDate: (id: string) => void 
+  handleAddDate: (id: string, otherDate?: string) => void 
+  handleChangeDate: (id: string, indexCut: number, substituteDate: string) => void
   plantListData: PlantListDataProps[];
   idList: number
 }
@@ -84,7 +85,7 @@ export function PlantDataProvider({children}) {
 const Navigation = useNavigation()
 const [plantListData, setPlantListData] = useState([])
 const [idList, setIdList] = useState(0)
-const dateToday = brotoDateFormatter(new Date(), '2-digit')
+const dateToday = brotoDateFormatter(new Date(), '2-digit', 'ano')
 const dataKey = '@brotoApp:PlantListData'
 
 //functions -----------------------------------------------------------
@@ -122,6 +123,7 @@ async function loadData(){
         quarentenaMode: item.quarentenaMode,
         lastQuarentine: item.lastQuarentine,
       }});
+      
     setPlantListData(dataFormated)
     if (dataFormated){
       const lastId: number = Number(dataFormated[dataFormated.length - 1].id)
@@ -150,16 +152,18 @@ async function handleInsertData(plant: PlantListDataProps){
     Navigation.goBack();
 }
 
-async function handleAddDate(id: string){
-  
+async function handleAddDate(id: string, dateOther: string = dateToday){
+ 
     //organiza e separa os objetos da lista
     const listNotSelected = plantListData.filter( lists => lists.id !== id )
-    const listSelected = plantListData.filter( lists => lists.id === id)
+    const listSelected: PlantListDataProps[] = plantListData.filter( lists => lists.id === id)
     
+
     //verifica se o item tem 10 entradas e limita o arquivo
     if(listSelected[0].wateryListCount >= 10 ){
       listSelected[0].wateryList.shift()
-      listSelected[0].wateryList.push(dateToday)
+      listSelected[0].wateryList.push(dateOther)
+      listSelected[0].wateryList.sort(sortFormatted)
       
       const resultList = [ ... listNotSelected, ... listSelected]
       await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
@@ -168,9 +172,11 @@ async function handleAddDate(id: string){
       
     }
     
-    //acessa o item desejado do objeto e adiciona a data
-    listSelected[0].wateryList.push(dateToday)
+    //acessa o item desejado do objeto e adiciona a data, atenção ao dateOther caso informado
+    listSelected[0].wateryList.push(dateOther)
+    listSelected[0].wateryList.sort(sortFormatted)
     listSelected[0].wateryListCount += 1
+    
     
     //adiciona o novo elemento no objeto
     const resultList = [ ... listNotSelected, ... listSelected]
@@ -182,6 +188,30 @@ async function handleAddDate(id: string){
 
     
   }
+
+  async function handleChangeDate(id: string, indexCut: number, substituteDate: string){
+
+    //localiza a planta na lista
+    const listNotSelected = plantListData.filter( lists => lists.id !== id )
+    const listSelected: PlantListDataProps[] = plantListData.filter( lists => lists.id === id)
+
+    //remove a data do index referente e substitue pelo informado
+    listSelected[0].wateryList.splice(indexCut, 1, substituteDate)
+    console.log(indexCut)
+
+    //coloca a lista em ordem
+    listSelected[0].wateryList.sort(sortFormatted)
+
+    //coloca a lista em um novo pacote
+    const resultList = [ ... listNotSelected, ... listSelected]
+
+    //salva a lista no DB
+    await AsyncStorage.setItem(dataKey,JSON.stringify(resultList.sort( (a, b) => Number(a.id) - Number(b.id) )) )
+    setPlantListData(resultList.sort( (a, b) => Number(a.id) - Number(b.id) ))
+    console.log('internal updated')
+    return
+  }
+
 
   async function handleAddfertilizer(id:string){
 
@@ -276,6 +306,7 @@ async function handleAddDate(id: string){
       changeDeleteMode: changeDeleteMode,
       handleInsertData: handleInsertData, 
       handleAddDate: handleAddDate,
+      handleChangeDate: handleChangeDate,
       plantListData: plantListData,
       idList: idList
        }}>

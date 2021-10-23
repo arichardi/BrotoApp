@@ -88,3 +88,100 @@ export function dayInterval(dateList: string[], index: number): string | number 
     return differenceInDays
 }
 
+export function dayIntervalInverse(dateList: string[], index: number): string | number {
+  
+  if(index === dateList.length -1){
+    return 'Não há registro anterior'
+  }
+
+  const pastDate = stringToDate(dateList[index + 1])
+  const mainDate = stringToDate(dateList[index])
+  const differenceDate = Math.abs( mainDate.getTime() - pastDate.getTime())
+  const differenceInDays = Math.ceil( differenceDate / (1000 * 60 * 60 * 24))
+  return differenceInDays
+
+}
+
+
+//convert a list of dates with year in a list of dates without year
+export function dateResize(list: string[]){
+    const listResize = list.map( item => {
+      const [day, mount, year] = item.split('/')
+      const newDate = `${day}/${mount}`
+      return newDate
+    })
+    return listResize
+  }
+
+  //compare functions for string data
+export function sortFormatted(a: string, b: string){
+  
+    const dataArayOne = a.split('/')
+    const dayOne = Number(dataArayOne[0])
+    const mountOne = Number(dataArayOne[1])
+    const yearOne = Number(dataArayOne[2])
+  
+    const dataArayTwo = b.split('/')
+    const dayTwo = Number(dataArayTwo[0])
+    const mountTwo = Number(dataArayTwo[1])
+    const yearTwo = Number(dataArayTwo[2])
+  
+    //compare year elements
+    if(yearOne !== undefined && yearTwo !== undefined){
+    if(yearOne < yearTwo){
+      return -1
+    }
+    if (yearOne > yearTwo){
+      return 1
+    }
+  }
+    //compare mounts
+    if(mountOne < mountTwo){
+      return -1
+    }
+    if (mountOne > mountTwo){
+      return 1
+    }
+  
+    //compare days
+    if (dayOne < dayTwo){
+      return -1
+    }
+  
+    if (dayOne > dayTwo){
+      return 1
+    }
+    return 0
+  
+  }
+
+//check for duplicate dates
+export function dateCheck(list: string[], dateToCheck: string): boolean{
+  for (let item of list){
+    console.log(`comparing ${item} with ${dateToCheck}`)
+    if(dateToCheck === item){
+      console.log(`found an duplicate item ${item}`)
+      return true
+    }
+  }
+  console.log('no duplicate were found')
+  return false
+}
+
+export function dateChanger(list: string[], newDate: string, indexRemove: number): string[]{
+  const oldList = [...list]
+  oldList.splice(indexRemove, 1, newDate)
+  return oldList
+}
+
+export function invertIndex(size: number, element: number): number{
+  let correct = []
+  let invert = []
+  
+  for (let x = 0; x < size; x++){
+    correct.push(x)
+    invert.unshift(x)
+  }
+
+  return invert[element]
+}
