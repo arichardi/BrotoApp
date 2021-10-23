@@ -86,6 +86,21 @@ export function dayInterval(dateList: string[], index: number): string | number 
     return differenceInDays
 }
 
+export function dayIntervalInverse(dateList: string[], index: number): string | number {
+  
+  if(index === dateList.length -1){
+    return 'Não há registro anterior'
+  }
+
+  const pastDate = stringToDate(dateList[index + 1])
+  const mainDate = stringToDate(dateList[index])
+  const differenceDate = Math.abs( mainDate.getTime() - pastDate.getTime())
+  const differenceInDays = Math.ceil( differenceDate / (1000 * 60 * 60 * 24))
+  return differenceInDays
+
+}
+
+
 //convert a list of dates with year in a list of dates without year
 export function dateResize(list: string[]){
     const listResize = list.map( item => {
@@ -141,6 +156,7 @@ export function sortFormatted(a: string, b: string){
 //check for duplicate dates
 export function dateCheck(list: string[], dateToCheck: string): boolean{
   for (let item of list){
+    console.log(`comparing ${item} with ${dateToCheck}`)
     if(dateToCheck === item){
       console.log(`found an duplicate item ${item}`)
       return true

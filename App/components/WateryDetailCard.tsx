@@ -12,7 +12,7 @@ import {
     TextEnfasis,
 } from './WateryDetailCardStyle'
 import theme from '../config/styles/theme'
-import { dayOfWeek, dayInterval, invertIndex } from '../utils/helpers'
+import { dayOfWeek, invertIndex, dayIntervalInverse } from '../utils/helpers'
 
 interface Props {
     title: string;
@@ -31,19 +31,19 @@ export default function WateryDetailCard({title, category, index, wateryList, on
             <DayContainerPack>
                 <DayContainer>
                     <DayText>{dayOfWeek(title)}</DayText>
-                    <DayText>{title}</DayText>
+                    <DayText>{title.slice(0,5)}</DayText>
                 </DayContainer>
                 <Separator category={category}/>
             </DayContainerPack>
 
             <TextContainer>
-                { typeof(dayInterval( wateryList, index)) === 'number'?
+                { typeof(dayIntervalInverse( wateryList, index)) === 'number'?
                     (<>
                     <Text>A rega anterior foi há</Text>
-                    <TextEnfasis>{dayInterval( wateryList, index)}</TextEnfasis>
+                    <TextEnfasis>{dayIntervalInverse( wateryList, index)}</TextEnfasis>
                     <Text>dias</Text>
                     </>) :
-                    (<Text>{dayInterval( wateryList, index)}</Text>)
+                    (<Text>{dayIntervalInverse( wateryList, index)}</Text>)
             }
 
             </TextContainer>

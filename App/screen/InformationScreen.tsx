@@ -52,7 +52,7 @@ interface Props {
     useEffect( () => {
         const plant = plantListData.filter( item => item.id === props.id)
         const plantFNS = plant[0]
-        const newWateryList = dateResize(plantFNS.wateryList).reverse()
+        const newWateryList = plantFNS.wateryList.reverse()
         setWateryList(newWateryList)
         setPlantData(plantFNS)
     }, [plantData, openModal, update])
@@ -82,7 +82,6 @@ interface Props {
         setTransitionDate(date)
         setActiveIndexButton(activeIndex)
         setLocalModal(true)
-
     }
 
     //RN ----------------------------------------------
