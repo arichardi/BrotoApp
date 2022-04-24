@@ -34,7 +34,9 @@ export interface PlantProps {
   subtitle: string;
   arriveDate: Date;
   enviroment: 'in' | 'out';
-  photoPlant?: string;
+  photoPlant?: {
+    localUri: string;
+  };
   deleteMode?: boolean;
   quarentenaMode?: boolean;
   lastQuarentine?: string;

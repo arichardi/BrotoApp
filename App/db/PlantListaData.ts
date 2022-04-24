@@ -1,6 +1,6 @@
-import { parserDBQuery } from "../utils/parsers";
 import db from "./SQLite";
-
+import { parserDBQuery } from "../utils/parsers";
+import { PlantProps } from "../interfaces/interfaces";
 
 //initialization and table creation
 
@@ -82,7 +82,7 @@ export function readPlantData(){
  */
 //insert the data
 
-/* export function createPlant(plant: PlantProps){
+export function createPlant(plant: PlantProps){
     
     return new Promise( (resolve, reject) => {
         db.transaction( tx => {
@@ -91,7 +91,7 @@ export function readPlantData(){
 	            (name, subtitle, arrivedate, enviroment, photosplant, deleteMode, quarentenaMode)
 	            VALUES
 	            (?, ?, ?, ?, ?, ?, ?)`,
-                [plant.name, plant.subtitle, String(plant.arriveDate), plant.enviroment, plant.photoPlant.localURI, 0, 0],
+                [plant.name, plant.subtitle, String(plant.arriveDate), plant.enviroment, plant.photoPlant.localUri, 0, 0],
             //------------------------
             (sqltx, result) => {
                 console.log(`the line ${result.insertId} was inserted`)
@@ -104,9 +104,9 @@ export function readPlantData(){
             );
         })
     })
-} */
+}
 
-/* export function DeleteAllPlants(){
+export function DeleteAllPlants(){
     return new Promise( (resolve, reject) => {
         db.transaction( tx => {
             tx.executeSql(
@@ -125,9 +125,9 @@ export function readPlantData(){
         })
     })
 }
- */
 
-/* export function DeleteEspecificPlant(id: string){
+
+export function DeleteEspecificPlant(id: string){
     return new Promise( (resolve, reject) => {
         db.transaction( tx => {
             tx.executeSql(
@@ -147,4 +147,3 @@ export function readPlantData(){
         })
     })
 }
- */

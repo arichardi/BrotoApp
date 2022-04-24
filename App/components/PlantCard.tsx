@@ -25,28 +25,30 @@ import WateryList from "./WateryList";
 import { brotoDateFormatter } from "../utils/helpers";
 import WateryButton from "./WateryButton";
 import theme from '../config/styles/theme'
-//import { readWateryEspecificData } from "../db/WateryPlant";
-//import { readEspecificPlantData } from "../db/PlantListaData";
 import { PlantProps, WateryProps } from "../interfaces/interfaces";
 
 
 interface PlantCardProps {
     id: string;
+    name: string;
+    subtitle: string;
+    photo?: {
+        localUri: string;
+    };
     functionDelete: () => void;
 }
 
 
-export default function PlantCard({id, functionDelete}:PlantCardProps){
+export default function PlantCard({id, name, subtitle, photo, functionDelete}:PlantCardProps){
 
     //varibles ------------------------------------------------------------------------
     
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
+
     const [plantCardData, setPlantCardData] =  useState<PlantProps>({} as PlantProps)
     const [update, setUpdate] = useState('no')
-    
     const [wateryList, setwateryList] = useState<WateryProps>({} as WateryProps)
-    //const {handleAddDate,changeDeleteMode, plantListData} = useContext(PlantDataContext)
     const [lastDate, setLastDate] = useState('')
 
     let arriveDateFormatted = brotoDateFormatter(plantCardData.arriveDate, '2-digit','ano')
@@ -54,16 +56,6 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
     //functions ------------------------------------------------------------------------
 
     useEffect( () => { 
-
-        /* const plantDetail = readEspecificPlantData(id)
-        plantDetail.then( (value: PlantProps) => {
-            console.log(value[0])
-            setPlantCardData(value[0])
-        }) */
-
-       /*  const wateryListRead = readWateryEspecificData(id)
-        console.log(wateryListRead) */
-
 
 
      },[update])
@@ -95,7 +87,7 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
   
             <PlantaContainer>
             { plantCardData.photoPlant ? 
-            <PhotoPlant source={{uri: plantCardData.photoPlant}} /> :
+            <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> :
             plantCardData.quarentenaMode ?
              <BrotoIcon colorPri={theme.colors.pink_dark} colorSec={theme.colors.whites} />:
              <BrotoIcon />
@@ -105,9 +97,9 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
             <TouchableContainer>
 
                 <Title quarentine={plantCardData.quarentenaMode} >
-                    {plantCardData.quarentenaMode? `${plantCardData.name} - Quarentena` : plantCardData.name}
+                    {plantCardData.quarentenaMode? `${name} - Quarentena` : name}
                 </Title>
-                <Subtitle numberOfLines={1} quarentine={plantCardData.quarentenaMode} >{plantCardData.subtitle}</Subtitle>
+                <Subtitle numberOfLines={1} quarentine={plantCardData.quarentenaMode} >{subtitle}</Subtitle>
                 
             </TouchableContainer>
             </PlantTag>
@@ -125,7 +117,7 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
                 </DeleteFlag > ) : <></>
             }
 
-            { openCard && 
+{/*             { openCard && 
             <BottomCardContainer>
                 <WateryList 
                     wateryList={plantCardData.wateryList}
@@ -148,7 +140,7 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
 
                 </ExtraContainer>
             </BottomCardContainer>
-            }
+            } */}
         </Container>
     )
 }

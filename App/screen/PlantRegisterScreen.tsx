@@ -9,8 +9,6 @@ import PhotoIcon from '../components/PhotoIcon'
 import DatePickerButton from '../components/DatePickerButton'
 import * as ImagePicker from 'expo-image-picker'
 
-import { PlantDataContext } from '../Contexts/PlantData'
-
 import { 
     Container,
     NomeContainer,
@@ -59,11 +57,10 @@ export default function PlantRegisterScreen({navigation}){
     }).format(arriveDate);
     
     const [arriveDateString, setArriveDateString] = useState(FormattedArriveDate)
-    //const {handleInsertData, idList } = useContext(PlantDataContext)
    
     // functions ---------------------------------------------
 
-    function handleConfirmInsert(){
+    async function handleConfirmInsert(){
         if(plantName === 'Nome' || plantName === ''){
             Alert.alert('Faltando informação', 'Precisamos que você insira o nome da plantinha que vamos acompanhar')
             return
@@ -73,21 +70,18 @@ export default function PlantRegisterScreen({navigation}){
             return
         }
 
-        const newPlantCreate = createPlant({
+        const newPlantCreated = {
             name: plantName,
             subtitle: subtitleDescription,
             arriveDate: arriveDate,
             enviroment: envButton,
-            photoPlant: imagePlant ? imagePlant : 0,
+            photoPlant: imagePlant ? imagePlant : '',
             lastQuarentine: '',
             
-
-        })
-        newPlantCreate.then( value => {
-            let result = value
-            console.log(`um objeto foi criado ${result}` )
-        })
-
+        }
+        const result = await createPlant(newPlantCreated)
+        console.log(result);
+        navigation.goBack();
 
     }
 
@@ -192,8 +186,8 @@ export default function PlantRegisterScreen({navigation}){
                  onPress={navigation.goBack}/>
                 <AppButtonM title='Confirmar'
                  buttonType='correct'
-                 onPress={ () => handleConfirmInsert()
-                 }/>
+                 onPress={ () => handleConfirmInsert()}
+                 />
             </ButtonContainer>
             
 

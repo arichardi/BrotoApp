@@ -27,10 +27,14 @@ import FertilizerTagButton from '../components/FertilizerTagButton'
 
 export default function PlantDetailScreen({ route }){
 
+interface Nav {
+    navigate: (route: String, dataTransfer: {}) => void;
+}
+
     //variables ----------------------------------------------
 
-    const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
-    const Navigation = useNavigation()
+    //const {plantListData, handleAddfertilizer, handleQuarentine} = useContext(PlantDataContext)
+    const Navigation = useNavigation<Nav>()
     const props = route.params;
     const [plantData, setPlantData] = useState({} as PlantListDataProps)
     const [lastFertilizerData, setLastFertilizerData] = useState('')
@@ -38,7 +42,7 @@ export default function PlantDetailScreen({ route }){
     
 
     useEffect( () => {
-        const plant = plantListData.filter( item => item.id === props.id)
+/*         const plant = plantListData.filter( item => item.id === props.id)
         const plantFNS = plant[0]
         setPlantData(plantFNS)
         const lastFertilizerDataFNS = plantFNS.fertilizerList[plantFNS.fertilizerList.length - 1]
@@ -50,9 +54,9 @@ export default function PlantDetailScreen({ route }){
 
         setLastWateryData(lastWateryDateFNS)
 
-        
+         */
 
-    }, [plantListData])
+    }, [])
 
     //Functions ----------------------------------------------
 
@@ -77,12 +81,6 @@ export default function PlantDetailScreen({ route }){
             <PhotoIconContainer>
                 <PhotoIcon editMode={false} photoPlant={plantData.photoPlant}/>
             </PhotoIconContainer>
-
-            
-        {/* Ios back navigation button
-            <GoBackIcon >
-                <BackIcon />
-            </GoBackIcon> */}
 
             <InfoContainer>
             <NameDisplay>{`${plantData.name}`}</NameDisplay>

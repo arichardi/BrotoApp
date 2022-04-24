@@ -42,15 +42,13 @@ useEffect( () => {
 
 function handlestartDeleteMode(){
     setDeleteMode(true)
-    console.log('delete mode on')
 }
 
 function deletePlant(){
-    console.log('working')
+
 }
 
 function handleDeleteModeExit(){
-    console.log('working')
 
 }
 
@@ -70,6 +68,9 @@ function handleDeleteModeExit(){
                 renderItem={ ({item}) => {
                     return <PlantCard 
                         id={item.id}
+                        name={item.name}
+                        subtitle={item.subtitle}
+                        photo={item.photoPlant}
                         functionDelete={handlestartDeleteMode}
                          />
                 }

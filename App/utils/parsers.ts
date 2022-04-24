@@ -1,3 +1,5 @@
+    import {PlantProps} from '../interfaces/interfaces'
+
 
     interface DBQueryProps {
         id: number;
@@ -12,18 +14,6 @@
 
     }
 
-    interface PlantProps {
-        id?: string;
-        name: string;
-        subtitle: string;
-        arriveDate: Date;
-        enviroment: 'in' | 'out';
-        photoPlant?: string;
-        deleteMode?: boolean;
-        quarentenaMode?: boolean;
-        lastQuarentine?: string;
-      }
-
       export function parserDBQuery(dbData: DBQueryProps[]): PlantProps[]{
           const result = dbData.map( plantData => {
               return {
@@ -32,7 +22,9 @@
                     subtitle: plantData.subtitle,
                     arriveDate: new Date(plantData.arrivedate),
                     enviroment: plantData.enviroment,
-                    photoPlant: plantData.photosplant ? plantData.photosplant: '',
+                    photoPlant: {
+                        localUri: plantData.photosplant ? plantData.photosplant: ''
+                    },
                     deleteMode: plantData.deleteMode ? false : true,
                     quarentenaMode: plantData.quarentenaMode ? false : true,
                     lastQuarentine: plantData.lastquarentena ? plantData.lastquarentena : '',
