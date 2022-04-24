@@ -12,10 +12,11 @@ import Modal from 'react-native-modal'
 import AddDataModal from './AddDataModal'
 
 interface Props{
-    onPress: () => void
+    onPress: () => void;
+    lastFertilizer: string;
 }
 
-export default function FertilizerTagButton({onPress}: Props){
+export default function FertilizerTagButton({onPress, lastFertilizer = '0'}: Props){
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -24,8 +25,9 @@ export default function FertilizerTagButton({onPress}: Props){
         <Container>
 
             <InfoContainer onPress={onPress}>
-                <Title>Regas</Title>
-                <Subtitle>{`Última Quarentena foi dia xx/xx`}</Subtitle>
+                <Title>Adubação</Title>
+                <Subtitle>{lastFertilizer === '0'? `Nunca foi adubada`:
+                `Última adubação: SEX - XX/XX`}</Subtitle>
             </InfoContainer>
 
             <IconContainer onPress={() => setOpenModal(true)}>

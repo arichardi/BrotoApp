@@ -21,7 +21,7 @@ export default function WateryButton({lastDate, id, quarentine, onPress}: Props)
 
 
     const todayDate = new Date()
-    const todayFormatted = brotoDateFormatter(todayDate, '2-digit')
+    const todayFormatted = brotoDateFormatter(todayDate, '2-digit', 'ano')
 
 
     return(

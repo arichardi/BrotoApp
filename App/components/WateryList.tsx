@@ -4,7 +4,7 @@ import {
     Container,
 } from './WateryListStyle'
 import { WateryCardOne, WateryCardTwo, WateryCardThree} from './WateryCards/WateryCards'
-import theme from '../config/styles/theme'
+import {dateResize} from '../utils/helpers'
 
     interface Props {
         wateryList: string[];
@@ -14,28 +14,30 @@ import theme from '../config/styles/theme'
 
 export default function WateryList({wateryList, wateryListCount, quarentine}: Props){
     
+    const shortDateWateryList = dateResize(wateryList)
+
     return(
         <Container>
             {   
-                wateryListCount === 1 ? <WateryCardOne quarentine={quarentine} data={wateryList[0]}/> :
+                wateryListCount === 1 ? <WateryCardOne quarentine={quarentine} data={shortDateWateryList[0]}/> :
 
                 wateryListCount === 2 ?
-                    wateryList.map( item => (
+                    shortDateWateryList.map( item => (
                         <WateryCardTwo quarentine={quarentine} key={item} data={item}/>
                     )) : 
 
                 wateryListCount === 3  ?
-                    wateryList.map( item => (
+                    shortDateWateryList.map( item => (
                         <WateryCardThree quarentine={quarentine} key={item} data={item}/>
                     )) :
 
                 wateryListCount > 3 && wateryListCount < 6 ?
-                    wateryList.map( item => (
+                    shortDateWateryList.map( item => (
                         <WateryCard key={item} date={item} quarentine={quarentine}/>
                     )) : 
                 
                     wateryListCount > 5 ?
-                    wateryList.slice(-5).map( item => (
+                    shortDateWateryList.slice(-5).map( item => (
                         <WateryCard key={item} date={item} quarentine={quarentine}/>
                     )) : <></>    
                     

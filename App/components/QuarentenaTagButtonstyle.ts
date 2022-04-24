@@ -18,12 +18,12 @@ export const InfoContainer = styled.TouchableOpacity`
 `;
 
 export const Title = styled.Text`
-    color: ${ ({theme}) => theme.colors.backGround};
+    color: ${ ({theme}) => theme.colors.brown};
     font-family: ${ ({theme}) => theme.fonts.black};
 `;
 
 export const Subtitle = styled.Text`
-    color: ${ ({theme}) => theme.colors.backGround};
+    color: ${ ({theme}) => theme.colors.brown};
     font-family: ${ ({theme}) => theme.fonts.regular};
 `;
 

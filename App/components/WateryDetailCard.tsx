@@ -12,26 +12,43 @@ import {
     TextEnfasis,
 } from './WateryDetailCardStyle'
 import theme from '../config/styles/theme'
-import { dayOfWeek } from '../utils/helpers'
+import { dayOfWeek, invertIndex, dayIntervalInverse } from '../utils/helpers'
 
-export default function WateryDetailCard({title}){
+interface Props {
+    title: string;
+    category: 'rega' | 'quarentena' | 'abudo';
+    index: number;
+    wateryList: string[];
+    onPress: (date: string, activeIndex: number) => void;
+}
+
+export default function WateryDetailCard({title, category, index, wateryList, onPress}: Props){
+
+    const invertedIndex = invertIndex(wateryList.length, index)
+
     return(
         <Container>
             <DayContainerPack>
                 <DayContainer>
                     <DayText>{dayOfWeek(title)}</DayText>
-                    <DayText>{title}</DayText>
+                    <DayText>{title.slice(0,5)}</DayText>
                 </DayContainer>
-                <Separator />
+                <Separator category={category}/>
             </DayContainerPack>
 
             <TextContainer>
-                <Text>A rega anterior foi há</Text>
-                <TextEnfasis>{`2`}</TextEnfasis>
-                <Text>dias</Text>
+                { typeof(dayIntervalInverse( wateryList, index)) === 'number'?
+                    (<>
+                    <Text>A rega anterior foi há</Text>
+                    <TextEnfasis>{dayIntervalInverse( wateryList, index)}</TextEnfasis>
+                    <Text>dias</Text>
+                    </>) :
+                    (<Text>{dayIntervalInverse( wateryList, index)}</Text>)
+            }
+
             </TextContainer>
 
-            <ButtonEdit>
+            <ButtonEdit onPress={ () => onPress(title, invertedIndex)}>
                 <EditDetail color={theme.colors.green_dark}/>
             </ButtonEdit>
         </Container>

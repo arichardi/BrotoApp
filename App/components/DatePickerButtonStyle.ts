@@ -31,7 +31,7 @@ export const TextContainer = styled.View`
     justify-content: space-between;
 `;
 export const DataTitle = styled.Text<type>`
-    color: ${ ({theme, type}) => type === 'Rega' ? theme.colors.pink_dark:
+    color: ${ ({theme, type}) => type === 'Rega' ? theme.colors.attention:
     type === 'Quarentena'? theme.colors.attention : theme.colors.green_dark};
     font-family: ${ ({theme}) => theme.fonts.black};
     font-size: 15px;

@@ -40,16 +40,18 @@ export const DataTextTwo = styled.Text<Quarentine>`
     font-family: ${ ({theme}) => theme.fonts.black};
 `;
 export const DataTextThree = styled.Text<Quarentine>`
-    color: ${ ({theme, quarentine}) => quarentine ? theme.colors.pink_dark : theme.colors.pink_dark};
+    color: ${ ({theme, quarentine}) => quarentine ? theme.colors.pink_dark : theme.colors.attention};
     font-family: ${ ({theme}) => theme.fonts.black};
 `;
 export const DataContainer = styled.View`
     align-items: center;
     margin-left: 24px;
+
 `;
 export const ContainerThree = styled.View`
     flex-direction: row;
     margin-bottom: 8px;
+    margin-right: 4px;
 `;
 export const DataContainerThree = styled.View`
     align-items: center;

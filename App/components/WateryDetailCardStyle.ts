@@ -1,5 +1,9 @@
 import styled from "styled-components/native";
 
+interface Props {
+    category: 'rega' | 'quarentena' | 'abudo';
+}
+
 export const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -29,11 +33,13 @@ export const DayContainerPack = styled.View`
     align-items: center;
 `;
 
-export const Separator = styled.View`
+export const Separator = styled.View<Props>`
     width: 2px;
     height: 22px;
     border-radius: 1px;
-    background-color: ${ ({theme}) => theme.colors.green_dark};
+    background-color: ${ ({theme, category}) => category === 'rega'? theme.colors.green_dark:
+    category === 'abudo'? theme.colors.yellow_dark : theme.colors.pink_dark
+};
     margin-left: 12px;
 `;
 
