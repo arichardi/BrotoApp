@@ -39,6 +39,7 @@ import GaleryIcon from '../Assets/GaleryIcon'
 import CameraIcon from '../Assets/CameraIcon'
 import Calendar from '../components/Calendar'
 import CalendarDatePicker from '../components/CalendarDatePicker'
+import { createPlant } from '../db/PlantListaData'
 
  type Enviro = 'in' | 'out' | ''
 
@@ -53,8 +54,6 @@ export default function PlantRegisterScreen({navigation}){
     const [plantName, setPlantName] = useState('Nome')
     const [imagePlant, setImagePlant] =useState(null)
     const [subtitleDescription, setSubtitleSescription] = useState('')
-    const [errorName, setErrorName] = useState('false')
-    const [errorEnv, setErrorEnv] = useState('false')
     const [photoModal, setPhotoModal] = useState(false)
     const [openCalendarModal, setOpenCalendarModal] = useState(false)
     
@@ -65,7 +64,7 @@ export default function PlantRegisterScreen({navigation}){
     }).format(arriveDate);
     
     const [arriveDateString, setArriveDateString] = useState(FormattedArriveDate)
-    const {handleInsertData, idList } = useContext(PlantDataContext)
+    //const {handleInsertData, idList } = useContext(PlantDataContext)
    
     // functions ---------------------------------------------
 
@@ -78,21 +77,23 @@ export default function PlantRegisterScreen({navigation}){
             Alert.alert('Faltando informação', 'Precisamos que você insira o local onde pretende guardar a sua plantinha')
             return
         }
-        handleInsertData({
-            id: idList.toString(),
+
+        const newPlantCreate = createPlant({
             name: plantName,
             subtitle: subtitleDescription,
             arriveDate: arriveDate,
             enviroment: envButton,
-            photoPlant: imagePlant,
-            wateryList: [],
-            wateryListCount: 0,
-            deleteMode: false,
-            fertilizerCount: 0,
-            fertilizerList: [],
+            photoPlant: imagePlant ? imagePlant : 0,
             lastQuarentine: '',
-            quarentenaMode: false
-         })
+            
+
+        })
+        newPlantCreate.then( value => {
+            let result = value
+            console.log(`um objeto foi criado ${result}` )
+        })
+
+
     }
 
     function handleConfirmCalendarModal(date: Date){

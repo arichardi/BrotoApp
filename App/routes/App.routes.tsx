@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardStyleInterpolators, createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import {  createStackNavigator} from '@react-navigation/stack'
 
 import MyPlants from '../screen/Myplants';
 import PlantDetailScreen from '../screen/PlantDetailScreen';

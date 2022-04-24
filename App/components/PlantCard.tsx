@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigation } from '@react-navigation/native'
 import {
 Container,
@@ -20,13 +20,14 @@ DeleteFlag,
 DeleteText,
 } from './PlantCardStyles'
 
-import { PlantDataContext } from '../Contexts/PlantData'
 import BrotoIcon from "../Assets/BrotoIcon";
 import WateryList from "./WateryList";
 import { brotoDateFormatter } from "../utils/helpers";
 import WateryButton from "./WateryButton";
-import { PlantListDataProps } from "../Contexts/PlantData";
 import theme from '../config/styles/theme'
+//import { readWateryEspecificData } from "../db/WateryPlant";
+//import { readEspecificPlantData } from "../db/PlantListaData";
+import { PlantProps, WateryProps } from "../interfaces/interfaces";
 
 
 interface PlantCardProps {
@@ -38,30 +39,38 @@ interface PlantCardProps {
 export default function PlantCard({id, functionDelete}:PlantCardProps){
 
     //varibles ------------------------------------------------------------------------
-
+    
     const Navigation = useNavigation()
     const [openCard, setOpenCard] = useState(false)
-    const {handleAddDate,changeDeleteMode, plantListData} = useContext(PlantDataContext)
-    const [plantCardData, setPlantCardData] =  useState({} as PlantListDataProps)
-    const [lastDate, setLastDate] = useState('')
+    const [plantCardData, setPlantCardData] =  useState<PlantProps>({} as PlantProps)
     const [update, setUpdate] = useState('no')
+    
+    const [wateryList, setwateryList] = useState<WateryProps>({} as WateryProps)
+    //const {handleAddDate,changeDeleteMode, plantListData} = useContext(PlantDataContext)
+    const [lastDate, setLastDate] = useState('')
 
     let arriveDateFormatted = brotoDateFormatter(plantCardData.arriveDate, '2-digit','ano')
 
     //functions ------------------------------------------------------------------------
 
     useEffect( () => { 
-        const cardData = plantListData.filter( item => item.id === id );
-        const cardDataFNS = cardData[0];
-        setPlantCardData(cardDataFNS);
-        const lastDateFNS = cardDataFNS.wateryList[cardDataFNS.wateryList.length - 1]
-        setLastDate(lastDateFNS)
+
+        /* const plantDetail = readEspecificPlantData(id)
+        plantDetail.then( (value: PlantProps) => {
+            console.log(value[0])
+            setPlantCardData(value[0])
+        }) */
+
+       /*  const wateryListRead = readWateryEspecificData(id)
+        console.log(wateryListRead) */
+
+
 
      },[update])
 
     function handleUpdateWateryIcon(id: string){
-        handleAddDate(id)
-        setUpdate('yes')
+/*         handleAddDate(id)
+        setUpdate('yes') */
     }
 
     function handleOpenCard(){
@@ -69,8 +78,8 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
     }
 
     function handleDeleteMode(id: string){
-        changeDeleteMode(id)
-        functionDelete()
+/*         changeDeleteMode(id)
+        functionDelete() */
     }
 
     // RN -----------------------------------------------------------------
@@ -82,7 +91,7 @@ export default function PlantCard({id, functionDelete}:PlantCardProps){
   
             <PlantaContainer>
             { plantCardData.photoPlant ? 
-            <PhotoPlant source={{uri: plantCardData.photoPlant.localUri}} /> :
+            <PhotoPlant source={{uri: plantCardData.photoPlant}} /> :
             plantCardData.quarentenaMode ?
              <BrotoIcon colorPri={theme.colors.pink_dark} colorSec={theme.colors.whites} />:
              <BrotoIcon />

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Container,
     Title,
     Underline,
@@ -12,8 +12,10 @@ import { Container,
 import PlantCard from '../components/PlantCard';
 import PlantAddIconButton from '../Assets/PlantAddIconButton'
 import BackgroundApp from '../components/BackgroundApp';
-import {PlantDataContext} from '../Contexts/PlantData'
 import PlantRemoveIconButton from '../Assets/PlantRemoveIconButton';
+
+import { readPlantData } from '../db/PlantListaData';
+import { PlantProps } from '../interfaces/interfaces';
 
 
 //----------------------------------------------------------------
@@ -24,9 +26,19 @@ export default function MyPlants({navigation}){
 // Variables ----------------------------------------------
 const [isLoading, setIsLoading] = useState(true)
 const [deleteMode, setDeleteMode] = useState(false)
-const {plantListData, handleRemovePlant, clearDeleteMode} = useContext(PlantDataContext)
+const [plantListData, setPlantListData] = useState<PlantProps[]>([] as PlantProps[])
+
 
 // function ----------------------------------------------
+
+useEffect( () => {
+    async function loadingData() {
+        const loadedData = await readPlantData()
+        setPlantListData(loadedData as PlantProps[])
+    }
+    loadingData()
+
+}, [])
 
 function handlestartDeleteMode(){
     setDeleteMode(true)
@@ -34,14 +46,12 @@ function handlestartDeleteMode(){
 }
 
 function deletePlant(){
-    handleRemovePlant()
-    setDeleteMode(false)
+    console.log('working')
 }
 
 function handleDeleteModeExit(){
-    deleteMode ? setDeleteMode(false): {}
-    clearDeleteMode()
-    return
+    console.log('working')
+
 }
 
 // RN ----------------------------------------------
@@ -56,7 +66,7 @@ function handleDeleteModeExit(){
 
             <PlantList 
                 data={plantListData}
-                keyExtractor={ item => item.name}
+                keyExtractor={ item => item.id}
                 renderItem={ ({item}) => {
                     return <PlantCard 
                         id={item.id}
